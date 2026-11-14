@@ -1,0 +1,104 @@
+{
+  "base": "https://leash.leash-agent.workers.dev",
+  "startedAt": "2026-11-14T20:38:56.607Z",
+  "steps": [
+    {
+      "name": "createGuest",
+      "account": "g-dmf7we.leash-11141537.testnet",
+      "tx": "9XYnRRCgcT5vqfKYV1Le8xwQHuJfrUE8KWc3GJfT4XDf"
+    },
+    {
+      "name": "installGuard",
+      "tx": "2DLp7RYBKY8yDyxQkQmPbnSprn882ZYCwArxGjJbsAAR"
+    },
+    {
+      "name": "bootstrap",
+      "status": 200,
+      "address": "0xd44970d250f974e3b1a3e9783dd7396b09636b84",
+      "signerMode": "chain-signatures",
+      "accountId": "0x6e937624e4690d5887bdb9b154af740d13c8a4fd3c68390237361852f73f9ba3",
+      "registered": true,
+      "created": true,
+      "keyAdded": true,
+      "faucetRequested": false,
+      "starterUsdc": 50,
+      "usdcBalance": 50
+    },
+    {
+      "name": "faucetBalance",
+      "usdc": 50
+    },
+    {
+      "name": "open3x",
+      "status": 200,
+      "ok": true,
+      "authTx": "Dn9KjZQsyCXiAU7F5Rmx4YN8AcquEkn5kDAU336G16tQ",
+      "authId": 1,
+      "limit": "on-chain guard",
+      "orderId": 3975264134,
+      "quantity": 0.0164,
+      "notional": 29.885228,
+      "markPrice": 1822.27,
+      "estLiq": {
+        "price": 1260.4034166666665,
+        "distancePct": 30.83333333333334
+      },
+      "signerMode": "chain-signatures",
+      "address": "0xd44970d250f974e3b1a3e9783dd7396b09636b84"
+    },
+    {
+      "name": "reject10x",
+      "status": 409,
+      "ok": false,
+      "error": "LEVERAGE",
+      "rejectedTx": "Aw2WefbDGm7y2BsJRqVfwUmcJTMBcZmm7nJUXzpKK5hE"
+    },
+    {
+      "name": "positionsAfterOpen",
+      "registered": true,
+      "address": "0xd44970d250f974e3b1a3e9783dd7396b09636b84",
+      "signerMode": "chain-signatures",
+      "orderlyAccountId": "0x6e937624e4690d5887bdb9b154af740d13c8a4fd3c68390237361852f73f9ba3",
+      "usdcBalance": 50,
+      "totalCollateral": 49.901648,
+      "freeCollateral": 39.93673466,
+      "positions": [
+        {
+          "symbol": "PERP_ETH_USDC",
+          "qty": 0.0164,
+          "avgOpen": 1827.02,
+          "markPrice": 1822.85,
+          "unrealizedPnl": -0.098352,
+          "estLiqPrice": 0,
+          "leverage": 3
+        }
+      ],
+      "orders": []
+    },
+    {
+      "name": "close",
+      "status": 200,
+      "ok": true,
+      "closed": [
+        "PERP_ETH_USDC"
+      ],
+      "orderIds": [
+        3975264162
+      ]
+    },
+    {
+      "name": "positionsAfterClose",
+      "registered": true,
+      "address": "0xd44970d250f974e3b1a3e9783dd7396b09636b84",
+      "signerMode": "chain-signatures",
+      "orderlyAccountId": "0x6e937624e4690d5887bdb9b154af740d13c8a4fd3c68390237361852f73f9ba3",
+      "usdcBalance": 50,
+      "totalCollateral": 49.939909,
+      "freeCollateral": 49.939909,
+      "positions": [],
+      "orders": []
+    }
+  ],
+  "account": "g-dmf7we.leash-11141537.testnet",
+  "finishedAt": "2026-11-14T20:39:40.857Z"
+}

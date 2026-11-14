@@ -25,6 +25,7 @@ export type PerpsAccount = {
   orderlyAccountId?: string;
   usdcBalance?: number;
   faucetRequested?: boolean;
+  starterUsdc?: number;
   positions?: Position[];
 };
 export type TradeResult = {

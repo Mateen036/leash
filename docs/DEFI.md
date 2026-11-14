@@ -45,7 +45,7 @@ Orderly EVM testnet (chain 421614, broker demo)
 
 ## Perps flow
 
-1. `bootstrap`: derive the EVM address with Chain Signatures (falling back to a server-derived key if MPC is slow), register an Orderly account, add an ed25519 trading key, and request faucet USDC (testnet only; it can take ~20 min).
+1. `bootstrap`: derive the EVM address with Chain Signatures (falling back to a server-derived key if MPC is slow), register an Orderly account, add an ed25519 trading key, and send 50 starter test USDC from a server-held Orderly reserve account via a wallet-signed internal transfer (instant). If the reserve is empty it falls back to Orderly's faucet, which is slow and unreliable on testnet.
 2. `order`: size the order, check off-chain, call guard `authorize_perp` on-chain (rejects over leverage or notional), then place the Orderly market order.
 3. `close` / `close-all`: reduce-only market orders.
 

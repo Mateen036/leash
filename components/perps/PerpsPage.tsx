@@ -779,8 +779,8 @@ export default function PerpsPage() {
                   )}
                 </div>
                 <p className={styles.fineprint}>
-                  Perps use Orderly test USDC — it arrives automatically after
-                  your first perps setup (~20 min).
+                  Perps use Orderly test USDC. Setup sends you 50 test USDC
+                  right away.
                 </p>
                 <a
                   className={styles.textLink}
@@ -793,7 +793,7 @@ export default function PerpsPage() {
                 {account?.faucetRequested &&
                   !(Number(account.usdcBalance) > 0) && (
                     <p className={styles.notice} role="status">
-                      Test funds requested. Delivery can take about 20 minutes.
+                      Test funds requested from Orderly's faucet. This can take a while, so try setup again in a few minutes.
                     </p>
                   )}
               </>

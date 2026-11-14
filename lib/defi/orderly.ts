@@ -128,3 +128,42 @@ export async function placeMarket(s: OrderlySession, o: { symbol: string; side: 
   return signed(s, "POST", "/v1/order", body).then((j) => j.data as { order_id: number; client_order_id?: string });
 }
 export const getOrder = (s: OrderlySession, id: number) => signed(s, "GET", `/v1/order/${id}`).then((j) => j.data);
+
+export const LEDGER_TESTNET = "0x1826B75e2ef249173FC735149AE4B8e9ea10abff";
+/** Wallet-signed (EIP-712) internal USDC transfer from a server-held Orderly testnet account to another Orderly account. */
+export async function internalTransfer(from: OrderlySession, receiverAccountId: string, amountUsdc: number) {
+  const signer = await signerFor(from.nearAccountId, from.mode);
+  const nonce = String((await signed(from, "GET", "/v1/transfer_nonce")).data.transfer_nonce);
+  const amount = BigInt(Math.round(amountUsdc * 1e6));
+  const digest = hashTypedData({
+    domain: { name: "Orderly", version: "1", chainId: CHAIN_ID, verifyingContract: LEDGER_TESTNET },
+    primaryType: "InternalTransfer",
+    types: { InternalTransfer: [{ name: "receiver", type: "bytes32" }, { name: "token", type: "string" }, { name: "amount", type: "uint256" }, { name: "transferNonce", type: "uint64" }] },
+    message: { receiver: receiverAccountId as Hex, token: "USDC", amount, transferNonce: BigInt(nonce) },
+  });
+  const signature = await signer.sign(digest);
+  const body = { message: { receiver: receiverAccountId, token: "USDC", amount: amount.toString(), transferNonce: nonce, chainId: String(CHAIN_ID), chainType: "EVM" },
+    signature, userAddress: signer.address, verifyingContract: LEDGER_TESTNET };
+  return signed(from, "POST", "/v2/internal_transfer", body).then((j) => j.data);
+}
+
+/** Server-held Orderly testnet account (server-derived key) pre-funded with test USDC, used to top up new perps accounts instantly. */
+export const RESERVE_NEAR_ID = "perps-reserve.leash-11141537.testnet";
+export const STARTER_USDC = 50;
+export async function reserveSession(): Promise<OrderlySession> {
+  const { address } = await signerFor(RESERVE_NEAR_ID, "server-derived");
+  const acct = await pub(`/v1/get_account?address=${address}&broker_id=${BROKER_ID}`);
+  return { nearAccountId: RESERVE_NEAR_ID, accountId: acct.data.account_id, address, mode: "server-derived" };
+}
+/** Sends starter test USDC from the reserve. Returns the amount sent, or 0 if the reserve is empty or the transfer failed. */
+export async function grantStarterUsdc(receiverAccountId: string): Promise<number> {
+  try {
+    const r = await reserveSession();
+    if (r.accountId === receiverAccountId) return 0;
+    const left = (await holdings(r)).find((x) => x.token === "USDC")?.holding ?? 0;
+    if (left < STARTER_USDC + 1) { requestFaucet(r.address).catch(() => undefined); return 0; }
+    await internalTransfer(r, receiverAccountId, STARTER_USDC);
+    if (left < 300) requestFaucet(r.address).catch(() => undefined);
+    return STARTER_USDC;
+  } catch { return 0; }
+}
