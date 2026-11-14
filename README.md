@@ -2,7 +2,7 @@
 
 **An AI DeFi agent on an on-chain leash.**
 
-Live: [https://leash.mateen-nibtap.workers.dev](https://leash.mateen-nibtap.workers.dev)
+Live: [https://leash.leash-agent.workers.dev](https://leash.leash-agent.workers.dev)
 
 Leash is an AI agent that can swap, stake, lend, and open perps for you on NEAR testnet. Its limits are enforced by a smart contract on your own account, not by a prompt. The agent holds a function-call key that can only call the guard on your account. The guard checks every action against your policy, and revoke deletes the key on-chain.
 
@@ -31,8 +31,8 @@ Guest mode is autonomous on testnet. Wallet-connect mode is a co-pilot: the agen
 
 ## How to try it
 
-1. Open the [live site](https://leash.mateen-nibtap.workers.dev).
-2. Go to [`/agent`](https://leash.mateen-nibtap.workers.dev/agent) and start in **guest mode** (free, testnet). The browser creates a funded guest account, installs the published guard by immutable code hash, and adds an agent key limited to `agent_execute` and `authorize_perp`. Confirm a readable proposal; execution starts after a three-second undo window.
+1. Open the [live site](https://leash.leash-agent.workers.dev).
+2. Go to [`/agent`](https://leash.leash-agent.workers.dev/agent) and start in **guest mode** (free, testnet). The browser creates a funded guest account, installs the published guard by immutable code hash, and adds an agent key limited to `agent_execute` and `authorize_perp`. Confirm a readable proposal; execution starts after a three-second undo window.
 3. Or **connect a NEAR testnet wallet** for co-pilot mode. Use the in-app faucet if you need test tokens.
 
 Nothing on the testnet flows spends real money. The bridge page is the only mainnet path, and it is opt-in, wallet-signed, and capped at $25.
