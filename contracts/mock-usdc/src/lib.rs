@@ -1,4 +1,4 @@
-//! Testnet-only USDC stand-in for LocalAgentPay demos.
+//! Testnet-only USDC stand-in for Leash demos.
 //! Six decimals like Circle USDC. Anyone may call `faucet` for up to 100 test USDC per call,
 //! and storage registration is paid by the contract so gasless guests can receive tokens.
 //! Never deploy this to mainnet: mainnet uses the real NEP-141 USDC
@@ -41,7 +41,7 @@ impl Contract {
     pub fn new() -> Self {
         let metadata = FungibleTokenMetadata {
             spec: FT_METADATA_SPEC.to_string(),
-            name: "Test USDC (LocalAgentPay testnet)".to_string(),
+            name: "Test USDC (Leash testnet)".to_string(),
             symbol: "tUSDC".to_string(),
             icon: None,
             reference: None,

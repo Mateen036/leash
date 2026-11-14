@@ -25,7 +25,7 @@ export async function getConnector(): Promise<NearConnector> {
     providers: { testnet: [near.rpcUrl, "https://rpc.testnet.near.org"] },
     footerBranding: {
       heading: "Leash · NEAR testnet",
-      link: "https://github.com/Mateen036/localagentpay",
+      link: "https://github.com/Mateen036/leash",
       linkText: "Source",
     },
   });

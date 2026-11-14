@@ -27,7 +27,7 @@ All informational navigation links return 200. Remaining non-200 responses are l
 | https://github.com/hot-dao/near-connect | 404 → 404 | Fixed → https://github.com/azbang/near-connect (200). | old protocol link |
 | https://github.com/hot-dao/near-selector | 200 → 200 | npm metadata redirects → https://github.com/azbang/near-connect (200). | npm repository/homepage |
 | https://github.com/kokonut-labs/kokonutui | 200 → 200 | OK | components/kokonutui/action-status.tsx |
-| https://github.com/Mateen036/localagentpay | 200 → 200 | OK | lib/near/wallet.ts |
+| https://github.com/Mateen036/leash | 200 → 200 | OK | lib/near/wallet.ts |
 | https://guide.rhea.finance | 200 → 200 | OK | components/leash/ProtocolsPage.tsx |
 | https://kokonutui.com | 200 → 200 | OK | components/kokonutui/action-status.tsx |
 | https://leash.leash-agent.workers.dev | 200 → 200 | OK | README.md |
