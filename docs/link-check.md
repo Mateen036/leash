@@ -30,8 +30,8 @@ All informational navigation links return 200. Remaining non-200 responses are l
 | https://github.com/Mateen036/localagentpay | 200 → 200 | OK | lib/near/wallet.ts |
 | https://guide.rhea.finance | 200 → 200 | OK | components/leash/ProtocolsPage.tsx |
 | https://kokonutui.com | 200 → 200 | OK | components/kokonutui/action-status.tsx |
-| https://leash.mateen-nibtap.workers.dev | 200 → 200 | OK | README.md |
-| https://leash.mateen-nibtap.workers.dev/agent | 200 → 200 | OK | README.md |
+| https://leash.leash-agent.workers.dev | 200 → 200 | OK | README.md |
+| https://leash.leash-agent.workers.dev/agent | 200 → 200 | OK | README.md |
 | https://linearprotocol.org | 200 → 200 | OK | components/leash/ProtocolsPage.tsx |
 | https://near-faucet.io/ | 200 → 200 | OK | components/leash/GetTestTokens.tsx, components/perps/PerpsPage.tsx, docs/defi-v3-ui-verification.md |
 | https://near-testnet.drpc.org | 405 → 200 | Resolves → https://drpc.org/chainlist/near-testnet-rpc | lib/near/rpc.ts |

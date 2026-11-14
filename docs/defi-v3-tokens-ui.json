@@ -1,6 +1,6 @@
 {
   "at": "2026-11-14T19:06:14.479Z",
-  "base": "https://leash.mateen-nibtap.workers.dev",
+  "base": "https://leash.leash-agent.workers.dev",
   "passed": false,
   "checks": [
     "Browser creates guest and installs on-chain guard",

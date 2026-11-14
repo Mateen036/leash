@@ -1,6 +1,6 @@
 {
   "at": "2026-11-14T17:26:57.193Z",
-  "base": "https://leash.mateen-nibtap.workers.dev",
+  "base": "https://leash.leash-agent.workers.dev",
   "shots": [
     "/workspace/shots/leash-v2-flow-agent-review-desktop.png",
     "/workspace/shots/leash-v2-flow-agent-timeline-done-desktop.png",

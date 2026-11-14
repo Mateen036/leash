@@ -1,7 +1,7 @@
 {
   "passed": true,
   "at": "2026-11-14T19:18:23.933Z",
-  "base": "https://leash.mateen-nibtap.workers.dev",
+  "base": "https://leash.leash-agent.workers.dev",
   "transactions": {
     "created": "EEuubb1aRtu84kE3zoJ1h9G3oFyQNcKCw66uF45qiQ9f",
     "install": "52saC5gVUc9oaJQ4siirJQx5cm5ot5hGLfR69bmkefv2",

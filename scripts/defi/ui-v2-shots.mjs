@@ -4,7 +4,7 @@ import { writeFileSync } from "node:fs";
 const { chromium } = createRequire("/tmp/localagentpay-browser/package.json")(
   "playwright",
 );
-const base = process.env.BASE || "https://leash.mateen-nibtap.workers.dev";
+const base = process.env.BASE || "https://leash.leash-agent.workers.dev";
 const dir = "/workspace/shots/";
 const b = await chromium.launch({
   executablePath:
