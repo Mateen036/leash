@@ -36,6 +36,7 @@ import { ManagementDialog } from "@/components/leash/ManagementDialog";
 import { CustodyFacts } from "@/components/leash/CustodyFacts";
 import { useDefiState } from "@/hooks/useDefiState";
 import { PerpPreview } from "./PerpPreview";
+import { PerpChart } from "./PerpChart";
 import {
   marketName,
   number,
@@ -381,6 +382,12 @@ export default function PerpsPage() {
               {walletMode && <Badge variant="off-chain-limit" />}
             </>
           }
+        />
+        <PerpChart
+          symbol={symbol}
+          markPrice={market?.markPrice}
+          change24h={market?.change24h}
+          position={positions.find((p) => p.symbol === symbol) ?? null}
         />
         <WidgetShell
           title="Perpetuals"

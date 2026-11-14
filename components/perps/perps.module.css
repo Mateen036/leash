@@ -422,7 +422,7 @@
   }
 }
 .page {
-  max-width: 1000px;
+  max-width: 1120px;
 }
 .page :global(.widget-layout) {
   align-items: start;
@@ -772,5 +772,197 @@
   }
   .mobilePreview :global(.quote-output) {
     font-size: 23px;
+  }
+}
+
+.chartCard {
+  border: 1px solid #2c403b;
+  background: linear-gradient(135deg, #132222e6, #0d171be6);
+  border-radius: 16px;
+  padding: 18px 18px 14px;
+  min-width: 0;
+  margin-bottom: 22px;
+}
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.chartPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.chartPrice strong {
+  font: 22px/1.2 var(--mono);
+  color: #d9f7e7;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.chartPrice > span:last-child {
+  font-size: 12px;
+}
+.chartMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.chartTabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #2c403b;
+  border-radius: 10px;
+  background: #0b171980;
+}
+.chartTabs button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #9db1a9;
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.chartTabs button[aria-selected="true"],
+.chartTabs button[aria-pressed="true"] {
+  background: #1a2e27;
+  color: #d9f7e7;
+}
+.chartTabs button:hover:not([aria-selected="true"]):not([aria-pressed="true"]) {
+  color: #d3e4da;
+}
+.chartFrame {
+  position: relative;
+  height: 340px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b17194d;
+}
+.chartCanvas {
+  position: absolute;
+  inset: 0;
+}
+.chartTooltip {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  min-width: 148px;
+  padding: 8px 10px;
+  border: 1px solid #2c403b;
+  border-radius: 10px;
+  background: #0b1719f2;
+  color: #d3e4da;
+  font-size: 11px;
+  box-shadow: 0 10px 28px #0007;
+}
+.chartTooltip time {
+  display: block;
+  color: #9db1a9;
+  margin-bottom: 6px;
+  font-size: 10px;
+}
+.chartTooltip dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 12px;
+  margin: 0;
+}
+.chartTooltip div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.chartTooltip dt {
+  color: #9db1a9;
+  font-weight: 500;
+}
+.chartTooltip dd {
+  margin: 0;
+  font: 11px/1.4 var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.chartTooltip :global(.up) {
+  color: #00ec97;
+}
+.chartTooltip :global(.down) {
+  color: #ff6b7a;
+}
+.chartSkeleton {
+  position: absolute;
+  inset: 16px 12px 28px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+.chartSkeleton span {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #1a2e27, #132222);
+  animation: chartPulse 1.2s ease-in-out infinite alternate;
+}
+.chartSkeleton span:nth-child(1) { height: 42%; animation-delay: 0s; }
+.chartSkeleton span:nth-child(2) { height: 68%; animation-delay: 0.12s; }
+.chartSkeleton span:nth-child(3) { height: 54%; animation-delay: 0.24s; }
+.chartSkeleton span:nth-child(4) { height: 80%; animation-delay: 0.08s; }
+.chartSkeleton span:nth-child(5) { height: 47%; animation-delay: 0.2s; }
+@keyframes chartPulse {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
+.chartState {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  background: #0b1719d8;
+  color: #d3e4da;
+}
+.chartState p {
+  margin: 0;
+  max-width: 360px;
+  line-height: 1.6;
+  font-size: 13px;
+}
+.chartCard > .fineprint {
+  margin: 10px 0 0;
+}
+@media (max-width: 760px) {
+  .chartFrame {
+    height: 240px;
+  }
+  .chartCard {
+    padding: 16px 14px 12px;
+    margin-bottom: 16px;
+  }
+  .chartPrice strong {
+    font-size: 20px;
+  }
+  .chartMeta {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chartSkeleton span {
+    animation: none;
   }
 }
