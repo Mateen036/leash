@@ -1,0 +1,198 @@
+{
+  "at": "2026-11-14T18:50:49.261Z",
+  "passed": true,
+  "receipts": [
+    {
+      "group": "protocol",
+      "name": "created",
+      "hash": "6VwTXoJ4xGGQt8kbU4xv3cWdhYMcHmMR9XFuvDakSs7w",
+      "sender": "leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "stake",
+      "hash": "BZf8rmUXRVuPJu6dsQFBVS3aoVmaMUhU8mZu4CNyRGrv",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "install",
+      "hash": "7Tod7nMywKYB8kzZvmw6iraXMiVSPKyZZGXMMozmBfM5",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "rejected",
+      "hash": "9k7geibShD9QZ22Ca4X8iyEr6qsy8jTrGLFJaXQypac",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Failure",
+      "expectedRejection": true,
+      "reason": "CAP_PER_ACTION",
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "withdraw",
+      "hash": "EGe5N984PceBuVJRUEY3mZFnKbx9JcQid1KSwjxp1Uhn",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "supply",
+      "hash": "6X4kPA6YP4MyWLsg3sUyqHQsBSrhPKpethdzcvA92ijq",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "unstake",
+      "hash": "4JDAotEyCgknUmUXnTGKjWteyCYwBRQHLGjR8RpiR97a",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "swap",
+      "hash": "cgWZccoarAXufRX79j4X6RPrg671bXm5TKRXTVmSwfa",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "pause",
+      "hash": "24ENvsWzGHYQdbJN9JeG3ktC6iHP1TdbQAeinRwqqcxV",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "setPolicy",
+      "hash": "C7bDgpmAXyPDG7eUvQg69w1eYGKqaMugJBiCLnzDQyp5",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "protocol",
+      "name": "revoke",
+      "hash": "CkLGh7U6BZ7LT3UzUmq55rSyzaPcnNvraqGVtJQE3KYM",
+      "sender": "g-ke08ky.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "create",
+      "hash": "HekUZLs2DjRiiYv3sJur862wioHRC3rUK7Ew9nm49Xps",
+      "sender": "leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "install",
+      "hash": "9nooLQte9HWbjwVfSuwQnZ6X4DymgrEJk9myEVeAeQaU",
+      "sender": "g-jw73v0.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "pause",
+      "hash": "ERnufmmeomDuL5B6bZcbTPvJ34yZ1Hqz5bU53D8u2LH4",
+      "sender": "g-jw73v0.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "resume",
+      "hash": "7tAPg2u3KGc4xS7BhgdiG8EB22zMnM49gqL3sGfTT28A",
+      "sender": "g-jw73v0.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "policy",
+      "hash": "FGuDxjatuMNKKzyUQZjQTmzwpm1DhTVWX91BzcPdjYtZ",
+      "sender": "g-jw73v0.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "controls",
+      "name": "revoke",
+      "hash": "DoFcAEopuH9Ax9dnXLfwmoqCF6EgozrxcCZT5A11geJR",
+      "sender": "g-jw73v0.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "perps",
+      "name": "perpOpen",
+      "hash": "hHahjPqbtsGsNJL1fDxo9gNS3u1DQXdNwFQTPRfpMzv",
+      "sender": "g-zuf7rn.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Success",
+      "expectedRejection": false,
+      "passed": true
+    },
+    {
+      "group": "perps",
+      "name": "perpRejected",
+      "hash": "8j3142qAUR4nCLhmGuDSSqwrqJ2m4cvEsCkdFoMA6Skf",
+      "sender": "g-zuf7rn.leash-11141537.testnet",
+      "final": "FINAL",
+      "status": "Failure",
+      "expectedRejection": true,
+      "reason": "LEVERAGE",
+      "passed": true
+    }
+  ]
+}

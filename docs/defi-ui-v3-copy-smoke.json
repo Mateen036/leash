@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "at": "2026-11-14T17:54:50.519Z",
+  "base": "http://localhost:3006",
+  "transactions": {
+    "created": "6VwTXoJ4xGGQt8kbU4xv3cWdhYMcHmMR9XFuvDakSs7w",
+    "install": "7Tod7nMywKYB8kzZvmw6iraXMiVSPKyZZGXMMozmBfM5",
+    "stake": "BZf8rmUXRVuPJu6dsQFBVS3aoVmaMUhU8mZu4CNyRGrv",
+    "rejected": "9k7geibShD9QZ22Ca4X8iyEr6qsy8jTrGLFJaXQypac",
+    "supply": "6X4kPA6YP4MyWLsg3sUyqHQsBSrhPKpethdzcvA92ijq",
+    "withdraw": "EGe5N984PceBuVJRUEY3mZFnKbx9JcQid1KSwjxp1Uhn",
+    "swap": "cgWZccoarAXufRX79j4X6RPrg671bXm5TKRXTVmSwfa",
+    "unstake": "4JDAotEyCgknUmUXnTGKjWteyCYwBRQHLGjR8RpiR97a",
+    "pause": "24ENvsWzGHYQdbJN9JeG3ktC6iHP1TdbQAeinRwqqcxV",
+    "setPolicy": "C7bDgpmAXyPDG7eUvQg69w1eYGKqaMugJBiCLnzDQyp5",
+    "revoke": "CkLGh7U6BZ7LT3UzUmq55rSyzaPcnNvraqGVtJQE3KYM"
+  },
+  "screenshots": [],
+  "checks": [
+    "browser-created guest immediately installed immutable guard and limited key",
+    "three-second autonomous countdown can be undone without a transaction",
+    "CAP_PER_ACTION rejection has tx link and persists after reload",
+    "real UI supply, withdrawal, swap and unstake confirmed on testnet",
+    "owner-signed pause, resume and policy edit verified by on-chain state",
+    "desktop + 390px mobile routes render without overflow; reduced motion enabled",
+    "revoke owner transaction deleted agent key on-chain"
+  ],
+  "errors": [],
+  "accountId": "g-ke08ky.leash-11141537.testnet",
+  "receiptNote": "The initial full smoke completed Pause and Resume, but its receipt selector reused the previous href for Resume. Distinct hashes are verified in defi-ui-v3-copy-controls.json. Later protocol smoke attempts timed out while awaiting testnet API responses; see defi-ui-v3-copy-retry.json. Final UI states and perps passed in their separate reports. Full-smoke screenshot paths were reused by retries; final screenshots are indexed in screenshotsReport.",
+  "screenshotsReport": "defi-ui-v3-copy-shots.json"
+}

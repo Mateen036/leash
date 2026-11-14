@@ -1,0 +1,111 @@
+{
+  "at": "2026-11-14T18:53:17.868Z",
+  "rpc": "https://test.rpc.fastnear.com",
+  "passed": true,
+  "results": [
+    {
+      "kind": "create-guest",
+      "hash": "3T1DSKS4gcg4e9bNRJgasoH7Fgin9716krKnGBSMnaeX",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "install-guard",
+      "hash": "HwFm8wiWFQKRJkoYSojFFdb2eDFvJejur6kCESiwRou",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "seed-older-policy",
+      "hash": "82WCfKYnteY5pVfgm9gUgHKCyo5a7m2boR9EDybTi8vW",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "seed-older-policy",
+      "hash": "FXTsdvRYEoAph8L5WWvaEWBrr4mU4cEf8SGoRvhpNhsn",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "enable-USDT-policy",
+      "hash": "HbxjHJsXcLMLj9JaQdqXdrHvZK1HfGGRJCR61pNDBmxe",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "RefSwap",
+      "hash": "6FpDU59ENmAwkMVaXnpJfr1cMrjoKsBtG2rmXkhgARcf",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 50,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "RefSwap",
+      "hash": "EaMHQGnjhciQ9fZ7hvLCaCa73JgtRKvFmqGYpfUgoQyk",
+      "signer": "g-8qijts.leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 36,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-tUSDC",
+      "hash": "iCAz4WSN6njqCh7upeyaHJ6CZtuLj7BpniCVrCT1h8f",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-USDT",
+      "hash": "7K4F6UsHzmFiTub6yCJ77DZnYzZmRhcZz2pukBBCKYKR",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-USDC",
+      "hash": "EcXcN93NoTgh9LuxeZG9edo5iz2wpAzXsgJtdbYerAbJ",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-PEM",
+      "hash": "642cUxJ6m83pT1xnitVDZwPYN1j4Dsj6WizrNrHi5HCm",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-LNC",
+      "hash": "3C8TKeotauCQEN6APDTXvBBeeqQgepeEiDDVWi1kv1hz",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    },
+    {
+      "kind": "faucet-NST",
+      "hash": "AVLFxaz1D9cvhNRnErJWVC3sG3qwsgrcC9E5tJ6d4TPV",
+      "signer": "leash-11141537.testnet",
+      "status": "FINAL",
+      "receipts": 2,
+      "allReceiptsSucceeded": true
+    }
+  ]
+}

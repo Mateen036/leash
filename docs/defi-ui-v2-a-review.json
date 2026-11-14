@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-14T16:42:14.075Z",
+  "passed": true,
+  "checks": [
+    "Output picker highlights receiving token; Escape restores focus",
+    "Quote expands planned route, signing model and destination contract",
+    "Mainnet chain/token picker works; cap, real-money badge and wallet requirement visible",
+    "390px mainnet card/picker fit; mobile menu opens and Escape closes",
+    "Agent composer fully above fold at both widths; new continuous motion disabled with reduced motion"
+  ],
+  "errors": [],
+  "screenshots": [
+    "/workspace/shots/leash-ui-a-review-swap-route-desktop.png",
+    "/workspace/shots/leash-ui-a-review-mainnet-picker-desktop.png",
+    "/workspace/shots/leash-ui-a-review-mainnet-card-desktop.png",
+    "/workspace/shots/leash-ui-a-review-mainnet-card-mobile.png",
+    "/workspace/shots/leash-ui-a-review-mainnet-picker-mobile.png",
+    "/workspace/shots/leash-ui-a-review-agent-mobile.png",
+    "/workspace/shots/leash-ui-a-review-agent-desktop.png"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "at": "2026-11-14T18:29:25.262Z",
+  "base": "http://localhost:3006",
+  "transactions": {
+    "created": "HbgDe84nT8mB6c5H6r1gRNFmYStXdweADyunT4qEskwR",
+    "install": "C8hLoRQ59skBzBge9NVtZvaYp2FwTRPjSx6B2JfXSwf5"
+  },
+  "screenshots": [
+    "/workspace/shots/v3copy-live-agent-onboarded-desktop.png",
+    "/workspace/shots/v3copy-live-smoke-failure.png"
+  ],
+  "checks": [
+    "browser-created guest immediately installed immutable guard and limited key",
+    "three-second autonomous countdown can be undone without a transaction"
+  ],
+  "errors": [],
+  "accountId": "g-9j50qy.leash-11141537.testnet",
+  "failure": "locator.waitFor: Timeout 120000ms exceeded.\nCall log:\n  - waiting for getByRole('article', { name: 'Action preview' }).last().getByText('Final \u00b7 protocol execution confirmed', { exact: true }).first() to be visible\n"
+}

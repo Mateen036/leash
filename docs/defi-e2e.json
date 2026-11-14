@@ -1,0 +1,1566 @@
+{
+  "guard": {
+    "network": "testnet",
+    "startedAt": "2026-11-14T11:45:42.730Z",
+    "guest": "g-dbe6e0.leash-11141537.testnet",
+    "preflight": false,
+    "guardCodeHash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF",
+    "globalDeployTx": "DFDDLVn8UTdaak4ipLHc5sQTDzgdE1dEYrm49UQyftyg",
+    "installation": "UseGlobalContract",
+    "passed": true,
+    "transactions": [
+      {
+        "name": "createGuest",
+        "txHash": "DkZqv9PXX7qYk279AZ2ur1ZcWguhxBJNHqwZkhE4s8Uf",
+        "outcome": {
+          "SuccessValue": ""
+        },
+        "receiptFailures": [],
+        "gasBurnt": "8573077937500"
+      },
+      {
+        "name": "installGlobalGuard",
+        "txHash": "DRqLa9SDBXHbfh7NiDCt9BaFdUcvGVjNjyctEYXSGnLF",
+        "outcome": {
+          "SuccessValue": ""
+        },
+        "receiptFailures": [],
+        "gasBurnt": "2618247109914"
+      },
+      {
+        "name": "linearStake",
+        "txHash": "3y6gzuQTnRRSBehoYsLPdoR6hqCwzdy2kvxL8Y2z2LCQ",
+        "outcome": {
+          "SuccessValue": "MQ=="
+        },
+        "receiptFailures": [],
+        "gasBurnt": "8133389766671"
+      },
+      {
+        "name": "refSwap",
+        "txHash": "3gdFnoTAmwtVvHBhQ3cFaHETYq5tihEn4ox6RbcHNAhL",
+        "outcome": {
+          "SuccessValue": "Mg=="
+        },
+        "receiptFailures": [],
+        "gasBurnt": "60072456682935"
+      },
+      {
+        "name": "burrowSupply",
+        "txHash": "e8WHTtFdNx4MQs2iZTiLPesq8tbxzvSa1EgqZNFhuPV",
+        "outcome": {
+          "SuccessValue": "Mw=="
+        },
+        "receiptFailures": [],
+        "gasBurnt": "34514364175297"
+      },
+      {
+        "name": "burrowWithdraw",
+        "txHash": "EUouRsohxeMrU5zvznv8mSfEeyJxiQwkzumbmQe9XUVj",
+        "outcome": {
+          "SuccessValue": "NA=="
+        },
+        "receiptFailures": [],
+        "gasBurnt": "22876588581207"
+      },
+      {
+        "name": "overCapStake",
+        "txHash": "378r8AEwwPMXaYaLVgxAi44KYf58LrdZpDLzzRt6RAVA",
+        "outcome": {
+          "Failure": {
+            "ActionError": {
+              "index": 0,
+              "kind": {
+                "FunctionCallError": {
+                  "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                }
+              }
+            }
+          }
+        },
+        "receiptFailures": [
+          {
+            "receiptId": "Hh4ThqXrnUaT3f5dypZo4ZVU3Tf42NmYoHkYdVz6k3EH",
+            "failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "gasBurnt": "1925664935643"
+      },
+      {
+        "name": "authorizePerp3x",
+        "txHash": "77TkVFkH5HHCfavaJ4M4BPha4r7tSHdCyobcJbsj9uYc",
+        "outcome": {
+          "SuccessValue": "NQ=="
+        },
+        "receiptFailures": [],
+        "gasBurnt": "2362398125128"
+      },
+      {
+        "name": "rejectPerp20x",
+        "txHash": "2USB2fFV6Gqy2dfxdLczbbX1q2wgdhekz8Y9fYqFCSgG",
+        "outcome": {
+          "Failure": {
+            "ActionError": {
+              "index": 0,
+              "kind": {
+                "FunctionCallError": {
+                  "ExecutionError": "Smart contract panicked: LEVERAGE"
+                }
+              }
+            }
+          }
+        },
+        "receiptFailures": [
+          {
+            "receiptId": "AyXsJS7QxmFp4EvMH41RqvBXcYE5BLFfcicvM2bV8ed8",
+            "failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: LEVERAGE"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "gasBurnt": "1934214533079"
+      },
+      {
+        "name": "revokeAgent",
+        "txHash": "FVZwLP9j91Kx25wvvwLwQC5UuP3WyYhEv1J1FyTgiwsS",
+        "outcome": {
+          "SuccessValue": ""
+        },
+        "receiptFailures": [],
+        "gasBurnt": "2948137095088"
+      },
+      {
+        "name": "afterRevoke",
+        "txHash": "DuKGHWuTvC1AA5wyEj7cMjAoWQVD66uXW3o8PFZPMHx1",
+        "outcome": "RPC_REJECTED",
+        "includedOnChain": false,
+        "reason": "Access key ed25519:CRPE7suThWT8Su17arKAcwxxK6KcdwEYKYCzMomEgFcS does not exist on account g-dbe6e0.leash-11141537.testnet"
+      }
+    ],
+    "checks": {
+      "agentKeyPermission": {
+        "FunctionCall": {
+          "allowance": "500000000000000000000000",
+          "method_names": [
+            "agent_execute",
+            "authorize_perp"
+          ],
+          "receiver_id": "g-dbe6e0.leash-11141537.testnet"
+        }
+      },
+      "linearStake": {
+        "activity": {
+          "id": 1,
+          "ts": 1794656751366,
+          "kind": "LinearStake",
+          "protocol": "linear-protocol.testnet",
+          "asset": "near",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+        }
+      },
+      "linearBalance": "86747589646047475672515",
+      "swapQuote": {
+        "poolId": 2973,
+        "input": "100000000000000000000000",
+        "quote": "244879",
+        "minAmountOut": "242430",
+        "quotedAt": "2026-11-14T11:45:55.624Z"
+      },
+      "refSwap": {
+        "activity": {
+          "id": 2,
+          "ts": 1794656756200,
+          "kind": "RefSwap",
+          "protocol": "ref-finance-101.testnet",
+          "asset": "near",
+          "amount": "100000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"242430\"}"
+        }
+      },
+      "swapOutput": {
+        "token": "usdc.lapdemo-11140542.testnet",
+        "amount": "244879"
+      },
+      "burrowSupply": {
+        "activity": {
+          "id": 3,
+          "ts": 1794656770708,
+          "kind": "BurrowSupply",
+          "protocol": "contract.burrow.testnet",
+          "asset": "near",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+        }
+      },
+      "burrowAfterSupply": {
+        "account_id": "g-dbe6e0.leash-11141537.testnet",
+        "supplied": [
+          {
+            "token_id": "wrap.testnet",
+            "balance": "200000000016421104405155",
+            "shares": "198494548735317544436284",
+            "apr": "0.000728390932604464299496003"
+          }
+        ],
+        "collateral": [],
+        "borrowed": [],
+        "farms": [
+          {
+            "farm_id": {
+              "Supplied": "wrap.testnet"
+            },
+            "rewards": []
+          }
+        ],
+        "has_non_farmed_assets": false,
+        "booster_staking": null
+      },
+      "burrowWithdraw": {
+        "activity": {
+          "id": 4,
+          "ts": 1794656781666,
+          "kind": "BurrowWithdraw",
+          "protocol": "contract.burrow.testnet",
+          "asset": "wrap.testnet",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+        }
+      },
+      "burrowWithdrawal": {
+        "before": "0",
+        "after": "200000000000000000000000",
+        "account": {
+          "account_id": "g-dbe6e0.leash-11141537.testnet",
+          "supplied": [
+            {
+              "token_id": "wrap.testnet",
+              "balance": "31924315910903",
+              "shares": "31684013394976",
+              "apr": "0.000728757593223289134885153"
+            }
+          ],
+          "collateral": [],
+          "borrowed": [],
+          "farms": [
+            {
+              "farm_id": {
+                "Supplied": "wrap.testnet"
+              },
+              "rewards": []
+            }
+          ],
+          "has_non_farmed_assets": false,
+          "booster_staking": null
+        }
+      },
+      "perpAuthorizationId": 5,
+      "agentKeyDeleted": true,
+      "finalPolicy": {
+        "allowed_protocols": [
+          "ref-finance-101.testnet",
+          "contract.burrow.testnet",
+          "linear-protocol.testnet",
+          "wrap.testnet",
+          "orderly-testnet"
+        ],
+        "caps": {
+          "linear-protocol.testnet": {
+            "per_action": "500000000000000000000000",
+            "daily": "1500000000000000000000000"
+          },
+          "near": {
+            "per_action": "500000000000000000000000",
+            "daily": "1500000000000000000000000"
+          },
+          "perp_usd": {
+            "per_action": "500",
+            "daily": "1500"
+          },
+          "usdc.fakes.testnet": {
+            "per_action": "50000000",
+            "daily": "150000000"
+          },
+          "usdc.lapdemo-11140542.testnet": {
+            "per_action": "50000000",
+            "daily": "150000000"
+          },
+          "usdtt.fakes.testnet": {
+            "per_action": "50000000",
+            "daily": "150000000"
+          },
+          "wrap.testnet": {
+            "per_action": "500000000000000000000000",
+            "daily": "1500000000000000000000000"
+          }
+        },
+        "max_slippage_bps": 100,
+        "max_leverage_x100": 500,
+        "max_perp_notional_usd": 500,
+        "expires_at_ms": 1795261546941,
+        "paused": true
+      },
+      "spent": {
+        "near": {
+          "day_index": 20771,
+          "amount": "500000000000000000000000"
+        },
+        "perp_usd": {
+          "day_index": 20771,
+          "amount": "50"
+        },
+        "wrap.testnet": {
+          "day_index": 20771,
+          "amount": "200000000000000000000000"
+        }
+      },
+      "activity": [
+        {
+          "id": 1,
+          "ts": 1794656751366,
+          "kind": "LinearStake",
+          "protocol": "linear-protocol.testnet",
+          "asset": "near",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+        },
+        {
+          "id": 2,
+          "ts": 1794656756200,
+          "kind": "RefSwap",
+          "protocol": "ref-finance-101.testnet",
+          "asset": "near",
+          "amount": "100000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"242430\"}"
+        },
+        {
+          "id": 3,
+          "ts": 1794656770708,
+          "kind": "BurrowSupply",
+          "protocol": "contract.burrow.testnet",
+          "asset": "near",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+        },
+        {
+          "id": 4,
+          "ts": 1794656781666,
+          "kind": "BurrowWithdraw",
+          "protocol": "contract.burrow.testnet",
+          "asset": "wrap.testnet",
+          "amount": "200000000000000000000000",
+          "ok": true,
+          "reason": "COMPLETED",
+          "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+        },
+        {
+          "id": 5,
+          "ts": 1794656791037,
+          "kind": "authorize_perp",
+          "protocol": "orderly-testnet",
+          "asset": "perp_usd",
+          "amount": "50",
+          "ok": true,
+          "reason": "AUTHORIZED",
+          "detail": "{\"symbol\":\"PERP_ETH_USDC\",\"side\":\"BUY\",\"leverage_x100\":300}"
+        },
+        {
+          "id": 6,
+          "ts": 1794656797054,
+          "kind": "revoke_agent",
+          "protocol": "self",
+          "asset": "near",
+          "amount": "0",
+          "ok": true,
+          "reason": "REVOKED",
+          "detail": "Agent key deleted"
+        }
+      ]
+    },
+    "notes": [
+      "Protocol success is verified from receipts, guard activity and actual balances/positions.",
+      "Rejected panics roll back contract state; see failed transaction receipts for rejection history.",
+      "Caps reserve attempted spend, including failed protocol calls. Slippage bps is applied to a live server quote; guard requires a positive minimum and Ref enforces it.",
+      "authorize_perp grants an authorization id only; this script does not place an Orderly order."
+    ],
+    "finishedAt": "2026-11-14T11:46:41.093Z"
+  },
+  "guardRuns": [
+    {
+      "network": "testnet",
+      "startedAt": "2026-11-14T11:27:42.188Z",
+      "guest": "g-5e73e7.leash-11141537.testnet",
+      "preflight": true,
+      "guardCodeHash": "DptkpeVMRziYTUmx234N9ebnXZ93cydqfoqYYpwHF6sd",
+      "globalDeployTx": "",
+      "installation": "DeployContract fallback",
+      "passed": false,
+      "transactions": [
+        {
+          "name": "createGuest",
+          "txHash": "A7gDn7tFSYt26JwgjeZFcXaDaaFk7p9keFUXoPLvRXH4",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8573077937500"
+        },
+        {
+          "name": "installGlobalGuard",
+          "txHash": "1266rr12FRHwaSenHJLVZhkKh4GsezTYTqzpsJB46RR7",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "GlobalContractDoesNotExist": {
+                    "identifier": {
+                      "hash": "HnU7baGCbWNe2xAQYimNkqRFJ3NMbotqX7CQ6ndQQEAf"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "4Xj56heLi6LYcqUBVKiYfxJXpciAQ5NJWCwkXnJUouR9",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "GlobalContractDoesNotExist": {
+                      "identifier": {
+                        "hash": "HnU7baGCbWNe2xAQYimNkqRFJ3NMbotqX7CQ6ndQQEAf"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1115371909799"
+        },
+        {
+          "name": "fundFallbackStorage",
+          "txHash": "H5BC37wdkqYy7fefnfe1FWRJd7yiGnjTHjJ3MuPZ1aWJ",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "669547687500"
+        },
+        {
+          "name": "installFallbackGuard",
+          "txHash": "BG3uwVEL3S7b9NR85LnKKqGfm6qnz6AeTHURxWqacVsp",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "20131467262170"
+        },
+        {
+          "name": "linearStake",
+          "txHash": "71wtETEyBd7EKpxpWRj97VmoUhVfWbHyqHAoWyduJCVa",
+          "outcome": {
+            "SuccessValue": "MQ=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8124474777153"
+        },
+        {
+          "name": "refSwap",
+          "txHash": "7vPbx9vpbR6DoGhHs892vg4MPcsMmCD3S9Ps4Fjcgpzj",
+          "outcome": {
+            "SuccessValue": "Mg=="
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "CCd6WSh8g2Qk8w9q5ATd19YsGbzosixwSFmBVUpmegoW",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: The account doesn't have enough balance"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "36709905020072"
+        },
+        {
+          "name": "upgradePreflightGuard",
+          "txHash": "2iY2pdvDfVnPy8URGgWj3zLAgi5McSMvfsqfTWVGHruD",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "18332725736083"
+        },
+        {
+          "name": "refSwap",
+          "txHash": "3ApXR99PiHUtR9k2uGLNRdRvsK3t5tbovxGPozatAveV",
+          "outcome": {
+            "SuccessValue": "Mw=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "59410496634966"
+        },
+        {
+          "name": "burrowSupply",
+          "txHash": "J85KvacbU7vBv9v9deJ5834nGgay1pKZ29uCEPS1nH1k",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: LOW_BALANCE"
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "BxYNqR36TYqrtWLHi5UK4xFCrW3xmAbFCDt8SQX4q2J9",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: LOW_BALANCE"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1994627092287"
+        },
+        {
+          "name": "preflightTopUp",
+          "txHash": "Ze8uCS7bTp94BzTcnpEt4mo9YDgsQLUdUiW5mUV5UV3",
+          "outcome": {
+            "SuccessValue": ""
+          }
+        },
+        {
+          "name": "upgradePreflightGuard",
+          "txHash": "8A7wUqcBWQAjyTc9uMc4mN1LGgs9LShpR8BNzV2ReksU",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "18343861943191"
+        },
+        {
+          "name": "clearPreflightPending",
+          "txHash": "6CJyipiN7DBVjAiF7YAjMAqmhK18eouGBfWumcTnRbqb",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "3696703954354"
+        },
+        {
+          "name": "burrowSupply",
+          "txHash": "4QnC6Wz1BmkiPc9VDGQaPNnbkYNfb13tJ2ywt6UZHtkU",
+          "outcome": {
+            "SuccessValue": "NA=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "11700888536270"
+        }
+      ],
+      "checks": {
+        "agentKeyPermission": {
+          "FunctionCall": {
+            "allowance": "490402689435052200000000",
+            "method_names": [
+              "agent_execute",
+              "authorize_perp"
+            ],
+            "receiver_id": "g-5e73e7.leash-11141537.testnet"
+          }
+        },
+        "linearStake": {
+          "activity": {
+            "id": 1,
+            "ts": 1794655678307,
+            "kind": "LinearStake",
+            "protocol": "linear-protocol.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+          }
+        },
+        "linearBalance": "86747589646047475672515",
+        "swapQuote": {
+          "poolId": 2973,
+          "input": "100000000000000000000000",
+          "quote": "292925",
+          "minAmountOut": "289995",
+          "quotedAt": "2026-11-14T11:33:07.171Z"
+        },
+        "refSwap": {
+          "activity": {
+            "id": 3,
+            "ts": 1794655854994,
+            "kind": "RefSwap",
+            "protocol": "ref-finance-101.testnet",
+            "asset": "near",
+            "amount": "100000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"353093\"}"
+          }
+        },
+        "swapOutput": {
+          "token": "usdc.lapdemo-11140542.testnet",
+          "amount": "356660"
+        }
+      },
+      "notes": [
+        "Protocol success is verified from receipts, guard activity and actual balances/positions.",
+        "Rejected panics roll back contract state; see failed transaction receipts for rejection history.",
+        "Caps reserve attempted spend, including failed protocol calls. Slippage bps is applied to a live server quote; guard requires a positive minimum and Ref enforces it.",
+        "authorize_perp grants an authorization id only; this script does not place an Orderly order."
+      ],
+      "error": "burrowSupply: guard activity {\"id\":4,\"ts\":1794655987781,\"kind\":\"BurrowSupply\",\"protocol\":\"contract.burrow.testnet\",\"asset\":\"near\",\"amount\":\"200000000000000000000000\",\"ok\":false,\"reason\":\"LOW_BALANCE\",\"detail\":\"{\\\"kind\\\":\\\"BurrowSupply\\\",\\\"token\\\":\\\"wrap.testnet\\\",\\\"amount\\\":\\\"200000000000000000000000\\\",\\\"as_collateral\\\":false}\"}",
+      "finishedAt": "2026-11-14T11:33:12.547Z"
+    },
+    {
+      "network": "testnet",
+      "startedAt": "2026-11-14T11:44:30.366Z",
+      "guest": "g-631942.leash-11141537.testnet",
+      "preflight": true,
+      "guardCodeHash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF",
+      "globalDeployTx": "",
+      "installation": "DeployContract fallback",
+      "passed": true,
+      "transactions": [
+        {
+          "name": "createGuest",
+          "txHash": "DB97y785FPiuEgStPDEAioX9jk2iT58B1ugXyTgWRzTH",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8573077937500"
+        },
+        {
+          "name": "installGlobalGuard",
+          "txHash": "88oQzqf2ZWDKYfjDZqrGkRpp1TNBjEujt2Brjy9RMmE1",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "GlobalContractDoesNotExist": {
+                    "identifier": {
+                      "hash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "DqmnmTtowQFJTW5fUS6nn8NkBycybiUtBpgemosoYsEJ",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "GlobalContractDoesNotExist": {
+                      "identifier": {
+                        "hash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1115371909799"
+        },
+        {
+          "name": "fundFallbackStorage",
+          "txHash": "9foKQWGY2GoPr11PMKL453WdACfg3V8EgFhDQbeicb57",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "669547687500"
+        },
+        {
+          "name": "installFallbackGuard",
+          "txHash": "5YyiiropFbpkf24XYbj3ttqVx1msNNHb7E3Q9kg9CVRC",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "20195897748752"
+        },
+        {
+          "name": "linearStake",
+          "txHash": "3UbesDnKBcXV75KGM1A6ePCQpa728RDykNufpGSY7v2p",
+          "outcome": {
+            "SuccessValue": "MQ=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8128772173751"
+        },
+        {
+          "name": "refSwap",
+          "txHash": "EYWLvE9HNVmbsc5moM1uZu8KwLvoY8gTjj8VY6hMtPLk",
+          "outcome": {
+            "SuccessValue": "Mg=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "59740053058659"
+        },
+        {
+          "name": "burrowSupply",
+          "txHash": "5TtW5GNf4i4GRZCA3fo4RiiPxrpVfBjyg48wBgAHj3qH",
+          "outcome": {
+            "SuccessValue": "Mw=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "34833543529453"
+        },
+        {
+          "name": "burrowWithdraw",
+          "txHash": "He6Q5A2QV14Qf7MyTBe19nmCunE9ewdTwCq1oG3JwMDs",
+          "outcome": {
+            "SuccessValue": "NA=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "22898046164823"
+        },
+        {
+          "name": "overCapStake",
+          "txHash": "Epm3zE9SBSpVeefXwBDd1aaa8E8irxr2DAsexQv92pDh",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "Errb1uXffFVLLYHNcG3kuREaYvFt9SbKhJXJTgu5e2FE",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1925664935643"
+        },
+        {
+          "name": "authorizePerp3x",
+          "txHash": "8EAmeAhDfJXxooZfAj8W4DApwgwjuWSn1SFxDHRjfVTT",
+          "outcome": {
+            "SuccessValue": "NQ=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "2360118125128"
+        },
+        {
+          "name": "rejectPerp20x",
+          "txHash": "9EoUfmvqsAhazR488ZtF3HB8Bj6a12SiGs3auAdC7NVT",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: LEVERAGE"
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "Cd2c9AS584WeNCQnSgv6BrTiiEJoECSNoyE2o3KG6KXa",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: LEVERAGE"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1934214533079"
+        },
+        {
+          "name": "revokeAgent",
+          "txHash": "3998vgedoYhEUFJJBo84y9YpgDmEvBZFhBjUcz7nBZYY",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "2945857095088"
+        },
+        {
+          "name": "afterRevoke",
+          "txHash": "Eo7DWNn6FddsvZt3zf88rh1WNDAx2dYvBPVRJ2DoHZD9",
+          "outcome": "RPC_REJECTED",
+          "includedOnChain": false,
+          "reason": "Access key ed25519:CRPE7suThWT8Su17arKAcwxxK6KcdwEYKYCzMomEgFcS does not exist on account g-631942.leash-11141537.testnet"
+        }
+      ],
+      "checks": {
+        "agentKeyPermission": {
+          "FunctionCall": {
+            "allowance": "500000000000000000000000",
+            "method_names": [
+              "agent_execute",
+              "authorize_perp"
+            ],
+            "receiver_id": "g-631942.leash-11141537.testnet"
+          }
+        },
+        "linearStake": {
+          "activity": {
+            "id": 1,
+            "ts": 1794656685656,
+            "kind": "LinearStake",
+            "protocol": "linear-protocol.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+          }
+        },
+        "linearBalance": "86747589646047475672515",
+        "swapQuote": {
+          "poolId": 2973,
+          "input": "100000000000000000000000",
+          "quote": "292925",
+          "minAmountOut": "289995",
+          "quotedAt": "2026-11-14T11:44:49.924Z"
+        },
+        "refSwap": {
+          "activity": {
+            "id": 2,
+            "ts": 1794656690575,
+            "kind": "RefSwap",
+            "protocol": "ref-finance-101.testnet",
+            "asset": "near",
+            "amount": "100000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"289995\"}"
+          }
+        },
+        "swapOutput": {
+          "token": "usdc.lapdemo-11140542.testnet",
+          "amount": "292925"
+        },
+        "burrowSupply": {
+          "activity": {
+            "id": 3,
+            "ts": 1794656705113,
+            "kind": "BurrowSupply",
+            "protocol": "contract.burrow.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+          }
+        },
+        "burrowAfterSupply": {
+          "account_id": "g-631942.leash-11141537.testnet",
+          "supplied": [
+            {
+              "token_id": "wrap.testnet",
+              "balance": "200000000011854586497330",
+              "shares": "198494549038526587916325",
+              "apr": "0.00072839089444399529273612"
+            }
+          ],
+          "collateral": [],
+          "borrowed": [],
+          "farms": [
+            {
+              "farm_id": {
+                "Supplied": "wrap.testnet"
+              },
+              "rewards": []
+            }
+          ],
+          "has_non_farmed_assets": false,
+          "booster_staking": null
+        },
+        "burrowWithdraw": {
+          "activity": {
+            "id": 4,
+            "ts": 1794656714326,
+            "kind": "BurrowWithdraw",
+            "protocol": "contract.burrow.testnet",
+            "asset": "wrap.testnet",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+          }
+        },
+        "burrowWithdrawal": {
+          "before": "0",
+          "after": "200000000000000000000000",
+          "account": {
+            "account_id": "g-631942.leash-11141537.testnet",
+            "supplied": [
+              {
+                "token_id": "wrap.testnet",
+                "balance": "27394512913739",
+                "shares": "27188307429360",
+                "apr": "0.00072875755492435705986989"
+              }
+            ],
+            "collateral": [],
+            "borrowed": [],
+            "farms": [
+              {
+                "farm_id": {
+                  "Supplied": "wrap.testnet"
+                },
+                "rewards": []
+              }
+            ],
+            "has_non_farmed_assets": false,
+            "booster_staking": null
+          }
+        },
+        "perpAuthorizationId": 5,
+        "agentKeyDeleted": true,
+        "finalPolicy": {
+          "allowed_protocols": [
+            "ref-finance-101.testnet",
+            "contract.burrow.testnet",
+            "linear-protocol.testnet",
+            "wrap.testnet",
+            "orderly-testnet"
+          ],
+          "caps": {
+            "linear-protocol.testnet": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            },
+            "near": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            },
+            "perp_usd": {
+              "per_action": "500",
+              "daily": "1500"
+            },
+            "usdc.fakes.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "usdc.lapdemo-11140542.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "usdtt.fakes.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "wrap.testnet": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            }
+          },
+          "max_slippage_bps": 100,
+          "max_leverage_x100": 500,
+          "max_perp_notional_usd": 500,
+          "expires_at_ms": 1795261474400,
+          "paused": true
+        },
+        "spent": {
+          "near": {
+            "day_index": 20771,
+            "amount": "500000000000000000000000"
+          },
+          "perp_usd": {
+            "day_index": 20771,
+            "amount": "50"
+          },
+          "wrap.testnet": {
+            "day_index": 20771,
+            "amount": "200000000000000000000000"
+          }
+        },
+        "activity": [
+          {
+            "id": 1,
+            "ts": 1794656685656,
+            "kind": "LinearStake",
+            "protocol": "linear-protocol.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+          },
+          {
+            "id": 2,
+            "ts": 1794656690575,
+            "kind": "RefSwap",
+            "protocol": "ref-finance-101.testnet",
+            "asset": "near",
+            "amount": "100000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"289995\"}"
+          },
+          {
+            "id": 3,
+            "ts": 1794656705113,
+            "kind": "BurrowSupply",
+            "protocol": "contract.burrow.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+          },
+          {
+            "id": 4,
+            "ts": 1794656714326,
+            "kind": "BurrowWithdraw",
+            "protocol": "contract.burrow.testnet",
+            "asset": "wrap.testnet",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+          },
+          {
+            "id": 5,
+            "ts": 1794656723489,
+            "kind": "authorize_perp",
+            "protocol": "orderly-testnet",
+            "asset": "perp_usd",
+            "amount": "50",
+            "ok": true,
+            "reason": "AUTHORIZED",
+            "detail": "{\"symbol\":\"PERP_ETH_USDC\",\"side\":\"BUY\",\"leverage_x100\":300}"
+          },
+          {
+            "id": 6,
+            "ts": 1794656729688,
+            "kind": "revoke_agent",
+            "protocol": "self",
+            "asset": "near",
+            "amount": "0",
+            "ok": true,
+            "reason": "REVOKED",
+            "detail": "Agent key deleted"
+          }
+        ]
+      },
+      "notes": [
+        "Protocol success is verified from receipts, guard activity and actual balances/positions.",
+        "Rejected panics roll back contract state; see failed transaction receipts for rejection history.",
+        "Caps reserve attempted spend, including failed protocol calls. Slippage bps is applied to a live server quote; guard requires a positive minimum and Ref enforces it.",
+        "authorize_perp grants an authorization id only; this script does not place an Orderly order."
+      ],
+      "finishedAt": "2026-11-14T11:45:33.072Z"
+    },
+    {
+      "network": "testnet",
+      "startedAt": "2026-11-14T11:45:42.730Z",
+      "guest": "g-dbe6e0.leash-11141537.testnet",
+      "preflight": false,
+      "guardCodeHash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF",
+      "globalDeployTx": "DFDDLVn8UTdaak4ipLHc5sQTDzgdE1dEYrm49UQyftyg",
+      "installation": "UseGlobalContract",
+      "passed": true,
+      "transactions": [
+        {
+          "name": "createGuest",
+          "txHash": "DkZqv9PXX7qYk279AZ2ur1ZcWguhxBJNHqwZkhE4s8Uf",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8573077937500"
+        },
+        {
+          "name": "installGlobalGuard",
+          "txHash": "DRqLa9SDBXHbfh7NiDCt9BaFdUcvGVjNjyctEYXSGnLF",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "2618247109914"
+        },
+        {
+          "name": "linearStake",
+          "txHash": "3y6gzuQTnRRSBehoYsLPdoR6hqCwzdy2kvxL8Y2z2LCQ",
+          "outcome": {
+            "SuccessValue": "MQ=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "8133389766671"
+        },
+        {
+          "name": "refSwap",
+          "txHash": "3gdFnoTAmwtVvHBhQ3cFaHETYq5tihEn4ox6RbcHNAhL",
+          "outcome": {
+            "SuccessValue": "Mg=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "60072456682935"
+        },
+        {
+          "name": "burrowSupply",
+          "txHash": "e8WHTtFdNx4MQs2iZTiLPesq8tbxzvSa1EgqZNFhuPV",
+          "outcome": {
+            "SuccessValue": "Mw=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "34514364175297"
+        },
+        {
+          "name": "burrowWithdraw",
+          "txHash": "EUouRsohxeMrU5zvznv8mSfEeyJxiQwkzumbmQe9XUVj",
+          "outcome": {
+            "SuccessValue": "NA=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "22876588581207"
+        },
+        {
+          "name": "overCapStake",
+          "txHash": "378r8AEwwPMXaYaLVgxAi44KYf58LrdZpDLzzRt6RAVA",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "Hh4ThqXrnUaT3f5dypZo4ZVU3Tf42NmYoHkYdVz6k3EH",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1925664935643"
+        },
+        {
+          "name": "authorizePerp3x",
+          "txHash": "77TkVFkH5HHCfavaJ4M4BPha4r7tSHdCyobcJbsj9uYc",
+          "outcome": {
+            "SuccessValue": "NQ=="
+          },
+          "receiptFailures": [],
+          "gasBurnt": "2362398125128"
+        },
+        {
+          "name": "rejectPerp20x",
+          "txHash": "2USB2fFV6Gqy2dfxdLczbbX1q2wgdhekz8Y9fYqFCSgG",
+          "outcome": {
+            "Failure": {
+              "ActionError": {
+                "index": 0,
+                "kind": {
+                  "FunctionCallError": {
+                    "ExecutionError": "Smart contract panicked: LEVERAGE"
+                  }
+                }
+              }
+            }
+          },
+          "receiptFailures": [
+            {
+              "receiptId": "AyXsJS7QxmFp4EvMH41RqvBXcYE5BLFfcicvM2bV8ed8",
+              "failure": {
+                "ActionError": {
+                  "index": 0,
+                  "kind": {
+                    "FunctionCallError": {
+                      "ExecutionError": "Smart contract panicked: LEVERAGE"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "gasBurnt": "1934214533079"
+        },
+        {
+          "name": "revokeAgent",
+          "txHash": "FVZwLP9j91Kx25wvvwLwQC5UuP3WyYhEv1J1FyTgiwsS",
+          "outcome": {
+            "SuccessValue": ""
+          },
+          "receiptFailures": [],
+          "gasBurnt": "2948137095088"
+        },
+        {
+          "name": "afterRevoke",
+          "txHash": "DuKGHWuTvC1AA5wyEj7cMjAoWQVD66uXW3o8PFZPMHx1",
+          "outcome": "RPC_REJECTED",
+          "includedOnChain": false,
+          "reason": "Access key ed25519:CRPE7suThWT8Su17arKAcwxxK6KcdwEYKYCzMomEgFcS does not exist on account g-dbe6e0.leash-11141537.testnet"
+        }
+      ],
+      "checks": {
+        "agentKeyPermission": {
+          "FunctionCall": {
+            "allowance": "500000000000000000000000",
+            "method_names": [
+              "agent_execute",
+              "authorize_perp"
+            ],
+            "receiver_id": "g-dbe6e0.leash-11141537.testnet"
+          }
+        },
+        "linearStake": {
+          "activity": {
+            "id": 1,
+            "ts": 1794656751366,
+            "kind": "LinearStake",
+            "protocol": "linear-protocol.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+          }
+        },
+        "linearBalance": "86747589646047475672515",
+        "swapQuote": {
+          "poolId": 2973,
+          "input": "100000000000000000000000",
+          "quote": "244879",
+          "minAmountOut": "242430",
+          "quotedAt": "2026-11-14T11:45:55.624Z"
+        },
+        "refSwap": {
+          "activity": {
+            "id": 2,
+            "ts": 1794656756200,
+            "kind": "RefSwap",
+            "protocol": "ref-finance-101.testnet",
+            "asset": "near",
+            "amount": "100000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"242430\"}"
+          }
+        },
+        "swapOutput": {
+          "token": "usdc.lapdemo-11140542.testnet",
+          "amount": "244879"
+        },
+        "burrowSupply": {
+          "activity": {
+            "id": 3,
+            "ts": 1794656770708,
+            "kind": "BurrowSupply",
+            "protocol": "contract.burrow.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+          }
+        },
+        "burrowAfterSupply": {
+          "account_id": "g-dbe6e0.leash-11141537.testnet",
+          "supplied": [
+            {
+              "token_id": "wrap.testnet",
+              "balance": "200000000016421104405155",
+              "shares": "198494548735317544436284",
+              "apr": "0.000728390932604464299496003"
+            }
+          ],
+          "collateral": [],
+          "borrowed": [],
+          "farms": [
+            {
+              "farm_id": {
+                "Supplied": "wrap.testnet"
+              },
+              "rewards": []
+            }
+          ],
+          "has_non_farmed_assets": false,
+          "booster_staking": null
+        },
+        "burrowWithdraw": {
+          "activity": {
+            "id": 4,
+            "ts": 1794656781666,
+            "kind": "BurrowWithdraw",
+            "protocol": "contract.burrow.testnet",
+            "asset": "wrap.testnet",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+          }
+        },
+        "burrowWithdrawal": {
+          "before": "0",
+          "after": "200000000000000000000000",
+          "account": {
+            "account_id": "g-dbe6e0.leash-11141537.testnet",
+            "supplied": [
+              {
+                "token_id": "wrap.testnet",
+                "balance": "31924315910903",
+                "shares": "31684013394976",
+                "apr": "0.000728757593223289134885153"
+              }
+            ],
+            "collateral": [],
+            "borrowed": [],
+            "farms": [
+              {
+                "farm_id": {
+                  "Supplied": "wrap.testnet"
+                },
+                "rewards": []
+              }
+            ],
+            "has_non_farmed_assets": false,
+            "booster_staking": null
+          }
+        },
+        "perpAuthorizationId": 5,
+        "agentKeyDeleted": true,
+        "finalPolicy": {
+          "allowed_protocols": [
+            "ref-finance-101.testnet",
+            "contract.burrow.testnet",
+            "linear-protocol.testnet",
+            "wrap.testnet",
+            "orderly-testnet"
+          ],
+          "caps": {
+            "linear-protocol.testnet": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            },
+            "near": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            },
+            "perp_usd": {
+              "per_action": "500",
+              "daily": "1500"
+            },
+            "usdc.fakes.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "usdc.lapdemo-11140542.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "usdtt.fakes.testnet": {
+              "per_action": "50000000",
+              "daily": "150000000"
+            },
+            "wrap.testnet": {
+              "per_action": "500000000000000000000000",
+              "daily": "1500000000000000000000000"
+            }
+          },
+          "max_slippage_bps": 100,
+          "max_leverage_x100": 500,
+          "max_perp_notional_usd": 500,
+          "expires_at_ms": 1795261546941,
+          "paused": true
+        },
+        "spent": {
+          "near": {
+            "day_index": 20771,
+            "amount": "500000000000000000000000"
+          },
+          "perp_usd": {
+            "day_index": 20771,
+            "amount": "50"
+          },
+          "wrap.testnet": {
+            "day_index": 20771,
+            "amount": "200000000000000000000000"
+          }
+        },
+        "activity": [
+          {
+            "id": 1,
+            "ts": 1794656751366,
+            "kind": "LinearStake",
+            "protocol": "linear-protocol.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"LinearStake\",\"amount\":\"200000000000000000000000\"}"
+          },
+          {
+            "id": 2,
+            "ts": 1794656756200,
+            "kind": "RefSwap",
+            "protocol": "ref-finance-101.testnet",
+            "asset": "near",
+            "amount": "100000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"RefSwap\",\"pool_id\":2973,\"token_in\":\"wrap.testnet\",\"token_out\":\"usdc.lapdemo-11140542.testnet\",\"amount_in\":\"100000000000000000000000\",\"min_amount_out\":\"242430\"}"
+          },
+          {
+            "id": 3,
+            "ts": 1794656770708,
+            "kind": "BurrowSupply",
+            "protocol": "contract.burrow.testnet",
+            "asset": "near",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowSupply\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\",\"as_collateral\":false}"
+          },
+          {
+            "id": 4,
+            "ts": 1794656781666,
+            "kind": "BurrowWithdraw",
+            "protocol": "contract.burrow.testnet",
+            "asset": "wrap.testnet",
+            "amount": "200000000000000000000000",
+            "ok": true,
+            "reason": "COMPLETED",
+            "detail": "{\"kind\":\"BurrowWithdraw\",\"token\":\"wrap.testnet\",\"amount\":\"200000000000000000000000\"}"
+          },
+          {
+            "id": 5,
+            "ts": 1794656791037,
+            "kind": "authorize_perp",
+            "protocol": "orderly-testnet",
+            "asset": "perp_usd",
+            "amount": "50",
+            "ok": true,
+            "reason": "AUTHORIZED",
+            "detail": "{\"symbol\":\"PERP_ETH_USDC\",\"side\":\"BUY\",\"leverage_x100\":300}"
+          },
+          {
+            "id": 6,
+            "ts": 1794656797054,
+            "kind": "revoke_agent",
+            "protocol": "self",
+            "asset": "near",
+            "amount": "0",
+            "ok": true,
+            "reason": "REVOKED",
+            "detail": "Agent key deleted"
+          }
+        ]
+      },
+      "notes": [
+        "Protocol success is verified from receipts, guard activity and actual balances/positions.",
+        "Rejected panics roll back contract state; see failed transaction receipts for rejection history.",
+        "Caps reserve attempted spend, including failed protocol calls. Slippage bps is applied to a live server quote; guard requires a positive minimum and Ref enforces it.",
+        "authorize_perp grants an authorization id only; this script does not place an Orderly order."
+      ],
+      "finishedAt": "2026-11-14T11:46:41.093Z"
+    }
+  ],
+  "guardDeployment": {
+    "network": "testnet",
+    "transactions": [
+      {
+        "name": "initialGlobalPublicationInsufficientFunds",
+        "txHash": "GybfUBhVk98gvKsbduiM2XR7zTz7CBY1MxdQ5Kwvp1Xf",
+        "outcome": "FAILED",
+        "reason": "LackBalanceForState",
+        "requiredYoctoNear": "24540900000000000000000000"
+      },
+      {
+        "name": "deployGlobalGuard",
+        "txHash": "DFDDLVn8UTdaak4ipLHc5sQTDzgdE1dEYrm49UQyftyg",
+        "outcome": {
+          "SuccessValue": ""
+        },
+        "receiptFailures": []
+      }
+    ]
+  }
+}

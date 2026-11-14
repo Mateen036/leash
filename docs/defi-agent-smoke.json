@@ -1,0 +1,493 @@
+{
+  "at": "2026-11-14T13:42:34.166Z",
+  "results": [
+    {
+      "message": "long ETH 3x with 20 USDC",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "perp_open",
+          "symbol": "PERP_ETH_USDC",
+          "side": "BUY",
+          "notionalUsd": 20,
+          "leverage": 3
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "perp_open",
+            "symbol": "PERP_ETH_USDC",
+            "side": "BUY",
+            "notionalUsd": 20,
+            "leverage": 3
+          },
+          "headline": "Long ETH · $20 notional at 3x",
+          "deltas": ["Exposure +$20", "Estimated initial margin $6.67 USDC"],
+          "protocol": "Orderly testnet",
+          "contract": "Orderly API · Arbitrum Sepolia 421614",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663733921,
+          "sources": [
+            {
+              "name": "Orderly live mark + funding",
+              "at": 1794663733921
+            }
+          ],
+          "facts": [
+            {
+              "label": "Mark price",
+              "value": "$1890.9"
+            },
+            {
+              "label": "Funding rate",
+              "value": "0.01000% · variable"
+            },
+            {
+              "label": "Liquidation estimate",
+              "value": "≈$1260.60 · isolated arithmetic estimate; actual cross-margin liquidation depends on account equity & maintenance"
+            },
+            {
+              "label": "Margin mode / fees",
+              "value": "Cross margin · exchange fees charged on fills; available in Orderly receipts"
+            },
+            {
+              "label": "Stop controls",
+              "value": "No automatic stop-loss. Close position or close all separately. Caps do not limit losses."
+            }
+          ],
+          "limit": "Max 5x leverage · $500 notional · 500 USD notional per action · 1500 USD notional remaining today",
+          "tryAnyway": false
+        }
+      ]
+    },
+    {
+      "message": "stake 1 NEAR",
+      "status": 200,
+      "reply": "I won't automatically submit this proposal because it exceeds a limit or cannot be safely prepared. Inspect the reason below. For guard limits, Try anyway lets you see the on-chain refusal.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "stake",
+          "amount": "1"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "stake",
+            "amount": "1"
+          },
+          "headline": "You stake 1 NEAR → receive ≈0.433737 LiNEAR",
+          "deltas": ["−1 NEAR", "+≈0.433737 LiNEAR"],
+          "protocol": "LiNEAR",
+          "contract": "linear-protocol.testnet",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663735015,
+          "sources": [
+            {
+              "name": "LiNEAR ft_price",
+              "at": 1794663735015
+            }
+          ],
+          "facts": [
+            {
+              "label": "Live exchange rate",
+              "value": "1 LiNEAR = 2.305539 NEAR"
+            }
+          ],
+          "limit": "0.5 NEAR per action · 1.5 NEAR remaining today",
+          "guardAction": {
+            "kind": "LinearStake",
+            "amount": "1000000000000000000000000"
+          },
+          "blocked": "CAP_PER_ACTION",
+          "tryAnyway": true
+        }
+      ]
+    },
+    {
+      "message": "supply 5 USDT",
+      "status": 200,
+      "source": "rules",
+      "reply": "I can stake, unstake, supply or withdraw NEAR/wNEAR, swap NEAR ⇄ tUSDC, and propose Orderly testnet perps. Every action starts with a preview. Bridge proposals are quote only.",
+      "actions": [
+        {
+          "kind": "explain",
+          "topic": "Only NEAR/wNEAR supply and withdrawal are executable. Other lending markets are read only; choose supply 0.2 NEAR."
+        }
+      ],
+      "fallback": "NEAR AI unavailable; deterministic rules used",
+      "proposals": [
+        {
+          "action": {
+            "kind": "explain",
+            "topic": "Only NEAR/wNEAR supply and withdrawal are executable. Other lending markets are read only; choose supply 0.2 NEAR."
+          },
+          "headline": "How your leash works",
+          "deltas": [
+            "Only NEAR/wNEAR supply and withdrawal are executable. Other lending markets are read only; choose supply 0.2 NEAR."
+          ],
+          "protocol": "Leash",
+          "contract": "",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663740222,
+          "sources": [],
+          "facts": [],
+          "limit": "No spending authorization required",
+          "quoteOnly": true
+        }
+      ]
+    },
+    {
+      "message": "swap 0.1 USDC to NEAR",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "swap",
+          "amount": "0.1",
+          "source": "tUSDC"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "swap",
+            "amount": "0.1",
+            "source": "tUSDC"
+          },
+          "headline": "You swap 0.1 tUSDC → receive ≈0.049814 wNEAR",
+          "deltas": ["−0.1 tUSDC", "+≥0.049565 wNEAR"],
+          "protocol": "Ref / Rhea DEX",
+          "contract": "ref-finance-101.testnet",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663742588,
+          "sources": [
+            {
+              "name": "Ref get_return + get_pool · pool 2973",
+              "at": 1794663742588
+            }
+          ],
+          "facts": [
+            {
+              "label": "Minimum received",
+              "value": "0.049565 wNEAR"
+            },
+            {
+              "label": "Price impact (includes pool fee)",
+              "value": "4.07%",
+              "warning": true
+            },
+            {
+              "label": "Pool fee",
+              "value": "0.3% · ≈0.000300 tUSDC"
+            },
+            {
+              "label": "Slippage limit",
+              "value": "0.5% · policy maximum 1%"
+            },
+            {
+              "label": "Gas & storage",
+              "value": "Paid in NEAR; first use also registers storage. NEAR output remains wNEAR."
+            }
+          ],
+          "limit": "50 tUSDC per action · 150 tUSDC remaining today",
+          "guardAction": {
+            "kind": "RefSwap",
+            "pool_id": 2973,
+            "token_in": "usdc.lapdemo-11140542.testnet",
+            "token_out": "wrap.testnet",
+            "amount_in": "100000",
+            "min_amount_out": "49565878467656119415406"
+          }
+        }
+      ]
+    },
+    {
+      "message": "bridge 20 USDC to Base",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "bridge_quote",
+          "amount": "20",
+          "source": "USDC",
+          "destination": "base"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "bridge_quote",
+            "amount": "20",
+            "source": "USDC",
+            "destination": "base"
+          },
+          "headline": "Quote: 20.0 USDC on NEAR → ≈19.99356 USDC on base",
+          "deltas": [
+            "No funds move · mainnet dry quote with preview addresses"
+          ],
+          "protocol": "NEAR Intents 1Click",
+          "contract": "nep141:base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.omft.near",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663745543,
+          "sources": [
+            {
+              "name": "1Click live dry quote",
+              "at": 1794663745543
+            }
+          ],
+          "facts": [
+            {
+              "label": "API estimate",
+              "value": "22s"
+            },
+            {
+              "label": "Reference",
+              "value": "d2312b43-f1d6-47ea-95eb-6564a1e3b199"
+            }
+          ],
+          "limit": "No spending authorization required",
+          "quoteOnly": true
+        }
+      ]
+    },
+    {
+      "message": "close all",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "close_all"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "close_all"
+          },
+          "headline": "Close all open perps (reduce only)",
+          "deltas": [
+            "Reduce open exposure; realized PnL and fees determined at fill"
+          ],
+          "protocol": "Orderly testnet",
+          "contract": "Orderly API · Arbitrum Sepolia 421614",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663746383,
+          "sources": [],
+          "facts": [],
+          "limit": "Max 5x leverage · $500 notional · 500 USD notional per action · 1500 USD notional remaining today"
+        }
+      ]
+    },
+    {
+      "message": "lever up 20x",
+      "status": 200,
+      "source": "near-ai",
+      "reply": "I won't automatically submit this proposal because it exceeds a limit or cannot be safely prepared. Inspect the reason below. For guard limits, Try anyway lets you see the on-chain refusal.",
+      "actions": [
+        {
+          "kind": "perp_open",
+          "symbol": "PERP_ETH_USDC",
+          "side": "BUY",
+          "notionalUsd": 30,
+          "leverage": 20
+        }
+      ],
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "fallback": "Exact requested intent preserved by deterministic parser",
+      "proposals": [
+        {
+          "action": {
+            "kind": "perp_open",
+            "symbol": "PERP_ETH_USDC",
+            "side": "BUY",
+            "notionalUsd": 30,
+            "leverage": 20
+          },
+          "headline": "Long ETH · $30 notional at 20x",
+          "deltas": ["Exposure +$30", "Estimated initial margin $1.50 USDC"],
+          "protocol": "Orderly testnet",
+          "contract": "Orderly API · Arbitrum Sepolia 421614",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663749893,
+          "sources": [
+            {
+              "name": "Orderly live mark + funding",
+              "at": 1794663749893
+            }
+          ],
+          "facts": [
+            {
+              "label": "Mark price",
+              "value": "$1890.72"
+            },
+            {
+              "label": "Funding rate",
+              "value": "0.01000% · variable"
+            },
+            {
+              "label": "Liquidation estimate",
+              "value": "≈$1796.18 · isolated arithmetic estimate; actual cross-margin liquidation depends on account equity & maintenance"
+            },
+            {
+              "label": "Margin mode / fees",
+              "value": "Cross margin · exchange fees charged on fills; available in Orderly receipts"
+            },
+            {
+              "label": "Stop controls",
+              "value": "No automatic stop-loss. Close position or close all separately. Caps do not limit losses."
+            }
+          ],
+          "limit": "Max 5x leverage · $500 notional · 500 USD notional per action · 1500 USD notional remaining today",
+          "blocked": "LEVERAGE",
+          "tryAnyway": true
+        }
+      ]
+    },
+    {
+      "message": "unstake 0.1 NEAR",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "unstake",
+          "amount": "0.1"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "unstake",
+            "amount": "0.1"
+          },
+          "headline": "You unstake 0.1 NEAR worth of LiNEAR",
+          "deltas": ["−≈0.043373 LiNEAR", "+0.1 NEAR pending redemption"],
+          "protocol": "LiNEAR",
+          "contract": "linear-protocol.testnet",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663751838,
+          "sources": [
+            {
+              "name": "LiNEAR ft_price",
+              "at": 1794663751838
+            }
+          ],
+          "facts": [
+            {
+              "label": "Unlock",
+              "value": "Protocol epoch delay applies. Owner must withdraw unlocked NEAR from LiNEAR; this action only requests unstaking."
+            },
+            {
+              "label": "Live exchange rate",
+              "value": "1 LiNEAR = 2.305539 NEAR"
+            }
+          ],
+          "limit": "0.5 LiNEAR per action · 1.5 LiNEAR remaining today",
+          "guardAction": {
+            "kind": "LinearUnstake",
+            "amount": "100000000000000000000000"
+          }
+        }
+      ]
+    },
+    {
+      "message": "withdraw 0.2 wNEAR",
+      "status": 200,
+      "reply": "I won't automatically submit this proposal because it exceeds a limit or cannot be safely prepared. Inspect the reason below. For guard limits, Try anyway lets you see the on-chain refusal.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "withdraw",
+          "amount": "0.2"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "withdraw",
+            "amount": "0.2"
+          },
+          "headline": "You withdraw 0.2 wNEAR from Rhea",
+          "deltas": ["−0.2 wNEAR supplied", "+0.2 wNEAR in wallet"],
+          "protocol": "Rhea Lending / Burrow",
+          "contract": "contract.burrow.testnet",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663753096,
+          "sources": [
+            {
+              "name": "Burrow get_asset + get_account",
+              "at": 1794663753096
+            }
+          ],
+          "facts": [
+            {
+              "label": "Projected supplied balance",
+              "value": "0 wNEAR"
+            },
+            {
+              "label": "Supply APR · variable",
+              "value": "0.0729%"
+            },
+            {
+              "label": "Projected health factor",
+              "value": "N/A — no borrows, so there is no liquidation health factor"
+            }
+          ],
+          "limit": "0.5 wNEAR per action · 1.5 wNEAR remaining today",
+          "blocked": "Withdrawal exceeds your supplied balance",
+          "guardAction": {
+            "kind": "BurrowWithdraw",
+            "token": "wrap.testnet",
+            "amount": "200000000000000000000000"
+          }
+        }
+      ]
+    },
+    {
+      "message": "show my portfolio",
+      "status": 200,
+      "reply": "Review the proposal, its live sources and your limits before confirming.",
+      "source": "near-ai",
+      "model": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "actions": [
+        {
+          "kind": "portfolio"
+        }
+      ],
+      "proposals": [
+        {
+          "action": {
+            "kind": "portfolio"
+          },
+          "headline": "Your portfolio is ready to inspect",
+          "deltas": [
+            "Open Portfolio for live balances, protocol positions and receipts."
+          ],
+          "protocol": "Leash",
+          "contract": "",
+          "because": "Because this matches your request; no yield or price prediction is assumed.",
+          "quotedAt": 1794663754153,
+          "sources": [],
+          "facts": [],
+          "limit": "No spending authorization required",
+          "quoteOnly": true
+        }
+      ]
+    }
+  ]
+}

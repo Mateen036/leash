@@ -1,0 +1,15 @@
+{
+  "base": "http://localhost:3006",
+  "at": "2026-11-14T18:39:24.195Z",
+  "passed": true,
+  "transactions": {
+    "create": "HekUZLs2DjRiiYv3sJur862wioHRC3rUK7Ew9nm49Xps",
+    "install": "9nooLQte9HWbjwVfSuwQnZ6X4DymgrEJk9myEVeAeQaU",
+    "pause": "ERnufmmeomDuL5B6bZcbTPvJ34yZ1Hqz5bU53D8u2LH4",
+    "resume": "7tAPg2u3KGc4xS7BhgdiG8EB22zMnM49gqL3sGfTT28A",
+    "policy": "FGuDxjatuMNKKzyUQZjQTmzwpm1DhTVWX91BzcPdjYtZ",
+    "revoke": "DoFcAEopuH9Ax9dnXLfwmoqCF6EgozrxcCZT5A11geJR"
+  },
+  "errors": [],
+  "accountId": "g-jw73v0.leash-11141537.testnet"
+}

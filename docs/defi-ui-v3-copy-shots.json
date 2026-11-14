@@ -1,0 +1,208 @@
+{
+  "base": "http://localhost:3006",
+  "passed": true,
+  "reviewed": true,
+  "pages": [
+    {
+      "path": "/",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-home-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Let your agent act.Keep the leash."
+      ]
+    },
+    {
+      "path": "/agent",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-agent-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Your DeFi agent"
+      ]
+    },
+    {
+      "path": "/swap",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-swap-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Swap tokens"
+      ]
+    },
+    {
+      "path": "/stake",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-stake-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Stake NEAR"
+      ]
+    },
+    {
+      "path": "/lend",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-lend-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Lend tokens"
+      ]
+    },
+    {
+      "path": "/perps",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-perps-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Trade perps"
+      ]
+    },
+    {
+      "path": "/portfolio",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-portfolio-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Your portfolio"
+      ]
+    },
+    {
+      "path": "/guardrails",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-guardrails-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Your guardrails"
+      ]
+    },
+    {
+      "path": "/bridge",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-bridge-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Bridge tokens"
+      ]
+    },
+    {
+      "path": "/protocols",
+      "width": 1440,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-protocols-desktop.png",
+      "overflow": false,
+      "headings": [
+        "Supported apps"
+      ]
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-home-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Let your agent act.Keep the leash."
+      ]
+    },
+    {
+      "path": "/agent",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-agent-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Your DeFi agent"
+      ]
+    },
+    {
+      "path": "/swap",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-swap-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Swap tokens"
+      ]
+    },
+    {
+      "path": "/stake",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-stake-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Stake NEAR"
+      ]
+    },
+    {
+      "path": "/lend",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-lend-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Lend tokens"
+      ]
+    },
+    {
+      "path": "/perps",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-perps-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Trade perps"
+      ]
+    },
+    {
+      "path": "/portfolio",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-portfolio-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Your portfolio"
+      ]
+    },
+    {
+      "path": "/guardrails",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-guardrails-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Your guardrails"
+      ]
+    },
+    {
+      "path": "/bridge",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-bridge-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Bridge tokens"
+      ]
+    },
+    {
+      "path": "/protocols",
+      "width": 390,
+      "status": 200,
+      "file": "/workspace/shots/v3copy-protocols-mobile.png",
+      "overflow": false,
+      "headings": [
+        "Supported apps"
+      ]
+    }
+  ],
+  "errors": []
+}

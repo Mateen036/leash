@@ -1,0 +1,303 @@
+.integrated-projects {
+  padding: 64px clamp(20px, 4.4vw, 72px);
+  scroll-margin-top: 24px;
+}
+.integrations-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.integrations-heading h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -1.4px;
+  margin: 12px 0;
+}
+.integrations-heading p,
+.integration-workspace > p {
+  color: #a4b7b3;
+  max-width: 640px;
+  line-height: 1.7;
+}
+.integration-workspaces {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.integration-workspace {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 38px);
+  border: 1px solid #a3f4cf28;
+  border-radius: 26px;
+  scroll-margin-top: 24px;
+  box-shadow: 0 18px 60px #0003;
+}
+.swap-workspace {
+  background:
+    radial-gradient(ellipse at 0 0, #14594760, transparent 70%), #0c191b;
+}
+.bridge-workspace {
+  background:
+    radial-gradient(ellipse at 100% 0, #49356b70, transparent 70%), #121820;
+  border-color: #b29cf335;
+}
+.integration-kicker {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  color: #a6e5cc;
+}
+.bridge-workspace .integration-kicker {
+  color: #cebef2;
+}
+.integration-workspace > h3 {
+  font-size: 28px;
+  letter-spacing: -0.8px;
+  margin: 16px 0 10px;
+}
+.integration-workspace form {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0 16px;
+}
+.integration-workspace label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: #b4c5be;
+  min-width: 0;
+}
+.integration-workspace input,
+.integration-workspace select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #a6dbbc30;
+  border-radius: 12px;
+  padding: 13px;
+  color: #e2f2eb;
+  background: #080f13;
+  font: inherit;
+  font-size: 14px;
+}
+.integration-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.integration-proposal {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid #96dfb540;
+  border-radius: 18px;
+  background: #091114cf;
+  overflow-wrap: anywhere;
+}
+.integration-proposal.bridge {
+  border-color: #c2a3ed40;
+}
+.integration-card-head,
+.integration-card-head > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  color: #b5dfca;
+}
+.integration-proposal h3 {
+  font-size: 18px;
+  line-height: 1.65;
+  margin: 20px 0;
+}
+.integration-proposal h3 > span {
+  color: #8fe0bf;
+}
+.integration-facts {
+  font-size: 12px;
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+.integration-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.integration-facts dt {
+  color: #91a99d;
+}
+.integration-facts dd {
+  text-align: right;
+  margin: 0;
+}
+.integration-notice {
+  padding: 12px 14px;
+  border: 1px solid #d6b36c3a;
+  background: #c4972610;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #e6cfa4;
+  margin-top: 12px;
+}
+.integration-completed {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #a5edcb;
+  font-size: 13px;
+}
+.integration-completed a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+}
+.integration-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+.integration-project-grid > div {
+  min-width: 0;
+}
+.integration-project {
+  height: 100%;
+  padding: 25px;
+  border-radius: 20px !important;
+  min-height: 225px;
+  background: #0d1719 !important;
+}
+.integration-status {
+  display: inline-block;
+  font-size: 10px;
+  border: 1px solid #b4dbc52c;
+  border-radius: 20px;
+  padding: 6px 8px;
+  color: #b1d6c6;
+}
+.integration-project h3 a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+.integration-project p,
+.integration-omni p {
+  color: #99afa5;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+.integration-project small {
+  color: #769083;
+  font-size: 10px;
+}
+.integration-omni {
+  margin: 28px 0;
+  padding: 22px;
+  border: 1px solid #a7c7b41c;
+  border-radius: 18px;
+}
+.integration-omni h3 {
+  font-size: 15px;
+}
+.integration-omni a {
+  text-decoration: underline;
+}
+.integration-teaser {
+  margin: 0 clamp(20px, 4.4vw, 72px) 30px;
+  border: 1px solid #a3f4cf28;
+  background: linear-gradient(115deg, #123c3455, #251b3c55);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.integration-teaser p {
+  font-size: 13px;
+  color: #9bb4a7;
+  margin-top: 6px;
+}
+.integration-teaser a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #b1eace;
+  white-space: nowrap;
+}
+.site-nav nav {
+  flex-wrap: wrap;
+}
+.integration-nav {
+  font-size: 12px !important;
+}
+.integration-proposal .la-fineprint {
+  line-height: 1.7;
+  margin: 14px 0;
+}
+@media (max-width: 1050px) {
+  .integration-project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .site-nav {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .site-nav nav {
+    gap: 14px;
+  }
+}
+@media (max-width: 720px) {
+  .integration-workspaces,
+  .integration-project-grid {
+    grid-template-columns: 1fr;
+  }
+  .integration-teaser {
+    align-items: start;
+    flex-direction: column;
+  }
+  .integrated-projects {
+    padding-top: 36px;
+  }
+  .integration-proposal {
+    padding: 15px;
+  }
+  .integration-facts > div {
+    flex-wrap: wrap;
+  }
+  .integration-facts dd {
+    text-align: left;
+  }
+  .site-nav nav {
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+  .integration-project {
+    min-height: 0;
+  }
+  .integration-workspace {
+    padding: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .integrated-projects * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.integration-proposal > .integration-status {
+  margin-bottom: 16px;
+}

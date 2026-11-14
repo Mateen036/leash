@@ -1,0 +1,48 @@
+{
+  "base": "https://leash.mateen-nibtap.workers.dev",
+  "passed": true,
+  "at": "2026-11-14T17:24:50.808Z",
+  "transactions": {
+    "create": "s35m2G99meVr2v2bbBrcqfDa2b2d7538TFk1tDYVhrT",
+    "install": "2KzuMeCZxrjpF3tWjBqsMQiexhmGnqHWiRefSmngcP9o",
+    "pause": "5sv8guTVjZ4DgxnuC1UiEvhTis4UQEwseTe3HqgAigwR",
+    "resume": "HV81q5aQ7xfBpgc295XsejdSjPN6SAYvtgJWhVVYQV1X",
+    "setPolicy": "8uCq5MBBtY9fKkTBjqAJZ6C7EdWapimh7MAnPo2bpnnv",
+    "rejected": "Gdv5cdmcYkggszXSBw9PSvv6SnXpWaCXRZWNdtV4x9GT",
+    "revoke": "FoCGFd1NnZWTufuQSU2PGSVDgghr5QC3sBC7wWkuiSv",
+    "perpOpen": "EYwNoysBbMLL1NrAG5x5ogTGnxmXYcG5thNSiEhAxsHs",
+    "perpRejected": "4VmHHf8PzkoEUj8BZh5U7WWWcAjkYJqAMZiShnNehanX"
+  },
+  "checks": [
+    "fresh guest installs guard and limited key via existing onboarding",
+    "cancelled Pause leaves on-chain policy unchanged",
+    "owner Pause and Resume confirmed by live on-chain state",
+    "policy steppers invalidate old preview; owner signs updated cap",
+    "real CAP_PER_ACTION failure displays on-chain rejection receipt",
+    "connected portfolio, policy form, receipts and protocol cards fit 1440px and 390px",
+    "close-all has an independent cancellable confirmation",
+    "owner Revoke deletes limited key on-chain",
+    "market search reads live Orderly markets; Escape restores focus",
+    "2x long authorized on-chain, accepted by Orderly and verified as real exposure",
+    "10x leverage attempt is visibly flagged and rejected on-chain with red tx link",
+    "single Close can be cancelled; confirmed Close-all returns venue IDs and leaves no exposure",
+    "all browser checks used prefers-reduced-motion: reduce"
+  ],
+  "screenshots": [
+    "/workspace/shots/leash-uib-live-guardrails-desktop.png",
+    "/workspace/shots/leash-uib-live-portfolio-1440.png",
+    "/workspace/shots/leash-uib-live-guardrails-1440.png",
+    "/workspace/shots/leash-uib-live-protocols-1440.png",
+    "/workspace/shots/leash-uib-live-portfolio-390.png",
+    "/workspace/shots/leash-uib-live-guardrails-390.png",
+    "/workspace/shots/leash-uib-live-protocols-390.png",
+    "/workspace/shots/leash-uib-live-perps-filled-desktop.png",
+    "/workspace/shots/leash-uib-live-perps-filled-mobile.png"
+  ],
+  "errors": [],
+  "guest": "g-sbrtbg.leash-11141537.testnet",
+  "perpOrderId": 3975229470,
+  "closeIds": [
+    3975229540
+  ]
+}

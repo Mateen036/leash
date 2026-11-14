@@ -1,0 +1,21 @@
+node_modules/
+.next/
+.env*
+!.env.example
+*.tsbuildinfo
+playwright-report/
+test-results/
+.playwright-cli/
+output/playwright/
+.vercel/
+.wrangler/
+dist/
+.dev.vars*
+.vinext/
+
+
+# NEAR contracts build output
+contracts/target/
+# Never commit testnet/mainnet keys
+secrets/
+*.near-credentials*

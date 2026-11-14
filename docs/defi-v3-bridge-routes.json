@@ -1,0 +1,232 @@
+{
+  "at": "2026-11-14T17:55:20.804Z",
+  "source": "20 USDC on NEAR",
+  "dry": true,
+  "results": [
+    {
+      "assetId": "nep141:arb.omft.near",
+      "symbol": "ETH",
+      "chain": "arb",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.010853221371029029",
+      "correlationId": "582d7442-753f-4cdb-acc3-c5ef3a0ea546"
+    },
+    {
+      "assetId": "nep141:arb-0xaf88d065e77c8cc2239327c5edb3a432268e5831.omft.near",
+      "symbol": "USDC",
+      "chain": "arb",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.992076",
+      "correlationId": "815b134f-bb5b-4345-a2c0-e7aa60d3fe40"
+    },
+    {
+      "assetId": "nep141:avax.omdep.near",
+      "symbol": "AVAX",
+      "chain": "avax",
+      "status": 201,
+      "ok": true,
+      "amountOut": "2.668584801705141519",
+      "correlationId": "ebb56095-0ba9-48e4-b373-26470f1b0d99"
+    },
+    {
+      "assetId": "nep141:avax-0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e.omdep.near",
+      "symbol": "USDC",
+      "chain": "avax",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.980938",
+      "correlationId": "4ff4f191-d243-4b6c-9f40-a602ee5f8be7"
+    },
+    {
+      "assetId": "nep141:avax-0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7.omdep.near",
+      "symbol": "USDT",
+      "chain": "avax",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.990143",
+      "correlationId": "9bcc3083-7892-440d-b1b2-469ed6ecd64e"
+    },
+    {
+      "assetId": "nep141:base.omft.near",
+      "symbol": "ETH",
+      "chain": "base",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.010833632705669116",
+      "correlationId": "49f6cab3-eb3f-4bb3-b0f6-cb2841d820d2"
+    },
+    {
+      "assetId": "nep141:base-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.omft.near",
+      "symbol": "USDC",
+      "chain": "base",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.99376",
+      "correlationId": "cae14c4c-487b-4d53-9aa1-6fe64887d602"
+    },
+    {
+      "assetId": "nep141:bnb.omdep.near",
+      "symbol": "BNB",
+      "chain": "bsc",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.033823781747384789",
+      "correlationId": "c1feb048-1701-41de-9357-8fe22d5f8f9c"
+    },
+    {
+      "assetId": "nep141:bnb-0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d.omdep.near",
+      "symbol": "USDC",
+      "chain": "bsc",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.98609310180691208",
+      "correlationId": "2389d670-bd27-4da1-8975-3c7f077adbfe"
+    },
+    {
+      "assetId": "nep141:bnb-0x55d398326f99059ff775485246999027b3197955.omdep.near",
+      "symbol": "USDT",
+      "chain": "bsc",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.995636980967387375",
+      "correlationId": "707e17da-0ef7-40f7-8c3d-2ba9ef623ae1"
+    },
+    {
+      "assetId": "nep141:btc.omft.near",
+      "symbol": "BTC",
+      "chain": "btc",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.00028432",
+      "correlationId": "90f6d658-1c5b-4842-83c1-aab3349fcbac"
+    },
+    {
+      "assetId": "nep141:eth-0x6b175474e89094c44da98b954eedeac495271d0f.omft.near",
+      "symbol": "DAI",
+      "chain": "eth",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.693940609979002099",
+      "correlationId": "fe6920bc-b71d-48ea-9224-766107b148fd"
+    },
+    {
+      "assetId": "nep141:eth.omft.near",
+      "symbol": "ETH",
+      "chain": "eth",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.010815404193484596",
+      "correlationId": "795bf6d4-854b-429b-b5b8-6ddf7e82bb76"
+    },
+    {
+      "assetId": "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
+      "symbol": "USDC",
+      "chain": "eth",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.697297",
+      "correlationId": "b403ed07-78fd-4f17-8c31-020e2c78748a"
+    },
+    {
+      "assetId": "nep141:eth-0xdac17f958d2ee523a2206206994597c13d831ec7.omft.near",
+      "symbol": "USDT",
+      "chain": "eth",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.707219",
+      "correlationId": "7532024e-067e-4e4b-a45e-ba00ccc75bef"
+    },
+    {
+      "assetId": "nep141:eth-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599.omft.near",
+      "symbol": "WBTC",
+      "chain": "eth",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.00029994",
+      "correlationId": "24b81b6b-43e3-4a1f-94c9-c8dd9cd37551"
+    },
+    {
+      "assetId": "nep245:v2_1.omni.hot.tg:10_11111111111111111111",
+      "symbol": "ETH",
+      "chain": "op",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.010834318664567017",
+      "correlationId": "5dd10bcd-95a1-419e-bc4a-ac0dc2fbadae"
+    },
+    {
+      "assetId": "nep245:v2_1.omni.hot.tg:10_A2ewyUyDp6qsue1jqZsGypkCxRJ",
+      "symbol": "USDC",
+      "chain": "op",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.995424",
+      "correlationId": "90b6c6e0-6d57-4cc8-aa1d-6c5eff6a2821"
+    },
+    {
+      "assetId": "nep245:v2_1.omni.hot.tg:10_359RPSJVdTxwTJT9TyGssr2rFoWo",
+      "symbol": "USDT",
+      "chain": "op",
+      "status": 201,
+      "ok": true,
+      "amountOut": "20.004661",
+      "correlationId": "92cc72cf-ea82-4fad-b3b4-518eb2e06554"
+    },
+    {
+      "assetId": "nep141:pol.omdep.near",
+      "symbol": "POL",
+      "chain": "pol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "247.365859299121294708",
+      "correlationId": "eeea318c-412b-47a8-815e-5c6145ae5acc"
+    },
+    {
+      "assetId": "nep141:pol-0x3c499c542cef5e3811e1192ce70d8cc03d5c3359.omdep.near",
+      "symbol": "USDC",
+      "chain": "pol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.985893",
+      "correlationId": "232f8769-26d5-4518-9ba6-c5d7eece028a"
+    },
+    {
+      "assetId": "nep141:pol-0xc2132d05d31c914a87c6611c10748aeb04b58e8f.omdep.near",
+      "symbol": "USDT",
+      "chain": "pol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.995128",
+      "correlationId": "8713a885-b14b-4a6b-bd60-e5dbe43b30a1"
+    },
+    {
+      "assetId": "nep141:sol.omft.near",
+      "symbol": "SOL",
+      "chain": "sol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "0.274450938",
+      "correlationId": "06b48993-ea76-4dbd-8b28-0581f5633a01"
+    },
+    {
+      "assetId": "nep141:sol-5ce3bf3a31af18be40ba30f721101b4341690186.omft.near",
+      "symbol": "USDC",
+      "chain": "sol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.986093",
+      "correlationId": "122e7091-9c69-4355-b2e4-f6b1696da2d4"
+    },
+    {
+      "assetId": "nep141:sol-c800a4bd850783ccb82c2b2c7e84175443606352.omft.near",
+      "symbol": "USDT",
+      "chain": "sol",
+      "status": 201,
+      "ok": true,
+      "amountOut": "19.997101",
+      "correlationId": "809876f0-fe1a-4b01-a287-108d74f6392f"
+    }
+  ]
+}

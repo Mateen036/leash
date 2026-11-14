@@ -1,0 +1,25 @@
+{
+  "base": "http://localhost:3006",
+  "passed": true,
+  "at": "2026-11-14T18:29:26.487Z",
+  "transactions": {
+    "perpOpen": "hHahjPqbtsGsNJL1fDxo9gNS3u1DQXdNwFQTPRfpMzv",
+    "perpRejected": "8j3142qAUR4nCLhmGuDSSqwrqJ2m4cvEsCkdFoMA6Skf"
+  },
+  "checks": [
+    "market search reads live Orderly markets; Escape restores focus",
+    "2x long authorized on-chain, accepted by Orderly and verified as real exposure",
+    "10x leverage attempt is visibly flagged and rejected on-chain with red tx link",
+    "single Close can be cancelled; confirmed Close-all returns venue IDs and leaves no exposure",
+    "all browser checks used prefers-reduced-motion: reduce"
+  ],
+  "screenshots": [
+    "/workspace/shots/v3copy-perps-perps-filled-desktop.png",
+    "/workspace/shots/v3copy-perps-perps-filled-mobile.png"
+  ],
+  "errors": [],
+  "perpOrderId": 3975241059,
+  "closeIds": [
+    3975241670
+  ]
+}

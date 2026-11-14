@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-14T16:33:26.679Z",
+  "accountId": "g-02rsgr.leash-11141537.testnet",
+  "results": [
+    {
+      "kind": "guest",
+      "hash": "Dg6qRo5WdFbDY3ez8SogyCRC9cprNfjiHLv4X5BPyJg6",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "guard-install",
+      "hash": "C11AJgTTjTaJhfo7mRGSXmXpr9YBjHDgwJu3yyAafg7G",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "LinearStake",
+      "hash": "9329eKcqL8MwY52kGacdRxx3NZoiXw8oqe3BaFXMqXQY",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "BurrowSupply",
+      "hash": "4hxnsyFe4CehQAKBva19gedkaUCTHxBpyBZTctbu1cVL",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "BurrowWithdraw",
+      "hash": "5ye878zpAHkwnpNYPWqZajDvZmcjipWxsFCYPsFC2dnc",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "RefSwap",
+      "hash": "B7GjjCfCQYMwuDS1PLnFcsL4AtqPdFMHoUJ2tRf8B95u",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "LinearUnstake",
+      "hash": "7aHY5CdExV7G4iLLVHvMnM8tCNYcG16sms17vnHrkXCR",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "success",
+      "failures": []
+    },
+    {
+      "kind": "LinearStake",
+      "hash": "H9DJ9uqPk9K6qGgynBttTPbs4mx6XB5CVkR75gagip33",
+      "finalExecutionStatus": "FINAL",
+      "transactionStatus": "failure",
+      "failures": [
+        {
+          "Failure": {
+            "ActionError": {
+              "index": 0,
+              "kind": {
+                "FunctionCallError": {
+                  "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                }
+              }
+            }
+          }
+        },
+        {
+          "Failure": {
+            "ActionError": {
+              "index": 0,
+              "kind": {
+                "FunctionCallError": {
+                  "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

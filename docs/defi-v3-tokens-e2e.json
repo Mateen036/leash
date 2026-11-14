@@ -1,0 +1,151 @@
+{
+  "at": "2026-11-14T17:48:55.179Z",
+  "swaps": [
+    {
+      "symbol": "tUSDC",
+      "pool": 2973,
+      "nearToToken": {
+        "ok": true,
+        "tx": "8sragwdEuPJjN4P8HzR6wQz2VfJ7rVUur27j5cnUuhxF",
+        "error": null,
+        "received": "0.046311"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "DpL1XcCJnyX6f2oRmkV7PXdr2rEwWg4wXw3fd4j3AzBh",
+        "error": null,
+        "sent": "0.023155"
+      }
+    },
+    {
+      "symbol": "USDT",
+      "pool": 1084,
+      "nearToToken": {
+        "ok": true,
+        "tx": "6MYBndYdhGjkspkLWGnAFn57sAtd97ugRSGAwPetcNYV",
+        "error": null,
+        "received": "0.04963"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "65aiQ7RY4ZHiPT2NebZJAmdKpmMLHfJr9fLBzrixvy62",
+        "error": null,
+        "sent": "0.024815"
+      }
+    },
+    {
+      "symbol": "USDC",
+      "pool": 1103,
+      "nearToToken": {
+        "ok": true,
+        "tx": "6Y7VXrn1NjtvPrcmZ6iUVY2CFfRhPmQBfV7HtdkwTbNn",
+        "error": null,
+        "received": "0.084018"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "3EUJzWFn3kHwvqE8iCR8XQEseYPjT5QZ9UqWC55WQUPX",
+        "error": null,
+        "sent": "0.042009"
+      }
+    },
+    {
+      "symbol": "PEM",
+      "pool": 461,
+      "nearToToken": {
+        "ok": true,
+        "tx": "AJQHTrZXFv7jPDGLBSZUGtkRm7CKZ2Bykh3EM3HpoKhs",
+        "error": null,
+        "received": "1.312469"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "EPWC4vsdvHPpVEXQppjLHERnQXgkpqUHr7Z5QR2Rwr7Z",
+        "error": null,
+        "sent": "0.656234"
+      }
+    },
+    {
+      "symbol": "LNC",
+      "pool": 395,
+      "nearToToken": {
+        "ok": true,
+        "tx": "9DY9ZoKUhTDpbxFcNasJtkNq92FHn7ZAiKY1k38jnGfd",
+        "error": null,
+        "received": "0.11084"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "2nAU14w9VYbgmqVff9LPjoVRJpv7GBbMAyRnUSUvLHHc",
+        "error": null,
+        "sent": "0.05542"
+      }
+    },
+    {
+      "symbol": "NST",
+      "pool": 602,
+      "nearToToken": {
+        "ok": true,
+        "tx": "9X8TKLhhr8bqCD44zFNqbLpUBCYSMmw1zZG6fDoji9yv",
+        "error": null,
+        "received": "0.970452"
+      },
+      "tokenToNear": {
+        "ok": true,
+        "tx": "DAf6yPjtVKr4QkwP8G18CwguxN4bfqCWLGBQGneyBLAj",
+        "error": null,
+        "sent": "0.485226"
+      }
+    }
+  ],
+  "faucet": {
+    "walletAccount": "w-mwgpd73o.leash-11141537.testnet",
+    "createTx": "9824JVXTVjk2iSNrewAUNHmFfUaK9avVsX991P4DSYAi",
+    "result": {
+      "accountId": "w-mwgpd73o.leash-11141537.testnet",
+      "sent": [
+        {
+          "symbol": "tUSDC",
+          "amount": "25",
+          "txHash": "CpgL1Vby1U3XJJ4jDHirmgAXRgygenY4gE2jA352VZk5"
+        },
+        {
+          "symbol": "USDT",
+          "amount": "0.1",
+          "txHash": "AuTW4CSX5Cr6nW4iYfNcirxyjZbBkELQ3Y3D6cBZT4ZD"
+        },
+        {
+          "symbol": "USDC",
+          "amount": "0.2",
+          "txHash": "G5y2Un5XQsKBSWoSDrBShVCbrAD37zs8zaEpRCK6TGuo"
+        },
+        {
+          "symbol": "PEM",
+          "amount": "2",
+          "txHash": "89q7gGkMRci1SWTA4HZHtAscDuqtqB2yroeJyMJdLcL4"
+        },
+        {
+          "symbol": "LNC",
+          "amount": "0.2",
+          "txHash": "3Us8xK1MYPHm8g7zu1U1ZwjoSUDAM9bnJhwXoCGcznyH"
+        },
+        {
+          "symbol": "NST",
+          "amount": "2",
+          "txHash": "FNcBBUPY5ZESYoakg3i9kWFJMWd994uZVxTLHfPKSbkX"
+        }
+      ],
+      "skipped": []
+    }
+  },
+  "guest": {
+    "accountId": "g-lx7jqr.leash-11141537.testnet",
+    "txHash": "222wpFwKVE3DyTi9UMN5RvAQVdMbSGJ172nx8445pX2d"
+  },
+  "install": "A5M9dKiPtiqRefnShGgyuVDLQc75R7zshFbNga2u279D",
+  "overLimit": {
+    "ok": false,
+    "tx": "2eyx2oWomGr8oh7GMzRMv5mFhW9gpXtBkUrMRhhg7m86",
+    "error": "CAP_PER_ACTION"
+  }
+}

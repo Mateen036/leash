@@ -1,0 +1,80 @@
+{
+  "network": "testnet",
+  "rpcUrl": "https://test.rpc.fastnear.com",
+  "explorer": "https://testnet.nearblocks.io",
+  "root": "leash-11141537.testnet",
+  "tokenContract": "usdc.lapdemo-11140542.testnet",
+  "tokenSymbol": "tUSDC",
+  "tokenDecimals": 6,
+  "relayerAccount": "leash-11141537.testnet",
+  "refContract": "ref-finance-101.testnet",
+  "wrapContract": "wrap.testnet",
+  "refPoolId": 2973,
+  "refPoolSetup": {
+    "createdTx": "EDxmGV4z8SfPQGZjcMUMLy3H7uQgfrcqu8AzWJxxzpH",
+    "seedNear": "1",
+    "seedTusdc": "3340000",
+    "nearUsd": 3.34,
+    "priceUpdatedAt": "2026-11-14T07:41:30.938Z",
+    "seeded": true,
+    "liquidityTx": "6yCopDnBu8EVPqNfUwUsScFzExSxyy7SNewUpstAZdBM"
+  },
+  "leash": {
+    "root": "leash-11141537.testnet",
+    "guardCodeHash": "DFNji18z9o3hxg2nqEeA9j4ciTX3r2TPZ1jADV1KneiF",
+    "guardGlobalTx": "DFDDLVn8UTdaak4ipLHc5sQTDzgdE1dEYrm49UQyftyg",
+    "agentGuardPublicKey": "ed25519:CRPE7suThWT8Su17arKAcwxxK6KcdwEYKYCzMomEgFcS",
+    "defaultPolicy": {
+      "allowed_protocols": [
+        "ref-finance-101.testnet",
+        "contract.burrow.testnet",
+        "linear-protocol.testnet",
+        "wrap.testnet",
+        "orderly-testnet"
+      ],
+      "caps": {
+        "near": {
+          "per_action": "500000000000000000000000",
+          "daily": "1500000000000000000000000"
+        },
+        "wrap.testnet": {
+          "per_action": "500000000000000000000000",
+          "daily": "1500000000000000000000000"
+        },
+        "linear-protocol.testnet": {
+          "per_action": "500000000000000000000000",
+          "daily": "1500000000000000000000000"
+        },
+        "usdtt.fakes.testnet": {
+          "per_action": "50000000",
+          "daily": "150000000"
+        },
+        "usdc.fakes.testnet": {
+          "per_action": "50000000",
+          "daily": "150000000"
+        },
+        "usdc.lapdemo-11140542.testnet": {
+          "per_action": "50000000",
+          "daily": "150000000"
+        },
+        "perp_usd": {
+          "per_action": "500",
+          "daily": "1500"
+        }
+      },
+      "max_slippage_bps": 100,
+      "max_leverage_x100": 500,
+      "max_perp_notional_usd": 500,
+      "expires_at_ms": 1795261542246,
+      "paused": false
+    },
+    "swapPool": {
+      "poolId": 2973,
+      "tokenA": "wrap.testnet",
+      "tokenB": "usdc.lapdemo-11140542.testnet",
+      "tokenBSymbol": "tUSDC",
+      "tokenBDecimals": 6
+    }
+  },
+  "legacyRoot": "leash-11141537.testnet"
+}

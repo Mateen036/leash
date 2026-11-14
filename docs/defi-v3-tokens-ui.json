@@ -1,0 +1,102 @@
+{
+  "at": "2026-11-14T19:06:14.479Z",
+  "base": "https://leash.mateen-nibtap.workers.dev",
+  "passed": false,
+  "checks": [
+    "Browser creates guest and installs on-chain guard",
+    "NEAR → USDT 0.05 and USDT → NEAR execute through pool 1084",
+    "Seven tokens, name search, logos, automatic NEAR pairing, flip and MAX",
+    "Guest faucet delivers real testnet tokens and renders per-token explorer links",
+    "Faucet cooldown is friendly and dialog Escape restores the widget",
+    "1440px and 390px pages fit, local token/chain logos load, portfolio avoids unpriced USD values"
+  ],
+  "transactions": [
+    {
+      "kind": "create-guest",
+      "hash": "3Eb7XeJWpxKY9zw2sqUM4kJPLKqeoWTjUr6yR29hfTPL"
+    },
+    {
+      "kind": "install-guard",
+      "hash": "9TTE8yoynpAuzTDCsgLZNnMSdspiGPhw7ZmUvqVxo46o"
+    },
+    {
+      "kind": "RefSwap",
+      "tokenIn": "wrap.testnet",
+      "tokenOut": "usdt.itachicara.testnet",
+      "pool": 1084,
+      "ok": true,
+      "hash": "C4jYvBy1E6mZCVAwHqDuZkNV25mBJeHSj8dkurXX6gNB",
+      "error": null
+    },
+    {
+      "kind": "RefSwap",
+      "tokenIn": "usdt.itachicara.testnet",
+      "tokenOut": "wrap.testnet",
+      "pool": 1084,
+      "ok": true,
+      "hash": "8TwfGLRA1PxbpRjeyhyxyNAqpK2crrtES5gvS4J4SHXw",
+      "error": null
+    }
+  ],
+  "screenshots": [
+    "/workspace/shots/v3tok-failure.png",
+    "/workspace/shots/v3tok-swap-usdt-confirmed-desktop.png",
+    "/workspace/shots/v3tok-faucet-result-desktop.png",
+    "/workspace/shots/v3tok-faucet-result-mobile.png",
+    "/workspace/shots/v3tok-swap-desktop.png",
+    "/workspace/shots/v3tok-stake-desktop.png",
+    "/workspace/shots/v3tok-lend-desktop.png",
+    "/workspace/shots/v3tok-portfolio-desktop.png",
+    "/workspace/shots/v3tok-agent-desktop.png",
+    "/workspace/shots/v3tok-perps-desktop.png",
+    "/workspace/shots/v3tok-bridge-picker-desktop.png",
+    "/workspace/shots/v3tok-bridge-desktop.png",
+    "/workspace/shots/v3tok-swap-mobile.png",
+    "/workspace/shots/v3tok-stake-mobile.png",
+    "/workspace/shots/v3tok-lend-mobile.png",
+    "/workspace/shots/v3tok-portfolio-mobile.png",
+    "/workspace/shots/v3tok-agent-mobile.png",
+    "/workspace/shots/v3tok-perps-mobile.png",
+    "/workspace/shots/v3tok-bridge-picker-mobile.png",
+    "/workspace/shots/v3tok-bridge-mobile.png"
+  ],
+  "errors": [],
+  "accountId": "g-l9baxo.leash-11141537.testnet",
+  "failure": "locator.click: Timeout 60000ms exceeded.\nCall log:\n  - waiting for locator('.bridge-preview-widget').getByRole('button', { name: 'Preview bridge route', exact: true })\n",
+  "faucet": {
+    "accountId": "g-l9baxo.leash-11141537.testnet",
+    "sent": [
+      {
+        "symbol": "tUSDC",
+        "amount": "25",
+        "txHash": "8CaGgi4JfX9xqL5gKQmpTNsYJTAek7bGGn87M7a6cF9A"
+      },
+      {
+        "symbol": "USDT",
+        "amount": "0.0534",
+        "txHash": "9z2sBcdTfZoEE2BojxRNoVGQ2ybbftqUUq8p6U9X7bjc"
+      },
+      {
+        "symbol": "USDC",
+        "amount": "0.2",
+        "txHash": "124iig1EZLjM6zeQ11gRSHca3U4kWo89r6PwY4Yo4kxm"
+      },
+      {
+        "symbol": "PEM",
+        "amount": "2",
+        "txHash": "FXfBrnBrxdR9eHJ9qLGHvTTQNNsZYPJgDQ4QyPZjBoQK"
+      },
+      {
+        "symbol": "LNC",
+        "amount": "0.2",
+        "txHash": "7AqRV8Pk6LZogiSh3aFM9EPbF6ZVKqX9GdquSSZaitGv"
+      },
+      {
+        "symbol": "NST",
+        "amount": "2",
+        "txHash": "25qXjptFkT34MdvGc9BKpbCa2AsvQLXpDU1KasWcV3rx"
+      }
+    ],
+    "skipped": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-14T17:26:57.193Z",
+  "base": "https://leash.mateen-nibtap.workers.dev",
+  "shots": [
+    "/workspace/shots/leash-v2-flow-agent-review-desktop.png",
+    "/workspace/shots/leash-v2-flow-agent-timeline-done-desktop.png",
+    "/workspace/shots/leash-v2-flow-picker-open-desktop.png",
+    "/workspace/shots/leash-v2-flow-swap-review-desktop.png",
+    "/workspace/shots/leash-v2-flow-swap-timeline-done-desktop.png",
+    "/workspace/shots/leash-v2-flow-bridge-route-desktop.png",
+    "/workspace/shots/leash-v2-flow-perps-market-picker-desktop.png",
+    "/workspace/shots/leash-v2-home-desktop.png",
+    "/workspace/shots/leash-v2-agent-desktop.png",
+    "/workspace/shots/leash-v2-swap-desktop.png",
+    "/workspace/shots/leash-v2-stake-desktop.png",
+    "/workspace/shots/leash-v2-lend-desktop.png",
+    "/workspace/shots/leash-v2-perps-desktop.png",
+    "/workspace/shots/leash-v2-portfolio-desktop.png",
+    "/workspace/shots/leash-v2-guardrails-desktop.png",
+    "/workspace/shots/leash-v2-bridge-desktop.png",
+    "/workspace/shots/leash-v2-protocols-desktop.png",
+    "/workspace/shots/leash-v2-home-mobile.png",
+    "/workspace/shots/leash-v2-agent-mobile.png",
+    "/workspace/shots/leash-v2-swap-mobile.png",
+    "/workspace/shots/leash-v2-stake-mobile.png",
+    "/workspace/shots/leash-v2-lend-mobile.png",
+    "/workspace/shots/leash-v2-perps-mobile.png",
+    "/workspace/shots/leash-v2-portfolio-mobile.png",
+    "/workspace/shots/leash-v2-guardrails-mobile.png",
+    "/workspace/shots/leash-v2-bridge-mobile.png",
+    "/workspace/shots/leash-v2-protocols-mobile.png",
+    "/workspace/shots/leash-v2-flow-picker-open-mobile.png"
+  ],
+  "transactions": {
+    "create": "6RdqTEcvfLugFWTCVyUVVi5a8BA82AFDh9HLEmXPXTow",
+    "LinearStake": "F26WRPZZR1gzvuSNUpcmt3jBHZ44cVpELn6qYBRvYmDP",
+    "RefSwap": "2MEebmC6wbviM3rfXtvMBPaQbzxi21c7FU6W5esPCAbf"
+  },
+  "errors": [],
+  "accountId": "g-be368f.leash-11141537.testnet",
+  "passed": true
+}

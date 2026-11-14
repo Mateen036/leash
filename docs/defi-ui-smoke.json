@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "at": "2026-11-14T14:18:41.897Z",
+  "base": "http://localhost:3001",
+  "transactions": {
+    "created": "Y8ZmTpfqrEZiA5BRqNqM36hpq2nqERn537RaQBJJXDY",
+    "install": "aqoicXLMjV82heqgUmuhnhZ48DJVXgKLrPuvc3ATtNw",
+    "stake": "9PuX7Uh8fkwaTXmDKiPff2g7tFS2dVXarRP4qKFq6m1X",
+    "rejected": "HsAeCd7vNb3up1TPFZ6GNvbaKVAsvzAnquWfV8T1D3RE",
+    "supply": "GZTfPSc18Y5Fmeq6ApHD97hCnDKmcrTTX5LgGdKHzaeW",
+    "withdraw": "ERoi8ZLPKPgc9e5qwp6RXjrRjU4M7oa5wnePZq2DfTXG",
+    "swap": "9pi9xuM7etpNA1A5rukVyLWsE1MTkGHAws46SSNmfzjF",
+    "unstake": "8Kra57KuXC3NYbYv1vWKoTs7GUQ8NRJMpsVeBULFtdZ7",
+    "pause": "9XntQG5n2672v8veLf1QQB5msPnjdH9nafN42SasaGxU",
+    "resume": "CCy1dowTE5vYQ5VzfW7CjWc4jY9uT6YFNY64cHHzotG5",
+    "setPolicy": "B5nf8ebTAeHcjcLUaXgddPmZSMc82aSYva9PvrddapMT",
+    "revoke": "8BbtxgohY27bfoH2Vx5XSqsTUYxGf2SkENviihNfVWyF"
+  },
+  "screenshots": [
+    "/workspace/shots/leash-wip-agent-onboarded-desktop.png",
+    "/workspace/shots/leash-wip-agent-stake-success-desktop.png",
+    "/workspace/shots/leash-wip-guardrails-rejection-desktop.png",
+    "/workspace/shots/leash-wip-lend-supply-confirmed.png",
+    "/workspace/shots/leash-wip-lend-withdraw-confirmed.png",
+    "/workspace/shots/leash-wip-swap-swap-confirmed.png",
+    "/workspace/shots/leash-wip-stake-unstake-confirmed.png",
+    "/workspace/shots/leash-wip-stake-desktop.png",
+    "/workspace/shots/leash-wip-lend-desktop.png",
+    "/workspace/shots/leash-wip-swap-desktop.png",
+    "/workspace/shots/leash-wip-portfolio-desktop.png",
+    "/workspace/shots/leash-wip-bridge-desktop.png",
+    "/workspace/shots/leash-wip-protocols-desktop.png",
+    "/workspace/shots/leash-wip-agent-mobile.png",
+    "/workspace/shots/leash-wip-guardrails-mobile.png",
+    "/workspace/shots/leash-wip-stake-mobile.png",
+    "/workspace/shots/leash-wip-lend-mobile.png",
+    "/workspace/shots/leash-wip-swap-mobile.png",
+    "/workspace/shots/leash-wip-portfolio-mobile.png",
+    "/workspace/shots/leash-wip-bridge-mobile.png",
+    "/workspace/shots/leash-wip-protocols-mobile.png",
+    "/workspace/shots/leash-wip-guardrails-revoked-mobile.png",
+    "/workspace/shots/leash-wip-light-mobile.png",
+    "/workspace/shots/leash-wip-home-desktop.png"
+  ],
+  "checks": [
+    "browser-created guest immediately installed immutable guard and limited key",
+    "three-second autonomous countdown can be undone without a transaction",
+    "CAP_PER_ACTION rejection has tx link and persists after reload",
+    "real UI supply, withdrawal, swap and unstake confirmed on testnet",
+    "owner-signed pause, resume and policy edit verified by on-chain state",
+    "desktop + 390px mobile routes render without overflow; reduced motion enabled",
+    "revoke owner transaction deleted agent key on-chain",
+    "12 transaction outcomes independently verified by NEAR RPC",
+    "Simple/Advanced, compact density and light theme persisted after reload in separate read-only browser check"
+  ],
+  "errors": [],
+  "accountId": "g-g1295a.leash-11141537.testnet",
+  "rpcVerification": [
+    {
+      "name": "created",
+      "txHash": "Y8ZmTpfqrEZiA5BRqNqM36hpq2nqERn537RaQBJJXDY",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "install",
+      "txHash": "aqoicXLMjV82heqgUmuhnhZ48DJVXgKLrPuvc3ATtNw",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "stake",
+      "txHash": "9PuX7Uh8fkwaTXmDKiPff2g7tFS2dVXarRP4qKFq6m1X",
+      "status": {
+        "SuccessValue": "MQ=="
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "rejected",
+      "txHash": "HsAeCd7vNb3up1TPFZ6GNvbaKVAsvzAnquWfV8T1D3RE",
+      "status": {
+        "Failure": {
+          "ActionError": {
+            "index": 0,
+            "kind": {
+              "FunctionCallError": {
+                "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+              }
+            }
+          }
+        }
+      },
+      "receiptFailures": [
+        {
+          "ActionError": {
+            "index": 0,
+            "kind": {
+              "FunctionCallError": {
+                "ExecutionError": "Smart contract panicked: CAP_PER_ACTION"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "supply",
+      "txHash": "GZTfPSc18Y5Fmeq6ApHD97hCnDKmcrTTX5LgGdKHzaeW",
+      "status": {
+        "SuccessValue": "Mg=="
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "withdraw",
+      "txHash": "ERoi8ZLPKPgc9e5qwp6RXjrRjU4M7oa5wnePZq2DfTXG",
+      "status": {
+        "SuccessValue": "Mw=="
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "swap",
+      "txHash": "9pi9xuM7etpNA1A5rukVyLWsE1MTkGHAws46SSNmfzjF",
+      "status": {
+        "SuccessValue": "NA=="
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "unstake",
+      "txHash": "8Kra57KuXC3NYbYv1vWKoTs7GUQ8NRJMpsVeBULFtdZ7",
+      "status": {
+        "SuccessValue": "NQ=="
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "pause",
+      "txHash": "9XntQG5n2672v8veLf1QQB5msPnjdH9nafN42SasaGxU",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "resume",
+      "txHash": "CCy1dowTE5vYQ5VzfW7CjWc4jY9uT6YFNY64cHHzotG5",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "setPolicy",
+      "txHash": "B5nf8ebTAeHcjcLUaXgddPmZSMc82aSYva9PvrddapMT",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    },
+    {
+      "name": "revoke",
+      "txHash": "8BbtxgohY27bfoH2Vx5XSqsTUYxGf2SkENviihNfVWyF",
+      "status": {
+        "SuccessValue": ""
+      },
+      "receiptFailures": []
+    }
+  ],
+  "accessKeyVerification": {
+    "keyCount": 1,
+    "agentKeyPresent": false,
+    "permissions": ["FullAccess"]
+  },
+  "verification": {
+    "unitTests": "npm test: 41 passed, 0 failed",
+    "typecheck": "npm run typecheck: exit 0",
+    "build": "npm run build:vinext: Build complete (exit 0)",
+    "planner": "npx tsx scripts/defi/agent-smoke.ts: 10 prompts passed",
+    "browser": "EXTRA=1 node scripts/defi/ui-smoke.mjs: UI SMOKE PASS",
+    "walletPopupExercised": false,
+    "mainnetExecutionExercised": false,
+    "perpsOwnedFilesChanged": false
+  }
+}

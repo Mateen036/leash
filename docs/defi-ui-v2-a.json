@@ -1,0 +1,65 @@
+{
+  "at": "2026-11-14T16:21:26.669Z",
+  "base": "http://localhost:3001",
+  "passed": true,
+  "checks": [
+    "Swap token search, selection, flip and Escape close",
+    "Live Ref quote displays minimum, fee, impact and slippage",
+    "Real browser guest creation and atomic guard installation",
+    "Undo cancels autonomous countdown without a transaction",
+    "Real guard-backed stake, supply, withdrawal, swap and unstake execute via UI with timelines and tx toasts",
+    "Agent chat proposal proves on-chain rejection and displays red linked rejection receipt",
+    "Agent preserves perps risk fields and quote-only bridge proposals",
+    "Live Intents bridge dry quote",
+    "Guest mainnet execution remains disabled",
+    "All five pages fit desktop and 390px mobile with reduced motion"
+  ],
+  "transactions": [
+    {
+      "kind": "guest",
+      "hash": "Dg6qRo5WdFbDY3ez8SogyCRC9cprNfjiHLv4X5BPyJg6"
+    },
+    {
+      "kind": "guard-install",
+      "hash": "C11AJgTTjTaJhfo7mRGSXmXpr9YBjHDgwJu3yyAafg7G"
+    },
+    {
+      "kind": "LinearStake",
+      "ok": true,
+      "hash": "9329eKcqL8MwY52kGacdRxx3NZoiXw8oqe3BaFXMqXQY",
+      "error": null
+    },
+    {
+      "kind": "BurrowSupply",
+      "ok": true,
+      "hash": "4hxnsyFe4CehQAKBva19gedkaUCTHxBpyBZTctbu1cVL",
+      "error": null
+    },
+    {
+      "kind": "BurrowWithdraw",
+      "ok": true,
+      "hash": "5ye878zpAHkwnpNYPWqZajDvZmcjipWxsFCYPsFC2dnc",
+      "error": null
+    },
+    {
+      "kind": "RefSwap",
+      "ok": true,
+      "hash": "B7GjjCfCQYMwuDS1PLnFcsL4AtqPdFMHoUJ2tRf8B95u",
+      "error": null
+    },
+    {
+      "kind": "LinearUnstake",
+      "ok": true,
+      "hash": "7aHY5CdExV7G4iLLVHvMnM8tCNYcG16sms17vnHrkXCR",
+      "error": null
+    },
+    {
+      "kind": "LinearStake",
+      "ok": false,
+      "hash": "H9DJ9uqPk9K6qGgynBttTPbs4mx6XB5CVkR75gagip33",
+      "error": "CAP_PER_ACTION"
+    }
+  ],
+  "errors": [],
+  "accountId": "g-02rsgr.leash-11141537.testnet"
+}

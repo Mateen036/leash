@@ -1,0 +1,25 @@
+{
+  "base": "https://leash.mateen-nibtap.workers.dev",
+  "passed": true,
+  "at": "2026-11-14T19:04:29.735Z",
+  "transactions": {
+    "perpOpen": "46bpHLMR1MJBjAnZUZRVCECHcv51dzQRXMYAWJ4kzy2t",
+    "perpRejected": "8saA8DYwxbrgzuZDcMkeYbh9auxcS6NWVSd7kFipEpKs"
+  },
+  "checks": [
+    "market search reads live Orderly markets; Escape restores focus",
+    "2x long authorized on-chain, accepted by Orderly and verified as real exposure",
+    "10x leverage attempt is visibly flagged and rejected on-chain with red tx link",
+    "single Close can be cancelled; confirmed Close-all returns venue IDs and leaves no exposure",
+    "all browser checks used prefers-reduced-motion: reduce"
+  ],
+  "screenshots": [
+    "/workspace/shots/leash-v3-perps-perps-filled-desktop.png",
+    "/workspace/shots/leash-v3-perps-perps-filled-mobile.png"
+  ],
+  "errors": [],
+  "perpOrderId": 3975246980,
+  "closeIds": [
+    3975247033
+  ]
+}

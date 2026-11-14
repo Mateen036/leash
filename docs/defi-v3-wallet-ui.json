@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-14T18:55:12.932Z",
+  "mode": "Injected NEAR Connect adapter; real testnet faucet API",
+  "accountId": "w-mwgpd73o.leash-11141537.testnet",
+  "passed": true,
+  "checks": [
+    "Connected wallet takes precedence over saved guest; new-wallet faucet banner appears",
+    "Claim POST uses the connected wallet ID; repeated claims show a friendly rate-limit message",
+    "Failed token image renders coloured initials fallback"
+  ]
+}
