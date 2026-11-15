@@ -130,24 +130,51 @@
   filter: drop-shadow(0 0 5px var(--violet));
 }
 @keyframes mascot-breathe {
-  0%, 100% { transform: translateY(0) scaleY(1); }
-  50% { transform: translateY(-4px) scaleY(1.012); }
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-4px) scaleY(1.012);
+  }
 }
 @keyframes mascot-blink {
-  0%, 43%, 47%, 100% { transform: scaleY(1); }
-  45% { transform: scaleY(0.08); }
+  0%,
+  43%,
+  47%,
+  100% {
+    transform: scaleY(1);
+  }
+  45% {
+    transform: scaleY(0.08);
+  }
 }
 @keyframes mascot-wag {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(9deg); }
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
 }
 @keyframes mascot-ear {
-  0%, 100% { transform: rotate(0); }
-  50% { transform: rotate(-9deg); }
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-9deg);
+  }
 }
 @keyframes mascot-glow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.85; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .leash-mascot *,
@@ -1176,4 +1203,53 @@ html[data-theme="light"]
 }
 html[data-theme="light"] .impact-warning {
   color: #944c00;
+}
+
+.network-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.network-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border, #374151);
+  border-radius: 999px;
+  padding: 0.4rem 0.65rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+}
+.network-toggle:focus-visible {
+  outline: 2px solid #70e8be;
+  outline-offset: 3px;
+}
+.network-toggle-track {
+  width: 1.6rem;
+  height: 0.9rem;
+  background: #475569;
+  border-radius: 1rem;
+  padding: 0.1rem;
+  display: inline-flex;
+}
+.network-toggle-track > span {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: white;
+  border-radius: 50%;
+}
+.network-toggle.is-mainnet {
+  border-color: #f59e0b;
+}
+.is-mainnet .network-toggle-track {
+  background: #b45309;
+  justify-content: flex-end;
+}
+.network-real-money {
+  color: #f59e0b;
+  font-size: 0.72rem;
 }

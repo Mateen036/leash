@@ -1,15 +1,73 @@
 import deployment from "./deployment.testnet.json";
 
-/** Public, non-secret NEAR configuration. Testnet only in this prototype. */
+import mainnet from "./deployment.mainnet.json";
+import { currentNetwork } from "./network";
+
+export const getDeployment = () =>
+  currentNetwork() === "mainnet" ? mainnet : deployment;
+/** Lazy getters keep server configuration inside the current request's network scope. */
 export const near = {
-  network: "testnet" as const,
-  rpcUrl: deployment.rpcUrl,
-  explorer: deployment.explorer,
-  root: deployment.root,
-  token: deployment.tokenContract,
-  tokenSymbol: deployment.tokenSymbol,
-  tokenDecimals: deployment.tokenDecimals,
-  relayer: deployment.relayerAccount,
+  get network() {
+    return currentNetwork();
+  },
+  get rpcUrl() {
+    return getDeployment().rpcUrl;
+  },
+  get explorer() {
+    return getDeployment().explorer;
+  },
+  get root() {
+    return getDeployment().root;
+  },
+  get token() {
+    return getDeployment().tokenContract;
+  },
+  get tokenSymbol() {
+    return getDeployment().tokenSymbol;
+  },
+  get tokenDecimals() {
+    return getDeployment().tokenDecimals;
+  },
+  get relayer() {
+    return getDeployment().relayerAccount;
+  },
+  get ref() {
+    return getDeployment().refContract;
+  },
+  get wrap() {
+    return getDeployment().wrapContract;
+  },
+  get pool() {
+    return getDeployment().refPoolId;
+  },
+  get linear() {
+    return currentNetwork() === "mainnet"
+      ? "linear-protocol.near"
+      : "linear-protocol.testnet";
+  },
+  get burrow() {
+    return currentNetwork() === "mainnet"
+      ? "contract.main.burrow.near"
+      : "contract.burrow.testnet";
+  },
+  get orderlyVenue() {
+    return currentNetwork() === "mainnet"
+      ? "orderly-mainnet"
+      : "orderly-testnet";
+  },
+  get orderlyApi() {
+    return currentNetwork() === "mainnet"
+      ? "https://api.orderly.org"
+      : "https://testnet-api.orderly.org";
+  },
+  get chainId() {
+    return currentNetwork() === "mainnet" ? 42161 : 421614;
+  },
+  get mpcContract() {
+    return currentNetwork() === "mainnet"
+      ? "v1.signer"
+      : "v1.signer-prod.testnet";
+  },
 };
 
 export const txUrl = (hash: string) => `${near.explorer}/txns/${hash}`;
@@ -31,5 +89,9 @@ export function fromUnits(units: string | bigint): string {
 
 /** Guest accounts are named sub-accounts of the relayer root, e.g. g-k3x9.leash-root.testnet. */
 export function isGuestAccount(id: string) {
-  return /^g-[a-z0-9]{4,20}\./.test(id) && id.endsWith(`.${near.root}`);
+  return (
+    near.network === "testnet" &&
+    /^g-[a-z0-9]{4,20}\./.test(id) &&
+    id.endsWith(`.${near.root}`)
+  );
 }

@@ -1,4 +1,6 @@
 "use client";
+import { networkFetch } from "@/lib/near/network";
+
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useAccount } from "../account/AccountProvider";
@@ -23,8 +25,9 @@ const skippedReasons = new Set([
 ]);
 
 export function GetTestTokens({ compact = false }: { compact?: boolean }) {
-  const { accountId } = useAccount();
+  const { accountId, network } = useAccount();
   const [open, setOpen] = useState(false);
+  if (network === "mainnet") return null;
   return (
     <>
       <button
@@ -59,7 +62,7 @@ function FaucetDialog({
   const locked = useRef(false);
   useEffect(() => {
     const controller = new AbortController();
-    void fetch("/api/faucet", { signal: controller.signal })
+    void networkFetch("/api/faucet", { signal: controller.signal })
       .then(async (r) => {
         if (!r.ok) throw new Error("Stock unavailable");
         setStock((await r.json()).tokens);
@@ -78,7 +81,7 @@ function FaucetDialog({
     setBusy(true);
     setError("");
     try {
-      const response = await fetch("/api/faucet", {
+      const response = await networkFetch("/api/faucet", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ accountId }),

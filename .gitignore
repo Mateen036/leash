@@ -16,6 +16,7 @@ dist/
 
 # NEAR contracts build output
 contracts/target/
+contracts/guard/target/
 # Never commit testnet/mainnet keys
 secrets/
 *.near-credentials*

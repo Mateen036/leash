@@ -1,4 +1,5 @@
 "use client";
+import { networkFetch } from "@/lib/near/network";
 
 import { useEffect, useRef, useState } from "react";
 import { ErrorNotice } from "../leash/ErrorNotice";
@@ -33,9 +34,9 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
   const seriesRef = useRef<ReturnType<
     ReturnType<Lib["createChart"]>["addSeries"]
   > | null>(null);
-  const linesRef = useRef<ReturnType<
-    NonNullable<typeof seriesRef.current>["createPriceLine"]
-  >[]>([]);
+  const linesRef = useRef<
+    ReturnType<NonNullable<typeof seriesRef.current>["createPriceLine"]>[]
+  >([]);
   const libRef = useRef<Lib | null>(null);
   const typeRef = useRef<KlineType>("15m");
   const styleRef = useRef<ChartStyle>("candles");
@@ -94,7 +95,7 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
       if (running || controller.signal.aborted) return;
       running = true;
       try {
-        const response = await fetch(
+        const response = await networkFetch(
           `/api/perps/kline?symbol=${encodeURIComponent(symbol)}&type=${type}`,
           { signal: controller.signal },
         );
@@ -195,7 +196,9 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
       const high = data.high ?? close;
       const low = data.low ?? close;
       const when =
-        typeof param.time === "number" ? new Date(param.time * 1000) : new Date();
+        typeof param.time === "number"
+          ? new Date(param.time * 1000)
+          : new Date();
       const daily = typeRef.current === "1D";
       const up = (close ?? 0) >= (open ?? 0);
       tip.hidden = false;
@@ -265,7 +268,9 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
     const candles = payload?.candles ?? [];
     if (!chart || !series || !candles.length) return;
     if (styleRef.current === "line") {
-      series.setData(candles.map((c: Candle) => ({ time: c.time as never, value: c.close })));
+      series.setData(
+        candles.map((c: Candle) => ({ time: c.time as never, value: c.close })),
+      );
     } else {
       series.setData(
         candles.map((c: Candle) => ({
@@ -370,7 +375,11 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
               </button>
             ))}
           </div>
-          <div className={styles.chartTabs} role="group" aria-label="Chart style">
+          <div
+            className={styles.chartTabs}
+            role="group"
+            aria-label="Chart style"
+          >
             <button
               type="button"
               aria-pressed={style === "candles"}
@@ -419,7 +428,7 @@ export function PerpChart({ symbol, markPrice, change24h, position }: Props) {
         )}
       </div>
       <p className={styles.fineprint}>
-        Orderly testnet klines · updates every 10 seconds
+        Orderly price history · updates every 10 seconds
         {position && position.symbol === symbol && position.avgOpen > 0
           ? " · entry and liquidation lines from your open position"
           : ""}

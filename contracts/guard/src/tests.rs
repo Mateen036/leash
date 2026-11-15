@@ -23,7 +23,7 @@ fn policy() -> Policy {
             REF.parse().unwrap(),
             BURROW.parse().unwrap(),
             LINEAR.parse().unwrap(),
-            "orderly-testnet".parse().unwrap(),
+            ORDERLY_VENUE.parse().unwrap(),
         ],
         caps: [
             ("near", NEAR / 2, NEAR),
@@ -62,7 +62,7 @@ fn stake(n: u128) -> Action {
 }
 fn perp(g: &mut Guard, n: u64, l: u32) -> u64 {
     g.authorize_perp(
-        "orderly-testnet".into(),
+        ORDERLY_VENUE.into(),
         "PERP_ETH_USDC".into(),
         "BUY".into(),
         n,
@@ -318,7 +318,7 @@ fn withdraw_decreases_only_missing_collateral() {
         token: WRAP.parse().unwrap(),
         amount: U128(100),
     }));
-    callback(br#"{"supplied":[{"token_id":"wrap.testnet","balance":"30"}],"collateral":[{"token_id":"wrap.testnet","balance":"80"}]}"#,1);
+    callback(json!({"supplied":[{"token_id":WRAP,"balance":"30"}],"collateral":[{"token_id":WRAP,"balance":"80"}]}).to_string().as_bytes(),1);
     drop(g.on_step(1));
     let s = &g.pending.as_ref().unwrap().steps[0];
     assert_eq!(s.deposit, 1);
@@ -430,13 +430,7 @@ fn init_only_self() {
 fn invalid_perp_side() {
     let mut g = guard();
     agent();
-    g.authorize_perp(
-        "orderly-testnet".into(),
-        "ETH".into(),
-        "wrong".into(),
-        50,
-        300,
-    );
+    g.authorize_perp(ORDERLY_VENUE.into(), "ETH".into(), "wrong".into(), 50, 300);
 }
 #[test]
 #[should_panic(expected = "PROTOCOL_NOT_ALLOWED")]
@@ -524,7 +518,9 @@ fn withdraw_supplied_needs_no_collateral_change() {
         amount: U128(10),
     }));
     callback(
-        br#"{"supplied":[{"token_id":"wrap.testnet","balance":"20"}]}"#,
+        json!({"supplied":[{"token_id":WRAP,"balance":"20"}]})
+            .to_string()
+            .as_bytes(),
         1,
     );
     drop(g.on_step(1));

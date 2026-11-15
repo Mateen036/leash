@@ -1,8 +1,13 @@
+import { networkRoute } from "@/lib/near/network-server";
 import { NextResponse } from "next/server";
 import { fail, limit } from "@/lib/near/api";
-import { cachedKlines, parseKlineType, parsePerpSymbol } from "@/lib/defi/kline";
+import {
+  cachedKlines,
+  parseKlineType,
+  parsePerpSymbol,
+} from "@/lib/defi/kline";
 
-export async function GET(request: Request) {
+async function handleGET(request: Request) {
   try {
     limit(request, "perps-kline", 90);
     const url = new URL(request.url);
@@ -16,3 +21,5 @@ export async function GET(request: Request) {
     return fail(e);
   }
 }
+
+export const GET = networkRoute(handleGET);

@@ -1,3 +1,4 @@
+import { near } from "../near/config";
 export type Budget = { units: bigint; currency: "USD"; amount: number };
 export function parseBudget(message: string): Budget | undefined {
   const text = message.toLowerCase().replace(/(\d),(?=\d{3}\b)/g, "$1");
@@ -13,16 +14,17 @@ export function parseBudget(message: string): Budget | undefined {
   return { units: BigInt(Math.round(amount * 1e6)), currency: "USD", amount };
 }
 export const formatBudget = (budget: Budget) => `$${budget.amount.toFixed(2)}`;
-import { SWAP_TOKENS } from "../defi/tokens";
+import { getSwapTokens } from "../defi/tokens";
 /** Lower-case alias -> swap token symbol (agent understands every listed token). */
-export const SWAP_ALIASES: Record<string, string> = Object.fromEntries([
-  ...SWAP_TOKENS.map((t) => [t.symbol.toLowerCase(), t.symbol]),
-  ["wnear", "NEAR"],
-  ["usd", "tUSDC"],
-]);
+export const swapAliases = (): Record<string, string> =>
+  Object.fromEntries([
+    ...getSwapTokens().map((t) => [t.symbol.toLowerCase(), t.symbol]),
+    ["wnear", "NEAR"],
+    ["usd", near.tokenSymbol],
+  ]);
 export type FinancialIntent = {
   action: "swap" | "bridge";
-  /** Bridge: "USDC" | "NEAR" (mainnet). Swap: any SWAP_TOKENS symbol. */
+  /** Bridge: "USDC" | "NEAR" (mainnet). Swap: any getSwapTokens() symbol. */
   source: string;
   target: string;
   amount: string;
@@ -79,18 +81,19 @@ export function parseFinancialIntent(
       else if (match[2] && !["usdc", "usd"].includes(match[2]))
         error = `I can bridge NEAR or USDC, not ${match[2].toUpperCase()}`;
     } else {
-      const sym = SWAP_ALIASES[match[2] || "usd"];
+      const sym = swapAliases()[match[2] || "usd"];
       if (!sym) error = `I can't swap ${String(match[2]).toUpperCase()} yet`;
       else source = sym;
     }
   }
   if (!dest) error = error || "Say what to get, e.g. “to NEAR”";
-  if (action === "swap" && !SWAP_ALIASES[target])
-    error = error || `I can't swap to ${target ? target.toUpperCase() : "that"} yet`;
+  if (action === "swap" && !swapAliases()[target])
+    error =
+      error || `I can't swap to ${target ? target.toUpperCase() : "that"} yet`;
   if (action === "bridge" && !chain)
     error = `I can't bridge to ${target || "that chain"} yet`;
   const normalized =
-    action === "bridge" ? chain || target : SWAP_ALIASES[target] || target;
+    action === "bridge" ? chain || target : swapAliases()[target] || target;
   if (!error && action === "swap" && normalized === source)
     error = "Choose two different tokens";
   if (!error && action === "swap" && source !== "NEAR" && normalized !== "NEAR")

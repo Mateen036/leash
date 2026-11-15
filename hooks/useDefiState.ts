@@ -1,4 +1,6 @@
 "use client";
+import { networkKey } from "@/lib/near/network";
+
 import { useCallback, useEffect, useSyncExternalStore } from "react";
 import { fetchState, type DefiState } from "@/lib/defi/client";
 type Snapshot = { state: DefiState | null; loading: boolean; error: string };
@@ -10,7 +12,8 @@ type Entry = {
 };
 const empty: Snapshot = { state: null, loading: false, error: "" };
 const entries = new Map<string, Entry>();
-function entry(id: string) {
+function entry(accountId: string) {
+  const id = networkKey(accountId);
   if (!entries.has(id))
     entries.set(id, { snapshot: empty, listeners: new Set() });
   return entries.get(id)!;

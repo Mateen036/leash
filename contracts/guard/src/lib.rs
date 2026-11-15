@@ -1,4 +1,4 @@
-//! Per-account testnet guard. Amounts are integer base units; perp_usd is whole USD.
+//! Per-account guard (compile with `--features mainnet` for NEAR mainnet). Amounts are integer base units; perp_usd is whole USD.
 //! Caps reserve attempted spend before asynchronous calls and are not refunded on failure.
 //! Panics roll back state: rejected attempts live in transaction receipts, not the activity ring.
 use near_sdk::json_types::U128;
@@ -12,10 +12,27 @@ use std::collections::BTreeMap;
 const DAY_MS: u64 = 86_400_000;
 const NEAR: u128 = 10u128.pow(24);
 const RESERVE: u128 = 3 * NEAR / 10;
+#[cfg(not(feature = "mainnet"))]
 const WRAP: &str = "wrap.testnet";
+#[cfg(feature = "mainnet")]
+const WRAP: &str = "wrap.near";
+#[cfg(not(feature = "mainnet"))]
 const REF: &str = "ref-finance-101.testnet";
+#[cfg(feature = "mainnet")]
+const REF: &str = "v2.ref-finance.near";
+#[cfg(not(feature = "mainnet"))]
 const BURROW: &str = "contract.burrow.testnet";
+#[cfg(feature = "mainnet")]
+const BURROW: &str = "contract.main.burrow.near";
+#[cfg(not(feature = "mainnet"))]
 const LINEAR: &str = "linear-protocol.testnet";
+#[cfg(feature = "mainnet")]
+const LINEAR: &str = "linear-protocol.near";
+
+#[cfg(not(feature = "mainnet"))]
+const ORDERLY_VENUE: &str = "orderly-testnet";
+#[cfg(feature = "mainnet")]
+const ORDERLY_VENUE: &str = "orderly-mainnet";
 
 #[near(serializers = [borsh, json])]
 #[derive(Clone, Debug)]
@@ -297,7 +314,7 @@ impl Guard {
     ) -> u64 {
         self.agent();
         self.protocol(&venue);
-        require!(venue == "orderly-testnet", "PROTOCOL_NOT_ALLOWED");
+        require!(venue == ORDERLY_VENUE, "PROTOCOL_NOT_ALLOWED");
         require!(
             symbol.len() <= 64
                 && !symbol.is_empty()

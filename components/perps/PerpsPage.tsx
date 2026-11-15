@@ -1,4 +1,5 @@
 "use client";
+import { near } from "@/lib/near/config";
 import { ErrorNotice } from "../leash/ErrorNotice";
 import { AccountId } from "../leash/AccountId";
 import { plainText } from "../leash/display";
@@ -60,7 +61,7 @@ type Receipt = {
   error?: string;
 };
 const txUrl = (hash: string) =>
-  `https://testnet.nearblocks.io/txns/${encodeURIComponent(hash)}`;
+  `${near.explorer}/txns/${encodeURIComponent(hash)}`;
 
 export default function PerpsPage() {
   const { accountId, guest, walletSession, restoring } = useAccount();
@@ -206,7 +207,7 @@ export default function PerpsPage() {
     if (guest && guest.accountId === accountId)
       return signRequest(guest, parts);
     throw new Error(
-      "Start a guest or connect a NEAR testnet wallet on the Agent page.",
+      "Connect a wallet on the Agent page, or switch to testnet for guest mode.",
     );
   }
 
@@ -230,7 +231,9 @@ export default function PerpsPage() {
       setAccountError("");
       if (data.usdcBalance === 0 && !data.faucetRequested)
         setError(
-          "Account is registered, but the faucet did not accept the request. Try setup again in a few minutes.",
+          near.network === "mainnet"
+            ? "Account registered. Fund this Orderly account with mainnet USDC before trading."
+            : "Account is registered, but the faucet did not accept the request. Try setup again in a few minutes.",
         );
       await refreshAccount(id).catch((e: Error) => {
         if (currentAccount.current === id) setAccountError(e.message);
@@ -391,7 +394,7 @@ export default function PerpsPage() {
         />
         <WidgetShell
           title="Perpetuals"
-          actions={<Badge variant="testnet">Orderly · testnet</Badge>}
+          actions={<Badge variant="testnet">Orderly · {near.network}</Badge>}
           sidePanel={
             market ? (
               <PerpPreview
@@ -546,7 +549,7 @@ export default function PerpsPage() {
                 <p className={styles.warning}>
                   {walletMode
                     ? "This exceeds the off-chain policy and will be rejected."
-                    : "This exceeds your limit. Confirm to test the guard; a small testnet fee applies."}
+                    : "This exceeds your limit. Confirm to test the guard; a network fee applies."}
                 </p>
               )}
               <p className={styles.because}>
@@ -663,7 +666,7 @@ export default function PerpsPage() {
                 )}
             </div>
             <p className={styles.fineprint}>
-              Live Orderly testnet markets · refresh every 10 s
+              Live Orderly {near.network} markets · refresh every 10 s
             </p>
           </ManagementDialog>
         )}
@@ -702,9 +705,16 @@ export default function PerpsPage() {
               <QuoteSkeleton />
             ) : !accountId ? (
               <div className={styles.accountCta}>
-                <p>Create your free account to start trading.</p>
+                <p>
+                  {near.network === "mainnet"
+                    ? "Connect your funded mainnet wallet to start trading."
+                    : "Create your free account to start trading."}
+                </p>
                 <Link href="/agent" className={styles.primary}>
-                  Start free on Agent <ArrowUpRight size={16} />
+                  {near.network === "mainnet"
+                    ? "Connect on Agent"
+                    : "Start free on Agent"}{" "}
+                  <ArrowUpRight size={16} />
                 </Link>
               </div>
             ) : accountLoading ? (
@@ -791,16 +801,23 @@ export default function PerpsPage() {
                 </p>
                 <a
                   className={styles.textLink}
-                  href="https://near-faucet.io/"
+                  href={
+                    near.network === "testnet"
+                      ? "https://near-faucet.io/"
+                      : "https://wallet.near.org/"
+                  }
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Need NEAR for gas? Official NEAR testnet faucet ↗
+                  {near.network === "testnet"
+                    ? "Need NEAR for gas? Official NEAR testnet faucet ↗"
+                    : "Fund your mainnet wallet for gas ↗"}
                 </a>
                 {account?.faucetRequested &&
                   !(Number(account.usdcBalance) > 0) && (
                     <p className={styles.notice} role="status">
-                      Test funds requested from Orderly's faucet. This can take a while, so try setup again in a few minutes.
+                      Test funds requested from Orderly's faucet. This can take
+                      a while, so try setup again in a few minutes.
                     </p>
                   )}
               </>

@@ -179,7 +179,7 @@ export default function LandingPage() {
                 "Ref / Rhea DEX",
                 "Rhea Lending",
                 "LiNEAR",
-                "Orderly testnet",
+                "Orderly perps",
                 "Chain Signatures",
                 "NEAR Intents 1Click",
                 "NEAR AI Cloud",

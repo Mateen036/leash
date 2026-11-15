@@ -1,7 +1,7 @@
 import { rpcCall } from "./rpc";
 import { actions, PublicKey, type Action as NearAction } from "near-api-js";
-import deployment from "./deployment.testnet.json";
-import { SWAP_TOKENS } from "../defi/tokens";
+import { near, getDeployment } from "./config";
+import { getSwapTokens } from "../defi/tokens";
 
 export type GuardCap = { per_action: string; daily: string };
 export type GuardPolicy = {
@@ -71,21 +71,27 @@ export function defaultPolicy(nowMs = Date.now()): GuardPolicy {
   const usdCap = { per_action: "50000000", daily: "150000000" };
   return {
     allowed_protocols: [
-      "ref-finance-101.testnet",
-      "contract.burrow.testnet",
-      "linear-protocol.testnet",
-      "wrap.testnet",
-      "orderly-testnet",
+      near.ref,
+      near.burrow,
+      near.linear,
+      near.wrap,
+      near.orderlyVenue,
     ],
     caps: {
       near: { ...nearCap },
-      "wrap.testnet": { ...nearCap },
-      "linear-protocol.testnet": { ...nearCap },
-      "usdtt.fakes.testnet": { ...usdCap },
-      "usdc.fakes.testnet": { ...usdCap },
-      "usdc.lapdemo-11140542.testnet": { ...usdCap },
+      [near.wrap]: { ...nearCap },
+      [near.linear]: { ...nearCap },
+      ...(near.network === "testnet"
+        ? {
+            "usdtt.fakes.testnet": { ...usdCap },
+            "usdc.fakes.testnet": { ...usdCap },
+          }
+        : {}),
+      [near.token]: { ...usdCap },
       ...Object.fromEntries(
-        SWAP_TOKENS.filter((t) => t.pool != null).map((t) => [t.id, { ...t.cap }]),
+        getSwapTokens()
+          .filter((t) => t.pool != null)
+          .map((t) => [t.id, { ...t.cap }]),
       ),
       perp_usd: { per_action: "500", daily: "1500" },
     },
@@ -108,7 +114,7 @@ export function installGuardActions(
   options: { codeHash?: string; fallbackWasm?: Uint8Array } = {},
 ): NearAction[] {
   if (!accountId) throw new Error("Guard accountId is required");
-  const hash = options.codeHash ?? deployment.leash.guardCodeHash;
+  const hash = options.codeHash ?? getDeployment().leash.guardCodeHash;
   if (!hash && !options.fallbackWasm)
     throw new Error("Publish a guard code hash first");
   const pk = PublicKey.fromString(agentPublicKey);
@@ -198,7 +204,7 @@ function ownerTransaction(
 async function guardView<T>(
   accountId: string,
   method: string,
-  rpcUrl = deployment.rpcUrl,
+  rpcUrl = near.rpcUrl,
 ): Promise<T> {
   const params = {
     request_type: "call_function",
@@ -208,16 +214,22 @@ async function guardView<T>(
     args_base64: "e30=",
   };
   const data =
-    rpcUrl === deployment.rpcUrl
+    rpcUrl === near.rpcUrl
       ? await rpcCall("query", params, 15_000)
       : await (async () => {
           const response = await fetch(rpcUrl, {
             method: "POST",
             headers: { "content-type": "application/json" },
             signal: AbortSignal.timeout(15_000),
-            body: JSON.stringify({ jsonrpc: "2.0", id: "leash-guard", method: "query", params }),
+            body: JSON.stringify({
+              jsonrpc: "2.0",
+              id: "leash-guard",
+              method: "query",
+              params,
+            }),
           });
-          if (!response.ok) throw new Error(`Guard RPC HTTP ${response.status}`);
+          if (!response.ok)
+            throw new Error(`Guard RPC HTTP ${response.status}`);
           return response.json();
         })();
   if (data.error || data.result?.error || !Array.isArray(data.result?.result))

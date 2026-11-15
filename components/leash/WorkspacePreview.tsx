@@ -6,7 +6,7 @@ const workspaces = {
   portfolio: {
     title: "Your positions. One perspective.",
     intro:
-      "Balances, exposure and receipts belong together. Connect your testnet account to keep the same identity across every workspace.",
+      "Balances, exposure and receipts belong together. Connect your account to keep the same identity across every workspace.",
     label: "Portfolio",
     panels: ["Token balances", "Protocol positions", "Activity & receipts"],
     empty: "No portfolio data loaded",
@@ -16,8 +16,8 @@ const workspaces = {
   perps: {
     title: "Exposure with boundaries.",
     intro:
-      "A dedicated workspace for Orderly testnet markets, margin and position risk.",
-    label: "Perps / Orderly testnet",
+      "A dedicated workspace for Orderly markets, margin and position risk.",
+    label: "Perps / Orderly",
     panels: ["Markets", "Trade preview", "Positions & risk"],
     empty: "No market or position data loaded",
     detail:
@@ -25,8 +25,7 @@ const workspaces = {
   },
   lend: {
     title: "Put capital to work.",
-    intro:
-      "Supply, debt and account health for Rhea Lending (Burrow) on NEAR testnet.",
+    intro: "Supply, debt and account health for Rhea Lending (Burrow) on NEAR.",
     label: "Lend / Rhea Lending",
     panels: ["Supply markets", "Your collateral", "Debt & account health"],
     empty: "No lending account data loaded",
@@ -55,7 +54,7 @@ const workspaces = {
     ],
     empty: "No active guard policy loaded",
     detail:
-      "Pause stops new actions. Revoke deletes the agent key. Closing positions is a separate action. These controls are unavailable until a guard is attached; existing testnet swap limits are managed in Agent → Wallet & swap limits.",
+      "Pause stops new actions. Revoke deletes the agent key. Closing positions is a separate action. These controls are unavailable until a guard is attached; wallet swap limits are managed in Agent → Wallet & swap limits.",
   },
 };
 export function WorkspacePreview({ kind }: { kind: keyof typeof workspaces }) {
@@ -91,7 +90,7 @@ export function WorkspacePreview({ kind }: { kind: keyof typeof workspaces }) {
           href={kind === "guardrails" ? "/agent" : "/protocols"}
         >
           {kind === "guardrails"
-            ? "Manage testnet swap limits"
+            ? "Manage swap limits"
             : "Inspect protocol contracts"}{" "}
           ↗
         </Link>

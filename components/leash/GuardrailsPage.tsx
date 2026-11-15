@@ -1,4 +1,5 @@
 "use client";
+import { near } from "@/lib/near/config";
 import { protocolName, formatAmount, assetLabel } from "./display";
 import { ErrorNotice } from "@/components/leash/ErrorNotice";
 import { useState } from "react";
@@ -138,6 +139,7 @@ function PolicyEditor({ initial }: { initial: GuardPolicy }) {
         protocol: "Leash guard",
         contract: a.accountId,
         because: "Because only your owner key can change these boundaries.",
+        network: near.network,
         quotedAt: Date.now(),
         sources: [{ name: "Current on-chain limits", at: Date.now() }],
         limit: "Owner authorization required",
@@ -539,7 +541,7 @@ export function GuardrailsPage() {
           <h2>Prove the leash works.</h2>
           <p>
             Try staking 0.9 NEAR above the default 0.5 NEAR limit. The guard
-            blocks it; a small testnet fee applies.
+            blocks it; a network fee applies.
           </p>
           <button
             className="revoke-link"

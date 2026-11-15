@@ -1,8 +1,9 @@
+import { networkRoute } from "@/lib/near/network-server";
 import { body, fail, limit } from "@/lib/near/api";
 import { planWithNearAI } from "@/lib/agent/near-ai";
 import { ActionSchema } from "@/lib/agent/actions";
 import { prepareProposal } from "@/lib/agent/proposals";
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   try {
     limit(request, "agent", 40);
     const input = await body<{
@@ -53,3 +54,5 @@ export async function POST(request: Request) {
     return fail(e);
   }
 }
+
+export const POST = networkRoute(handlePOST);

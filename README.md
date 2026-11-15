@@ -4,17 +4,21 @@
 
 Live: [https://leash.leash-agent.workers.dev](https://leash.leash-agent.workers.dev)
 
-Leash is an AI agent that can swap, stake, lend, and open perps for you on NEAR testnet. Its limits are enforced by a smart contract on your own account, not by a prompt. The agent holds a function-call key that can only call the guard on your account. The guard checks every action against your policy, and revoke deletes the key on-chain.
+Leash is an AI agent that can swap, stake, lend, and open perps for you on NEAR testnet or mainnet. Guest-mode limits are enforced by a smart contract on your own account, not by a prompt. The agent holds a function-call key that can only call the guard on your account. The guard checks every action against your policy, and revoke deletes the key on-chain.
 
 Built for the NEAR Hackathon (tracks: **agents** and **realworld**).
+
+## Mainnet branch
+
+The `codex/mainnet-network-toggle` branch adds a persistent network toggle, mainnet wallet co-pilot flows for swap/stake/lend, production Orderly configuration, and a separate mainnet guard build/publication script. Free guest accounts and faucets remain testnet-only; real mainnet USDC and USDT replace demo assets. See [docs/MAINNET.md](docs/MAINNET.md) for configuration, release checks and current deployment prerequisites. The live site is unchanged until this branch is deployed.
 
 ## Features
 
 - **On-chain guard** — a NEAR Global Contract installed on your account. It enforces per-action and daily caps, a protocol allow-list, slippage and leverage caps, an expiry, plus pause, resume, and revoke.
-- **Swap** — seven tokens on Ref Finance testnet: NEAR, tUSDC, USDT, USDC, PEM, LNC, and NST, each with a logo.
+- **Swap** — mainnet NEAR/USDC/USDT, plus seven tokens on Ref Finance testnet: NEAR, tUSDC, USDT, USDC, PEM, LNC, and NST, each with a logo.
 - **Stake** — LiNEAR stake and unstake at the live exchange rate.
 - **Lend** — supply and withdraw wNEAR on Burrow / Rhea Lending. Borrowing is off because the testnet oracle does not price wNEAR.
-- **Perps** — Orderly EVM testnet, with the account owned via NEAR Chain Signatures. Every order is first authorised on-chain by the guard.
+- **Perps** — network-selected Orderly EVM markets (production requires broker and signing-service setup), with the account owned via NEAR Chain Signatures. Every order is first authorised on-chain by the guard.
 - **Bridge** — NEAR Intents 1Click quotes on **mainnet**, capped at **$25** including fees. Your own wallet signs; the server never holds mainnet keys. Guest mode cannot bridge.
 - **Faucet** — testnet tokens for guest accounts and connected wallets.
 - **AI planner** — NEAR AI Cloud with tool calling over a strict action schema, then deterministic rules as fallback.
@@ -23,11 +27,11 @@ Guest mode is autonomous on testnet. Wallet-connect mode is a co-pilot: the agen
 
 ## Screenshots
 
-| Home | Token picker |
-|---|---|
-| ![Home](docs/screenshots/v3-home-desktop.jpg) | ![Token picker](docs/screenshots/v3-token-picker-desktop.jpg) |
-| **Faucet** | **Swap** |
-| ![Faucet](docs/screenshots/v3-faucet-desktop.jpg) | ![Swap confirmed](docs/screenshots/v3-swap-desktop.jpg) |
+| Home                                              | Token picker                                                  |
+| ------------------------------------------------- | ------------------------------------------------------------- |
+| ![Home](docs/screenshots/v3-home-desktop.jpg)     | ![Token picker](docs/screenshots/v3-token-picker-desktop.jpg) |
+| **Faucet**                                        | **Swap**                                                      |
+| ![Faucet](docs/screenshots/v3-faucet-desktop.jpg) | ![Swap confirmed](docs/screenshots/v3-swap-desktop.jpg)       |
 
 ## How to try it
 
@@ -35,7 +39,7 @@ Guest mode is autonomous on testnet. Wallet-connect mode is a co-pilot: the agen
 2. Go to [`/agent`](https://leash.leash-agent.workers.dev/agent) and start in **guest mode** (free, testnet). The browser creates a funded guest account, installs the published guard by immutable code hash, and adds an agent key limited to `agent_execute` and `authorize_perp`. Confirm a readable proposal; execution starts after a three-second undo window.
 3. Or **connect a NEAR testnet wallet** for co-pilot mode. Use the in-app faucet if you need test tokens.
 
-Nothing on the testnet flows spends real money. The bridge page is the only mainnet path, and it is opt-in, wallet-signed, and capped at $25.
+Nothing on the testnet flows spends real money. Mainnet wallet flows use real funds. The bridge retains its separate wallet confirmation and $25 cap.
 
 ## Architecture
 
@@ -83,25 +87,25 @@ Names only. Keep values out of the repository (see `.env.example`).
 
 Verified on the live site, 15 Nov 2026 (PKT). Guest `g-4fcxwz.leash-11141537.testnet`:
 
-| Action | Transaction |
-|---|---|
-| Create guest / install guard | [EEuubb1a…](https://testnet.nearblocks.io/txns/EEuubb1aRtu84kE3zoJ1h9G3oFyQNcKCw66uF45qiQ9f) · [52saC5gV…](https://testnet.nearblocks.io/txns/52saC5gVUc9oaJQ4siirJQx5cm5ot5hGLfR69bmkefv2) |
-| Stake / unstake (LiNEAR) | [EQoANJsd…](https://testnet.nearblocks.io/txns/EQoANJsdNqWQw6csLcbqjR9cCTTcuQJGw5fCQx45XSNW) · [EGCz2EYC…](https://testnet.nearblocks.io/txns/EGCz2EYCHGhGVdfT22VyhfYFtH8jHGZfGZUBvhgzbyDq) |
-| Supply / withdraw (Burrow) | [4QKm9YjQ…](https://testnet.nearblocks.io/txns/4QKm9YjQeyWgWgWoqoaK7EEYaZYApAtVp5G9HP8rMn9C) · [6EGqqPTG…](https://testnet.nearblocks.io/txns/6EGqqPTGFR5RvbcvLcCwpZG9bGn5jnBcChuCGzNFCkLZ) |
-| Swap (Ref) | [Fr1LwnD4…](https://testnet.nearblocks.io/txns/Fr1LwnD4oojXY6S7WhjVKfC8pUT4oqcMJgqddWZYFQn8) |
-| Over-limit rejected on-chain | [HzbtipgE…](https://testnet.nearblocks.io/txns/HzbtipgEQsRYNYdYLieAteggYA5L5LmT9idBt4NcCx8J) (`CAP_PER_ACTION`) |
+| Action                           | Transaction                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Create guest / install guard     | [EEuubb1a…](https://testnet.nearblocks.io/txns/EEuubb1aRtu84kE3zoJ1h9G3oFyQNcKCw66uF45qiQ9f) · [52saC5gV…](https://testnet.nearblocks.io/txns/52saC5gVUc9oaJQ4siirJQx5cm5ot5hGLfR69bmkefv2)                                                                                                                                                                                               |
+| Stake / unstake (LiNEAR)         | [EQoANJsd…](https://testnet.nearblocks.io/txns/EQoANJsdNqWQw6csLcbqjR9cCTTcuQJGw5fCQx45XSNW) · [EGCz2EYC…](https://testnet.nearblocks.io/txns/EGCz2EYCHGhGVdfT22VyhfYFtH8jHGZfGZUBvhgzbyDq)                                                                                                                                                                                               |
+| Supply / withdraw (Burrow)       | [4QKm9YjQ…](https://testnet.nearblocks.io/txns/4QKm9YjQeyWgWgWoqoaK7EEYaZYApAtVp5G9HP8rMn9C) · [6EGqqPTG…](https://testnet.nearblocks.io/txns/6EGqqPTGFR5RvbcvLcCwpZG9bGn5jnBcChuCGzNFCkLZ)                                                                                                                                                                                               |
+| Swap (Ref)                       | [Fr1LwnD4…](https://testnet.nearblocks.io/txns/Fr1LwnD4oojXY6S7WhjVKfC8pUT4oqcMJgqddWZYFQn8)                                                                                                                                                                                                                                                                                              |
+| Over-limit rejected on-chain     | [HzbtipgE…](https://testnet.nearblocks.io/txns/HzbtipgEQsRYNYdYLieAteggYA5L5LmT9idBt4NcCx8J) (`CAP_PER_ACTION`)                                                                                                                                                                                                                                                                           |
 | Pause / resume / policy / revoke | [GYKyhmZ6…](https://testnet.nearblocks.io/txns/GYKyhmZ6Wqix7HLWxE7CXtJEvmcj6btRoEfU9ahecBuL) · [2f6ZoS4M…](https://testnet.nearblocks.io/txns/2f6ZoS4My4KoyKaSFMysPHfmrKDytv9bzxP4LZYHSyii) · [5y2mwiY9…](https://testnet.nearblocks.io/txns/5y2mwiY97WDhLtrR54TdCsnWZHmgsXyEFBMMzLCSLawB) · [8HcXGUHY…](https://testnet.nearblocks.io/txns/8HcXGUHYtFDMFJ2iSrBwQDnqyz4GserP4t5FSHefZFgY) |
-| Perps 2x open / 10x rejected | [46bpHLMR…](https://testnet.nearblocks.io/txns/46bpHLMR1MJBjAnZUZRVCECHcv51dzQRXMYAWJ4kzy2t) · [8saA8DYw…](https://testnet.nearblocks.io/txns/8saA8DYwxbrgzuZDcMkeYbh9auxcS6NWVSd7kFipEpKs) |
+| Perps 2x open / 10x rejected     | [46bpHLMR…](https://testnet.nearblocks.io/txns/46bpHLMR1MJBjAnZUZRVCECHcv51dzQRXMYAWJ4kzy2t) · [8saA8DYw…](https://testnet.nearblocks.io/txns/8saA8DYwxbrgzuZDcMkeYbh9auxcS6NWVSd7kFipEpKs)                                                                                                                                                                                               |
 
 Full receipts: `docs/defi-v3-live-smoke.json`, `docs/defi-v3-perps-live.json`.
 
 ## Limits
 
-- Guest and wallet-connect DeFi flows run on **testnet**. Testnet actions are badged as such.
-- The **mainnet bridge** is wallet-signed, capped at $25 including fees, and blocked in guest mode. The server has no mainnet keys or funds.
+- Guest DeFi flows run on **testnet**. Wallet co-pilot flows use the selected network; mainnet uses real funds and requires a funded wallet.
+- The **mainnet bridge** is wallet-signed, capped at $25 including fees, and blocked in guest mode. Mainnet Orderly uses separate service credentials; the bridge never uses server-held user wallet keys.
 - Wallet-connect limits are off-chain only and labelled that way. Guest-mode limits are enforced on-chain by the guard.
-- Burrow borrowing is disabled. Orderly perps use test USDC. Over-limit actions (for example 10x leverage) are rejected on-chain.
-- Actions that are not executed on-chain or on Orderly testnet are shown as quote-only or read-only. Leash never fakes a transaction.
+- Burrow borrowing is disabled. Orderly testnet uses test USDC; production uses funded mainnet margin. Over-limit actions (for example 10x leverage) are rejected on-chain.
+- Actions that are not executed on-chain or on the selected Orderly network are shown as quote-only or read-only. Leash never fakes a transaction.
 
 ## License
 

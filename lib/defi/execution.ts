@@ -1,4 +1,10 @@
 "use client";
+import { networkKey } from "@/lib/near/network";
+
+import { near } from "@/lib/near/config";
+
+import { networkFetch } from "@/lib/near/network";
+
 import type { Proposal } from "./preview";
 import { amountMeta, policyCheck } from "./preview";
 import { agentExecute, fetchState, type ExecResult } from "./client";
@@ -12,9 +18,9 @@ import {
 import { defaultPolicy, type GuardSpent } from "../near/guard";
 import { view } from "../near/views";
 import { buildCopilotTransactions, type Registration } from "./copilot";
-import { BURROW, REF, TOKENS } from "./tokens";
+import { TOKENS } from "./tokens";
 export async function postJson(path: string, data: unknown) {
-  const r = await fetch(path, {
+  const r = await networkFetch(path, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(data),
@@ -27,14 +33,14 @@ export async function postJson(path: string, data: unknown) {
   return j;
 }
 export function walletPolicy(id: string) {
-  const key = `leash:wallet-policy:${id}`;
+  const key = networkKey(`leash:wallet-policy:${id}`);
   const stored = localStorage.getItem(key);
   if (stored) return JSON.parse(stored) as ReturnType<typeof defaultPolicy>;
   const policy = defaultPolicy();
   localStorage.setItem(key, JSON.stringify(policy));
   return policy;
 }
-const spendKey = (id: string) => `leash:wallet-spent:${id}`;
+const spendKey = (id: string) => networkKey(`leash:wallet-spent:${id}`);
 export function walletSpent(id: string): GuardSpent {
   try {
     return JSON.parse(localStorage.getItem(spendKey(id)) || "{}");
@@ -56,6 +62,8 @@ export async function executeProposal(
   wallet: WalletSession | null,
   onStep: (status: string, hash?: string) => void,
 ): Promise<ExecResult & { orderId?: string }> {
+  if (p.network !== near.network)
+    throw new Error("Network changed. Request a fresh preview.");
   if (p.quoteOnly) throw new Error("This proposal is read only");
   const id = wallet?.accountId || guest?.accountId;
   if (!id) throw new Error("Start free on testnet or connect your wallet");
@@ -74,8 +82,8 @@ export async function executeProposal(
       if (a.kind === "RefSwap" || a.kind === "BurrowSupply") {
         const [wrap, burrow, ref, output, wrappedBalance] = await Promise.all([
           view(TOKENS.wNEAR.id, "storage_balance_of", { account_id: id }),
-          view(BURROW, "storage_balance_of", { account_id: id }),
-          view(REF, "storage_balance_of", { account_id: id }),
+          view(near.burrow, "storage_balance_of", { account_id: id }),
+          view(near.ref, "storage_balance_of", { account_id: id }),
           a.kind === "RefSwap"
             ? view(a.token_out, "storage_balance_of", { account_id: id })
             : null,
@@ -155,9 +163,7 @@ export async function executeProposal(
       if (blocked) throw new Error(`Off-chain limit (wallet mode): ${blocked}`);
     }
     if (a.kind === "perp_open" && !p.blocked) {
-      onStep(
-        "Preparing Orderly testnet account and faucet (may take several minutes)",
-      );
+      onStep(`Preparing Orderly ${near.network} account`);
       const bootstrap = await postJson("/api/perps/bootstrap", {
         auth: await auth({}),
       });
@@ -166,7 +172,9 @@ export async function executeProposal(
       );
       if (Number(bootstrap.usdcBalance) <= 0)
         throw new Error(
-          "Orderly faucet requested. Test USDC may take ~20 minutes; wait for the balance before confirming again.",
+          near.network === "mainnet"
+            ? `Fund the Orderly margin account ${bootstrap.accountId} through a supported Orderly deposit flow before trading. Sending USDC directly to ${bootstrap.address} does not credit margin.`
+            : "Orderly faucet requested. Test USDC may take ~20 minutes; wait for the balance before confirming again.",
         );
     }
     if (a.kind === "perp_open" && Date.now() - p.quotedAt >= 60000)

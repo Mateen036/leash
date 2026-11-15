@@ -11,7 +11,9 @@
     "dev:vinext": "vite dev --port 3001",
     "build:vinext": "vite build",
     "start:vinext": "wrangler dev --config dist/server/wrangler.json",
-    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
+    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
+    "mainnet:guard:preflight": "tsx scripts/near/deploy-mainnet-guard.ts",
+    "mainnet:guard:publish": "tsx scripts/near/deploy-mainnet-guard.ts --publish"
   },
   "dependencies": {
     "@hot-labs/near-connect": "^0.12.0",

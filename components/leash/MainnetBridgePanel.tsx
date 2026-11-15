@@ -1,4 +1,6 @@
 "use client";
+import { networkFetch } from "@/lib/near/network";
+
 import { AccountId } from "./AccountId";
 import { shortAccount, actionName } from "./display";
 import { ErrorNotice } from "@/components/leash/ErrorNotice";
@@ -51,7 +53,7 @@ type Status = {
   };
 };
 async function api<T>(path: string, data?: unknown): Promise<T> {
-  const response = await fetch(
+  const response = await networkFetch(
     `/api/bridge/${path}`,
     data === undefined
       ? undefined

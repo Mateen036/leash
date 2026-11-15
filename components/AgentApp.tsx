@@ -25,7 +25,7 @@ import type { Plan } from "@/lib/agent/planner";
 export const QUICK_ACTIONS = [
   "Stake 0.2 NEAR",
   "Supply 0.2 NEAR to Rhea",
-  "Swap 0.05 NEAR to tUSDC",
+  "Swap 0.05 NEAR to USDC",
   "Long ETH $30 at 3x",
   "Show my portfolio",
   "Prove the leash works",
@@ -277,8 +277,8 @@ export default function AgentApp({ initialAsk = "" }: { initialAsk?: string }) {
             <details>
               <summary>What can the agent do?</summary>
               <p>
-                Swap, stake, lend, or trade perps on testnet. Bridge requests
-                show quotes only.
+                Swap, stake, lend, or trade perps on your selected network.
+                Bridge requests show quotes only.
               </p>
             </details>
           </div>

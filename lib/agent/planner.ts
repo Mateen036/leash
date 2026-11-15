@@ -1,3 +1,5 @@
+import { near } from "../near/config";
+import { getSwapTokens } from "../defi/tokens";
 import { ActionSchema, type Action } from "./actions";
 import { parseFinancialIntent } from "./intent";
 import type { Proposal } from "../defi/preview";
@@ -80,7 +82,11 @@ export function rulesPlan(message: string): Plan {
     source: "rules",
     reply:
       action.kind === "explain"
-        ? "I can stake, unstake, supply or withdraw NEAR/wNEAR, swap NEAR with tUSDC, USDT, USDC, PEM, LNC or NST, and propose Orderly testnet perps. Every action starts with a preview. Bridge proposals are quote only."
+        ? `I can stake, unstake, supply or withdraw NEAR/wNEAR, swap ${getSwapTokens()
+            .map((t) => t.symbol)
+            .join(
+              ", ",
+            )}, and propose Orderly ${near.network} perps. Every action starts with a preview. Bridge proposals are quote only.`
         : "Review the live data and the limit below. Confirm a proposal to authorize its execution.",
     actions: [action],
   };

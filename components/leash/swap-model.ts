@@ -1,6 +1,6 @@
+import { near } from "@/lib/near/config";
 import {
-  REF,
-  SWAP_TOKENS,
+  getSwapTokens,
   TOKENS,
   fromBase,
   poolFor,
@@ -22,14 +22,14 @@ export function selectSwapToken(
   side: "from" | "to",
   symbol: string,
 ): SwapPair {
-  const selected = SWAP_TOKENS.find((t) => t.symbol === symbol);
+  const selected = getSwapTokens().find((t) => t.symbol === symbol);
   if (!selected) throw new Error("Choose a listed token");
   const key = side === "from" ? "source" : "target";
   const other = side === "from" ? "target" : "source";
   const next = { ...pair, [key]: symbol };
   if (symbol !== "NEAR") next[other] = "NEAR";
   else if (next[other] === "NEAR")
-    next[other] = pair[key] === "NEAR" ? "tUSDC" : pair[key];
+    next[other] = pair[key] === "NEAR" ? near.tokenSymbol : pair[key];
   return next;
 }
 export function swapBalance(
@@ -110,7 +110,7 @@ export function swapProposal(
     min_amount_out: minimum,
   };
   const meta = amountMeta(guardAction);
-  const blocked = !policy.allowed_protocols.includes(REF)
+  const blocked = !policy.allowed_protocols.includes(near.ref)
     ? "This protocol is turned off in your limits"
     : policyCheck(policy, spent, meta.asset, amountIn);
   const outputLabel = output.id === TOKENS.wNEAR.id ? "wNEAR" : output.symbol;
@@ -128,8 +128,9 @@ export function swapProposal(
       `+≥${fromBase(minimum, output.decimals, output.decimals)} ${outputLabel}`,
     ],
     protocol: "Ref / Rhea DEX",
-    contract: REF,
+    contract: near.ref,
     because: "A live pool quote sets the minimum you receive.",
+    network: near.network,
     quotedAt: q.quotedAt,
     sources: [{ name: `Ref pool #${poolId}`, at: q.quotedAt }],
     limit: limitText(policy, spent, meta.asset),

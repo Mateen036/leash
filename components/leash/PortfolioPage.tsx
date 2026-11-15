@@ -1,4 +1,7 @@
 "use client";
+import { near } from "@/lib/near/config";
+import { networkFetch } from "@/lib/near/network";
+
 import { ErrorNotice } from "./ErrorNotice";
 import { formatAmount, plainText } from "./display";
 import { AccountId } from "./AccountId";
@@ -8,7 +11,12 @@ import { AccountControls } from "../account/AccountControls";
 import { useAccount } from "../account/AccountProvider";
 import { useDefiState } from "@/hooks/useDefiState";
 import { suppliedBalance } from "@/lib/defi/preview";
-import { TOKENS, SWAP_TOKENS, LINEAR_TOKEN, fromBase } from "@/lib/defi/tokens";
+import {
+  TOKENS,
+  getSwapTokens,
+  LINEAR_TOKEN,
+  fromBase,
+} from "@/lib/defi/tokens";
 import { useMarkets } from "./DefiWorkspace";
 import { GetTestTokens } from "./GetTestTokens";
 import { tokenDisplay } from "./token-display";
@@ -46,7 +54,7 @@ export function PortfolioPage() {
     let active = true;
     async function refresh() {
       try {
-        const r = await fetch(
+        const r = await networkFetch(
           `/api/perps/positions?account=${encodeURIComponent(accountId)}`,
         );
         const j = await r.json().catch(() => ({}));
@@ -87,7 +95,7 @@ export function PortfolioPage() {
       supplied +
       Number(d.linearAccount?.unstaked_balance || 0) / 1e24
     : null;
-  const usdTokens = Number(d.tokens?.tUSDC || 0) / 1e6;
+  const usdTokens = Number(d.tokens?.[near.tokenSymbol] || 0) / 1e6;
   const totalNear =
     nearTotal === null ? null : nearTotal + (nearUsd ? usdTokens / nearUsd : 0);
   const allocations = [
@@ -202,10 +210,10 @@ export function PortfolioPage() {
           <details className={styles.fineprint}>
             <summary>Details</summary>
             <p>
-              Live LiNEAR rates and Ref prices; tUSDC is treated as $1 for
-              illustration. Testnet assets have no cash value. Small-pool prices
-              are volatile. Includes storage-locked NEAR. Excludes perps, other
-              lending assets, historical rewards, fees and realized PnL.
+              Live LiNEAR rates and Ref prices; USD stablecoins are treated as
+              $1 for illustration. Testnet assets have no cash value. Small-pool
+              prices are volatile. Includes storage-locked NEAR. Excludes perps,
+              other lending assets, historical rewards, fees and realized PnL.
             </p>
           </details>
         </section>
@@ -224,11 +232,11 @@ export function PortfolioPage() {
             ) : !d.exists ? (
               <EmptyState
                 title="No assets yet"
-                description="Start free or connect a wallet to see balances."
+                description="Connect a wallet to see balances, or switch to testnet for a free practice account."
               />
             ) : (
               <div className={styles.assetList}>
-                {[...SWAP_TOKENS, tokenDisplay("wNEAR"), LINEAR_TOKEN]
+                {[...getSwapTokens(), tokenDisplay("wNEAR"), LINEAR_TOKEN]
                   .map((t) => ({
                     ...t,
                     units:
@@ -245,7 +253,7 @@ export function PortfolioPage() {
                     usd:
                       t.symbol === "NEAR" && nearUsd
                         ? (Number(t.units) / 1e24) * nearUsd
-                        : t.symbol === "tUSDC"
+                        : t.symbol === near.tokenSymbol
                           ? Number(t.units) / 1e6
                           : undefined,
                     detail:
@@ -359,7 +367,7 @@ export function PortfolioPage() {
           ) : !perps ? (
             <EmptyState
               title="See your live exposure"
-              description="Connect an account to read Orderly testnet positions."
+              description="Connect an account to read Orderly positions."
             />
           ) : (
             <>

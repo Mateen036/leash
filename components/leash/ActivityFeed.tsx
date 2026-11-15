@@ -1,4 +1,5 @@
 "use client";
+import { near } from "@/lib/near/config";
 import { useEffect, useState } from "react";
 import { useAccount } from "../account/AccountProvider";
 import { useDefiState } from "@/hooks/useDefiState";
@@ -86,7 +87,7 @@ export function ActivityFeed() {
                 {protocolName(a.protocol)} · {new Date(a.ts).toLocaleString()}
               </p>
               <a
-                href={`https://testnet.nearblocks.io/address/${accountId}`}
+                href={`${near.explorer}/address/${accountId}`}
                 target="_blank"
                 rel="noreferrer"
               >

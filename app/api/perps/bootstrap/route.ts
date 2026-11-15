@@ -1,20 +1,33 @@
+import { near } from "@/lib/near/config";
+import { networkRoute } from "@/lib/near/network-server";
 import { NextResponse } from "next/server";
 import { fail, limit } from "@/lib/near/api";
 import { verifyPerpAuth } from "@/lib/defi/perps-auth";
-import { ensureAccount, grantStarterUsdc, holdings, requestFaucet } from "@/lib/defi/orderly";
+import {
+  ensureAccount,
+  grantStarterUsdc,
+  holdings,
+  requestFaucet,
+} from "@/lib/defi/orderly";
 
-const usdcOf = (h: { token: string; holding: number }[]) => h.find((x) => x.token === "USDC")?.holding ?? 0;
+const usdcOf = (h: { token: string; holding: number }[]) =>
+  h.find((x) => x.token === "USDC")?.holding ?? 0;
 
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   try {
     limit(request, "perps-bootstrap", 4);
     const { auth } = await request.json();
     const id = await verifyPerpAuth(auth, {});
     const s = await ensureAccount(id);
-    let usdc = usdcOf(await holdings(s).catch(() => []));
+    let usdc = usdcOf(
+      await holdings(s).catch((error) => {
+        if (near.network === "mainnet") throw error;
+        return [];
+      }),
+    );
     let faucetRequested = false;
     let starterUsdc = 0;
-    if (usdc <= 0) {
+    if (usdc <= 0 && near.network === "testnet") {
       // Orderly's public faucet is slow and unreliable on testnet, so send starter USDC from Leash's reserve account first.
       starterUsdc = await grantStarterUsdc(s.accountId);
       if (starterUsdc > 0) {
@@ -25,6 +38,21 @@ export async function POST(request: Request) {
         if (usdc <= 0) usdc = starterUsdc;
       } else faucetRequested = (await requestFaucet(s.address)).ok;
     }
-    return NextResponse.json({ address: s.address, signerMode: s.mode, accountId: s.accountId, registered: true, created: s.created, keyAdded: s.keyAdded, faucetRequested, starterUsdc, usdcBalance: usdc, note: s.note });
-  } catch (e) { return fail(e); }
+    return NextResponse.json({
+      address: s.address,
+      signerMode: s.mode,
+      accountId: s.accountId,
+      registered: true,
+      created: s.created,
+      keyAdded: s.keyAdded,
+      faucetRequested,
+      starterUsdc,
+      usdcBalance: usdc,
+      note: s.note,
+    });
+  } catch (e) {
+    return fail(e);
+  }
 }
+
+export const POST = networkRoute(handlePOST);

@@ -1,4 +1,6 @@
 "use client";
+import { networkFetch } from "@/lib/near/network";
+
 import { ErrorNotice } from "@/components/leash/ErrorNotice";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, Globe2, ShieldCheck } from "lucide-react";
@@ -59,7 +61,7 @@ export default function BridgePage() {
       /* Mainnet panel reports storage failures. */
     }
     let active = true;
-    void fetch("/api/integrations/tokens")
+    void networkFetch("/api/integrations/tokens")
       .then(async (r) => {
         const j = await r.json();
         if (!r.ok) throw new Error(j.error);

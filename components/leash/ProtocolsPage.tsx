@@ -1,83 +1,91 @@
 "use client";
+import { near } from "@/lib/near/config";
 import { TokenGlyph, PageHeader } from "./widget";
 
 import styles from "./management.module.css";
 import { PageFrame } from "../PageFrame";
 import { Badge, type BadgeVariant } from "./Badge";
-const protocols: {
+type Protocol = {
   name: string;
   endpoint: string;
   network: string;
   badge: BadgeVariant;
   copy: string;
   url: string;
-}[] = [
-  {
-    name: "Ref / Rhea DEX",
-    endpoint: "Swaps and live quotes on Ref Finance",
-    network: "NEAR testnet",
-    badge: "testnet",
-    copy: "Swap tokens with live quotes.",
-    url: "https://guide.rhea.finance",
-  },
-  {
-    name: "Rhea Lending (Burrow)",
-    endpoint: "Supply and withdraw through Rhea Lending",
-    network: "NEAR testnet",
-    badge: "testnet",
-    copy: "Supply tokens and withdraw to your account.",
-    url: "https://guide.rhea.finance",
-  },
-  {
-    name: "LiNEAR",
-    endpoint: "Liquid staking through LiNEAR",
-    network: "NEAR testnet",
-    badge: "testnet",
-    copy: "Stake NEAR and receive LiNEAR.",
-    url: "https://linearprotocol.org",
-  },
-  {
-    name: "Orderly testnet",
-    endpoint: "Perpetual markets on Orderly",
-    network: "Arbitrum Sepolia / Orderly EVM testnet",
-    badge: "testnet",
-    copy: "Trade testnet perps within your limits.",
-    url: "https://orderly.network/docs",
-  },
-  {
-    name: "NEAR Chain Signatures",
-    endpoint: "NEAR signs for your trading account",
-    network: "NEAR testnet",
-    badge: "testnet",
-    copy: "Connect your NEAR account to perps trading.",
-    url: "https://docs.near.org/chain-abstraction/chain-signatures",
-  },
-  {
-    name: "NEAR Intents 1Click",
-    endpoint: "Cross-chain routes through NEAR Intents",
-    network: "Mainnet API; no testnet execution",
-    badge: "real-mainnet",
-    copy: "Preview routes or bridge up to $25 with your wallet.",
-    url: "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-api",
-  },
-  {
-    name: "NEAR AI Cloud",
-    endpoint: "AI planning with a backup planner",
-    network: "NEAR AI Cloud API",
-    badge: "read-only",
-    copy: "Turns your request into an action to review.",
-    url: "https://cloud.near.ai",
-  },
-  {
-    name: "NEAR Connect",
-    endpoint: "Wallet connection and transaction approval",
-    network: "NEAR testnet + explicit mainnet bridge",
-    badge: "testnet",
-    copy: "Connect a wallet and approve your actions.",
-    url: "https://github.com/azbang/near-connect",
-  },
-];
+};
+function getProtocols(): Protocol[] {
+  return [
+    {
+      name: "Ref / Rhea DEX",
+      endpoint: "Swaps and live quotes on Ref Finance",
+      network: `NEAR ${near.network}`,
+      badge: "testnet",
+      copy: "Swap tokens with live quotes.",
+      url: "https://guide.rhea.finance",
+    },
+    {
+      name: "Rhea Lending (Burrow)",
+      endpoint: "Supply and withdraw through Rhea Lending",
+      network: `NEAR ${near.network}`,
+      badge: "testnet",
+      copy: "Supply tokens and withdraw to your account.",
+      url: "https://guide.rhea.finance",
+    },
+    {
+      name: "LiNEAR",
+      endpoint: "Liquid staking through LiNEAR",
+      network: `NEAR ${near.network}`,
+      badge: "testnet",
+      copy: "Stake NEAR and receive LiNEAR.",
+      url: "https://linearprotocol.org",
+    },
+    {
+      name: `Orderly ${near.network}`,
+      endpoint: "Perpetual markets on Orderly",
+      network:
+        near.network === "mainnet"
+          ? "Arbitrum / Orderly EVM mainnet"
+          : "Arbitrum Sepolia / Orderly EVM testnet",
+      badge: "testnet",
+      copy: "Trade perps within your limits.",
+      url: "https://orderly.network/docs",
+    },
+    {
+      name: "NEAR Chain Signatures",
+      endpoint: "NEAR signs for your trading account",
+      network: `NEAR ${near.network}`,
+      badge: "testnet",
+      copy: "Connect your NEAR account to perps trading.",
+      url: "https://docs.near.org/chain-abstraction/chain-signatures",
+    },
+    {
+      name: "NEAR Intents 1Click",
+      endpoint: "Cross-chain routes through NEAR Intents",
+      network: "Mainnet API; no testnet execution",
+      badge: "real-mainnet",
+      copy: "Preview routes or bridge up to $25 with your wallet.",
+      url: "https://docs.near-intents.org/near-intents/integration/distribution-channels/1click-api",
+    },
+    {
+      name: "NEAR AI Cloud",
+      endpoint: "AI planning with a backup planner",
+      network: "NEAR AI Cloud API",
+      badge: "read-only",
+      copy: "Turns your request into an action to review.",
+      url: "https://cloud.near.ai",
+    },
+    {
+      name: "NEAR Connect",
+      endpoint: "Wallet connection and transaction approval",
+      network: `NEAR ${near.network} + explicit mainnet bridge`,
+      badge: "testnet",
+      copy: "Connect a wallet and approve your actions.",
+      url: "https://github.com/azbang/near-connect",
+    },
+  ];
+}
 export function ProtocolsPage() {
+  const protocols = getProtocols();
   return (
     <PageFrame>
       <div className={styles.page}>

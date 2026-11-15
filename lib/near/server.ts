@@ -1,3 +1,5 @@
+import { requireTestnet } from "@/lib/near/network";
+import { networkEnv } from "@/lib/near/env";
 import {
   Account,
   JsonRpcProvider,
@@ -23,7 +25,7 @@ export class NearError extends Error {
 }
 
 function env(name: string) {
-  const value = process.env[name];
+  const value = networkEnv(name);
   if (!value)
     throw new NearError(`Server is missing ${name}. See .env.example.`, 503);
   return value;
@@ -73,16 +75,19 @@ function returnValue(result: any): unknown {
 
 /** Creates a named guest sub-account owned by the browser's own key. Relayer funds 0.8 testnet NEAR. */
 export async function createGuest(publicKey: string) {
+  requireTestnet("Free guest accounts and relay");
   const pk = PublicKey.fromString(publicKey);
   if (pk.keyType !== 0) throw new NearError("Use an ed25519 key");
   const prefix = `g-${Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => (b % 36).toString(36)).join("")}`;
-  const result = await withRpcRetry(() => relayer().createSubAccount({
-    accountOrPrefix: prefix,
-    publicKey: pk.toString(),
-    nearToTransfer: nearToYocto(
-      (process.env.GUEST_FUND_NEAR || "1.2") as `${number}`,
-    ),
-  }));
+  const result = await withRpcRetry(() =>
+    relayer().createSubAccount({
+      accountOrPrefix: prefix,
+      publicKey: pk.toString(),
+      nearToTransfer: nearToYocto(
+        (process.env.GUEST_FUND_NEAR || "1.2") as `${number}`,
+      ),
+    }),
+  );
   const reason = failure(result);
   if (reason) throw new NearError(`Account creation failed: ${reason}`, 502);
   return { accountId: `${prefix}.${near.root}`, txHash: hashOf(result) };
@@ -90,6 +95,7 @@ export async function createGuest(publicKey: string) {
 
 /** NEP-366 relayer: sponsors gas only for allow-listed calls to our two contracts. */
 export async function relay(signedDelegateBase64: string) {
+  requireTestnet("Free guest accounts and relay");
   let signed;
   try {
     signed = decodeSignedDelegate(base64Decode(signedDelegateBase64));
@@ -114,7 +120,9 @@ export async function relay(signedDelegateBase64: string) {
   });
   if (reason) throw new NearError(reason, 403);
   try {
-    const result = await withRpcRetry(() => relayer().relayMetaTransaction(signed));
+    const result = await withRpcRetry(() =>
+      relayer().relayMetaTransaction(signed),
+    );
     const fail = failure(result);
     return {
       txHash: hashOf(result),
@@ -171,7 +179,11 @@ async function accessKeyExists(accountId: string, publicKey: string) {
       public_key: publicKey,
     });
     if (d.result?.permission) return true;
-    if (/UNKNOWN_ACCESS_KEY|UNKNOWN_ACCOUNT|does not exist/i.test(JSON.stringify(d.error || d.result?.error || "")))
+    if (
+      /UNKNOWN_ACCESS_KEY|UNKNOWN_ACCOUNT|does not exist/i.test(
+        JSON.stringify(d.error || d.result?.error || ""),
+      )
+    )
       return false;
   } catch {
     /* every RPC failed */

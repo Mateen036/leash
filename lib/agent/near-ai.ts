@@ -1,3 +1,5 @@
+import { near } from "../near/config";
+import { getSwapTokens } from "../defi/tokens";
 import OpenAI from "openai";
 import { z } from "zod";
 import { actionDigest } from "../defi/tokens";
@@ -42,8 +44,11 @@ export async function planWithNearAI(message: string): Promise<Plan> {
         messages: [
           {
             role: "system",
-            content:
-              "You are Leash on NEAR testnet. Use the propose_actions tool. Match the exact requested amount; do not silently reduce over-limit requests. Never invent balances, quotes or fills. Only supply/withdraw NEAR/wNEAR; other supply assets produce explain. Swap: source and target are token symbols from NEAR, tUSDC, USDT, USDC, PEM, LNC, NST; one side must be NEAR. Unstake amount is NEAR redemption units (LiNEAR protocol unstake). Perps symbols PERP_ETH_USDC/PERP_BTC_USDC/PERP_SOL_USDC; default leverage 2x, notional $30. close_all means close all perps. Bridge is quote only and destination is chain code base/arb/eth/sol/btc. 'Prove the leash works' means stake 0.9 NEAR. For unsupported or ambiguous requests use explain.",
+            content: `You are Leash on NEAR ${near.network}. Use the propose_actions tool. Match the exact requested amount; do not silently reduce over-limit requests. Never invent balances, quotes or fills. Only supply/withdraw NEAR/wNEAR; other supply assets produce explain. Swap: source and target are token symbols from ${getSwapTokens()
+              .map((t) => t.symbol)
+              .join(
+                ", ",
+              )}; one side must be NEAR. Unstake amount is NEAR redemption units (LiNEAR protocol unstake). Perps symbols PERP_ETH_USDC/PERP_BTC_USDC/PERP_SOL_USDC; default leverage 2x, notional $30. close_all means close all perps. Bridge is quote only and destination is chain code base/arb/eth/sol/btc. 'Prove the leash works' means stake 0.9 NEAR. For unsupported or ambiguous requests use explain.`,
           },
           { role: "user", content: message },
         ],

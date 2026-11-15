@@ -21,6 +21,7 @@ import {
   type WalletSession,
 } from "@/lib/near/wallet";
 
+import { near } from "@/lib/near/config";
 import { installGuard } from "@/lib/defi/client";
 import { refreshDefiState } from "@/hooks/useDefiState";
 
@@ -62,14 +63,15 @@ function useAccountSession() {
   const [restoring, setRestoring] = useState(true);
   useEffect(() => {
     let active = true;
-    setGuest(loadGuest());
+    setGuest(near.network === "testnet" ? loadGuest() : null);
     void restoreWallet().then((session) => {
       if (active) {
         setWalletSession(session);
         setRestoring(false);
       }
     });
-    const syncGuest = () => setGuest(loadGuest());
+    const syncGuest = () =>
+      setGuest(near.network === "testnet" ? loadGuest() : null);
     window.addEventListener("storage", syncGuest);
     // Synchronize account changes from other parts of the app.
     window.addEventListener("leash:account", syncGuest);
@@ -110,6 +112,7 @@ function useAccountSession() {
     }
   }
   return {
+    network: near.network,
     walletWelcome,
     setWalletWelcome,
     onboarding,

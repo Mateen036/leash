@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAccount } from "./AccountProvider";
 import { useDefiState } from "@/hooks/useDefiState";
 import { txLink } from "@/lib/defi/client";
-import deployment from "@/lib/near/deployment.testnet.json";
+import { near, getDeployment } from "@/lib/near/config";
 import { Badge } from "../leash/Badge";
 import { CustodyFacts } from "../leash/CustodyFacts";
 import { GetTestTokens } from "../leash/GetTestTokens";
@@ -35,7 +35,9 @@ export function AccountControls() {
             ? "Wallet · off-chain limit"
             : a.accountId
               ? "Guest · on-chain limits"
-              : "Free practice account"}
+              : near.network === "mainnet"
+                ? "Wallet · real funds"
+                : "Free practice account"}
         </span>
         <details className="display-options">
           <summary>Display</summary>
@@ -70,6 +72,8 @@ export function AccountControls() {
             <AccountId id={a.accountId} />
           ) : a.restoring ? (
             "Restoring session…"
+          ) : near.network === "mainnet" ? (
+            "Connect your mainnet wallet"
           ) : (
             "Try Leash for free"
           )}
@@ -77,7 +81,7 @@ export function AccountControls() {
       </p>
       {!a.accountId && <CustodyFacts />}
       <div className="la-row">
-        {!a.guest && !a.walletSession && (
+        {near.network === "testnet" && !a.guest && !a.walletSession && (
           <button
             className="la-btn"
             disabled={a.restoring || busy}
@@ -120,7 +124,7 @@ export function AccountControls() {
           View limits ↗
         </Link>
       </div>
-      {a.walletSession && a.walletWelcome && (
+      {near.network === "testnet" && a.walletSession && a.walletWelcome && (
         <div className="wallet-faucet-banner" role="status">
           <span>New here? Get test tokens</span>
           <GetTestTokens compact />
@@ -159,7 +163,7 @@ export function AccountControls() {
                 : "Guard installation pending"}{" "}
               · verified guard{" "}
               <a
-                href={txLink(deployment.leash.guardGlobalTx)}
+                href={txLink(getDeployment().leash.guardGlobalTx)}
                 target="_blank"
                 rel="noreferrer"
               >

@@ -1,7 +1,8 @@
+import { near } from "@/lib/near/config";
 import type { GuardAction, GuardPolicy, GuardSpent } from "../near/guard";
 import { defaultPolicy } from "../near/guard";
 import type { Call } from "../near/client";
-import { BURROW, LINEAR, REF, TOKENS } from "./tokens";
+import { TOKENS } from "./tokens";
 import { amountMeta, policyCheck } from "./preview";
 export type CopilotTransaction = { receiverId: string; calls: Call[] };
 export type Registration = {
@@ -38,12 +39,12 @@ export function buildCopilotTransactions(
   const add = (receiverId: string, ...calls: Call[]) =>
     txs.push({ receiverId, calls });
   if (a.kind === "LinearStake")
-    add(LINEAR, call("deposit_and_stake", {}, BigInt(a.amount)));
+    add(near.linear, call("deposit_and_stake", {}, BigInt(a.amount)));
   else if (a.kind === "LinearUnstake")
-    add(LINEAR, call("unstake", { amount: a.amount }));
+    add(near.linear, call("unstake", { amount: a.amount }));
   else if (a.kind === "BurrowWithdraw")
     add(
-      BURROW,
+      near.burrow,
       call(
         "execute",
         {
@@ -63,20 +64,20 @@ export function buildCopilotTransactions(
         add(token, call("near_deposit", {}, needed, 20_000_000_000_000n));
     }
     if (a.kind === "BurrowSupply") {
-      if (!r.burrow) add(BURROW, storage(accountId, 10n ** 23n));
+      if (!r.burrow) add(near.burrow, storage(accountId, 10n ** 23n));
       add(
         token,
         call(
           "ft_transfer_call",
-          { receiver_id: BURROW, amount, msg: "" },
+          { receiver_id: near.burrow, amount, msg: "" },
           1n,
           150_000_000_000_000n,
         ),
       );
     } else {
-      if (!r.ref) add(REF, storage(accountId, 2n * 10n ** 22n, false));
+      if (!r.ref) add(near.ref, storage(accountId, 2n * 10n ** 22n, false));
       add(
-        REF,
+        near.ref,
         call("register_tokens", { token_ids: [a.token_in, a.token_out] }, 1n),
       );
       if (!r.output) add(a.token_out, storage(accountId, 10n ** 22n));
@@ -85,7 +86,7 @@ export function buildCopilotTransactions(
         call(
           "ft_transfer_call",
           {
-            receiver_id: REF,
+            receiver_id: near.ref,
             amount,
             msg: JSON.stringify({
               force: 0,

@@ -1,12 +1,14 @@
-import deployment from "@/lib/near/deployment.testnet.json";
+"use client";
+import { near, getDeployment } from "@/lib/near/config";
 import { txLink } from "@/lib/defi/client";
 export function CustodyFacts() {
   return (
     <details className="custody-facts">
       <summary>Who holds the keys?</summary>
       <p>
-        Your guest key stays in this browser. Keep its saved data to retain
-        access. Connected wallets keep their own keys.
+        {near.network === "mainnet"
+          ? "Your connected wallet holds your keys. You approve each protocol transaction; wallet spending limits are checked off-chain."
+          : "Your guest key stays in this browser. Keep its saved data to retain access. Connected wallets keep their own keys."}
       </p>
       <p>
         The agent can trade within your limits and return supplied tokens to
@@ -17,13 +19,15 @@ export function CustodyFacts() {
         Revoke removes the agent’s access. Close open positions separately.
         Spending limits do not limit trading losses.
       </p>
-      <a
-        href={txLink(deployment.leash.guardGlobalTx)}
-        target="_blank"
-        rel="noreferrer"
-      >
-        View verified guard ↗
-      </a>
+      {getDeployment().leash.guardGlobalTx && (
+        <a
+          href={txLink(getDeployment().leash.guardGlobalTx)}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View verified guard ↗
+        </a>
+      )}
     </details>
   );
 }

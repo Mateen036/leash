@@ -1,5 +1,6 @@
 "use client";
 
+import { NetworkToggle } from "./account/NetworkToggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -85,6 +86,7 @@ export function SiteNav({ actions }: { actions?: ReactNode }) {
     <header ref={header} className="site-nav">
       <div className="nav-identity">
         <Brand />
+        <NetworkToggle />
       </div>
       <div className="nav-safety">
         <GuardrailRing />
@@ -135,7 +137,7 @@ export function SiteFooter() {
         <span>
           <ShieldCheck size={14} /> NEAR Hackathon · agents + realworld
         </span>
-        <p>Testnet by default. Mainnet bridge uses real funds.</p>
+        <p>Testnet by default. Mainnet actions use real funds.</p>
         <Link href="/protocols">Supported apps ↗</Link>
       </div>
     </footer>

@@ -1,4 +1,7 @@
 "use client";
+import { requireTestnet } from "@/lib/near/network";
+import { networkFetch } from "@/lib/near/network";
+
 import {
   Account,
   JsonRpcProvider,
@@ -18,6 +21,7 @@ export type Guest = {
 };
 
 export function loadGuest(): Guest | null {
+  if (near.network !== "testnet") return null;
   try {
     return JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
   } catch {
@@ -34,7 +38,7 @@ export function forgetGuest() {
 }
 
 async function post<T>(url: string, body: unknown): Promise<T> {
-  const response = await fetch(url, {
+  const response = await networkFetch(url, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(body),
@@ -47,6 +51,7 @@ async function post<T>(url: string, body: unknown): Promise<T> {
 
 /** Generates a key in the browser and asks the relayer to create a named testnet account for it. */
 export async function createGuest(): Promise<Guest> {
+  requireTestnet("Free guest accounts and relay");
   const key = KeyPair.fromRandom("ed25519");
   const { accountId, txHash } = await post<{
     accountId: string;
@@ -102,7 +107,7 @@ export async function gasless(
 /** Signs `parts|timestamp` so the server can verify the request came from this account's key. */
 export function signRequest(guest: Guest, parts: string[]) {
   const key = KeyPair.fromString(guest.privateKey as `ed25519:${string}`);
-  const message = [...parts, String(Date.now())].join("|");
+  const message = [near.network, ...parts, String(Date.now())].join("|");
   const { signature } = key.sign(new TextEncoder().encode(message));
   return {
     accountId: guest.accountId,

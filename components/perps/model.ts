@@ -1,3 +1,4 @@
+import { networkFetch } from "@/lib/near/network";
 import { friendlyError } from "../leash/friendly-error";
 export type SignerMode = "chain-signatures" | "server-derived";
 export type Market = {
@@ -89,7 +90,7 @@ export async function perpsRequest<T>(
   body?: object,
   signal?: AbortSignal,
 ): Promise<T> {
-  const response = await fetch(path, {
+  const response = await networkFetch(path, {
     method: body ? "POST" : "GET",
     cache: "no-store",
     signal,

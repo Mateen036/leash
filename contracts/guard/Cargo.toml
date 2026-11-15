@@ -7,6 +7,10 @@ description = "Leash per-account DeFi policy guard"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[features]
+default = []
+mainnet = []
+
 [dependencies]
 near-sdk = "=5.30.2"
 

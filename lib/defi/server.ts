@@ -1,3 +1,4 @@
+import { networkEnv } from "@/lib/near/env";
 import { Account, JsonRpcProvider, base64Decode } from "near-api-js";
 import { near, isGuestAccount } from "@/lib/near/config";
 import { NearError, verifyAccountSignature } from "@/lib/near/server";
@@ -14,9 +15,9 @@ import {
   type GuardSpent,
 } from "@/lib/near/guard";
 import { failoverProvider, rpcCall, withRpcRetry } from "@/lib/near/rpc";
-import { BURROW, LINEAR, REF, SWAP_TOKENS, TOKENS, poolFor } from "./tokens";
+import { getSwapTokens, TOKENS, poolFor } from "./tokens";
 
-const rpc = () => process.env.NEAR_RPC_URL || near.rpcUrl;
+const rpc = () => networkEnv("NEAR_RPC_URL") || near.rpcUrl;
 const provider = () => failoverProvider();
 
 /** Read-only contract call with RPC failover; contract errors are thrown as-is. */
@@ -25,13 +26,17 @@ export async function view<T>(
   method: string,
   args: object = {},
 ): Promise<T> {
-  const d = await rpcCall("query", {
-    request_type: "call_function",
-    finality: "optimistic",
-    account_id: contractId,
-    method_name: method,
-    args_base64: btoa(JSON.stringify(args)),
-  }, 15_000);
+  const d = await rpcCall(
+    "query",
+    {
+      request_type: "call_function",
+      finality: "optimistic",
+      account_id: contractId,
+      method_name: method,
+      args_base64: btoa(JSON.stringify(args)),
+    },
+    15_000,
+  );
   if (d.error || d.result?.error || !Array.isArray(d.result?.result))
     throw new Error(
       String(d.result?.error || d.error?.cause?.name || "view failed"),
@@ -72,7 +77,7 @@ function failureOf(result: any): string | null {
   return null;
 }
 function agentAccount(accountId: string) {
-  const key = process.env.AGENT_GUARD_PRIVATE_KEY;
+  const key = networkEnv("AGENT_GUARD_PRIVATE_KEY");
   if (!key)
     throw new NearError("Server is missing AGENT_GUARD_PRIVATE_KEY", 503);
   return new Account(accountId, provider(), key as `ed25519:${string}`);
@@ -168,7 +173,7 @@ export async function verifyGuestRequest(
   expected: string[],
 ) {
   const parts = auth.message.split("|");
-  if (parts.slice(0, -1).join("|") !== expected.join("|"))
+  if (parts.slice(0, -1).join("|") !== [near.network, ...expected].join("|"))
     throw new NearError("Signed request does not match this action", 401);
   await verifyAccountSignature(
     auth.accountId,
@@ -184,13 +189,13 @@ export async function swapQuote(
   amountIn: string,
 ) {
   const poolId = poolFor(tokenIn, tokenOut);
-  const out = await view<string>(REF, "get_return", {
+  const out = await view<string>(near.ref, "get_return", {
     pool_id: poolId,
     token_in: tokenIn,
     token_out: tokenOut,
     amount_in: amountIn,
   });
-  const pool = await view<any>(REF, "get_pool", { pool_id: poolId });
+  const pool = await view<any>(near.ref, "get_pool", { pool_id: poolId });
   return { amountOut: out, pool, poolId, quotedAt: Date.now() };
 }
 
@@ -239,16 +244,34 @@ export async function accountState(accountId: string) {
       view<string>(TOKENS.tUSDC.id, "ft_balance_of", { account_id: accountId }),
       "0",
     ),
-    safe(view<string>(LINEAR, "ft_balance_of", { account_id: accountId }), "0"),
-    safe(view<any>(BURROW, "get_account", { account_id: accountId }), null),
-    safe(view<string>(LINEAR, "ft_price", {}), "0"),
-    safe(view<any>(LINEAR, "get_account", { account_id: accountId }), null),
+    safe(
+      view<string>(near.linear, "ft_balance_of", { account_id: accountId }),
+      "0",
+    ),
+    safe(
+      view<any>(near.burrow, "get_account", { account_id: accountId }),
+      null,
+    ),
+    safe(view<string>(near.linear, "ft_price", {}), "0"),
+    safe(
+      view<any>(near.linear, "get_account", { account_id: accountId }),
+      null,
+    ),
   ]);
   const extra: Record<string, string> = Object.fromEntries(
     await Promise.all(
-      SWAP_TOKENS.filter((t) => t.id !== TOKENS.wNEAR.id && t.id !== TOKENS.tUSDC.id).map(
-        async (t) => [t.symbol, await safe(view<string>(t.id, "ft_balance_of", { account_id: accountId }), "0")] as const,
-      ),
+      getSwapTokens()
+        .filter((t) => t.id !== TOKENS.wNEAR.id && t.id !== TOKENS.tUSDC.id)
+        .map(
+          async (t) =>
+            [
+              t.symbol,
+              await safe(
+                view<string>(t.id, "ft_balance_of", { account_id: accountId }),
+                "0",
+              ),
+            ] as const,
+        ),
     ),
   );
   const locked = BigInt(acc.storage_usage) * 10n ** 19n;
@@ -264,7 +287,12 @@ export async function accountState(accountId: string) {
       ).toString(),
       storageLocked: locked.toString(),
     },
-    tokens: { wNEAR: wnear, tUSDC: tusdc, LiNEAR: linear, ...extra },
+    tokens: {
+      wNEAR: wnear,
+      [near.tokenSymbol]: tusdc,
+      LiNEAR: linear,
+      ...extra,
+    },
     linearPrice,
     linearAccount,
     burrow,

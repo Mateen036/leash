@@ -1,5 +1,6 @@
+import { near } from "@/lib/near/config";
 import { NearError } from "@/lib/near/server";
-import { ORDERLY_API } from "./orderly";
+import {} from "./orderly";
 
 export const KLINE_TYPES = ["5m", "15m", "1h", "4h", "1D"] as const;
 export type KlineType = (typeof KLINE_TYPES)[number];
@@ -33,7 +34,7 @@ export type KlinePayload = {
   candles: Candle[];
   last: number | null;
   fetchedAt: number;
-  source: "orderly-testnet";
+  source: "orderly-testnet" | "orderly-mainnet";
 };
 
 type TvHistory = {
@@ -121,7 +122,8 @@ export function parseTvHistory(data: TvHistory): Candle[] {
   const unique: Candle[] = [];
   for (const candle of candles) {
     const previous = unique[unique.length - 1];
-    if (previous && previous.time === candle.time) unique[unique.length - 1] = candle;
+    if (previous && previous.time === candle.time)
+      unique[unique.length - 1] = candle;
     else unique.push(candle);
   }
   return unique;
@@ -140,7 +142,7 @@ export async function loadKlines(
     `&from=${range.from}&to=${range.to}&limit=${range.limit}`;
   let data: TvHistory = {};
   try {
-    const response = await fetchImpl(`${ORDERLY_API}${path}`, {
+    const response = await fetchImpl(`${near.orderlyApi}${path}`, {
       signal: AbortSignal.timeout(15_000),
       headers: { accept: "application/json" },
     });
@@ -158,7 +160,7 @@ export async function loadKlines(
     candles,
     last: candles.at(-1)?.close ?? null,
     fetchedAt: now,
-    source: "orderly-testnet",
+    source: near.orderlyVenue as "orderly-testnet" | "orderly-mainnet",
   };
 }
 
@@ -169,7 +171,7 @@ export async function cachedKlines(
   fetchImpl: typeof fetch = fetch,
   now = Date.now(),
 ): Promise<KlinePayload> {
-  const key = `${symbol}:${type}`;
+  const key = `${near.network}:${symbol}:${type}`;
   const hit = cache.get(key);
   if (hit?.value && now - hit.at < KLINE_CACHE_TTL_MS) return hit.value;
   if (hit?.inflight) return hit.inflight;
@@ -181,7 +183,10 @@ export async function cachedKlines(
     .catch((error) => {
       const current = cache.get(key);
       if (current?.inflight === inflight)
-        cache.set(key, { at: current.value ? current.at : 0, value: current.value });
+        cache.set(key, {
+          at: current.value ? current.at : 0,
+          value: current.value,
+        });
       throw error;
     });
   cache.set(key, { at: hit?.at ?? 0, value: hit?.value, inflight });

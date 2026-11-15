@@ -1,7 +1,8 @@
 import type { Action } from "../agent/actions";
 import type { GuardAction, GuardPolicy, GuardSpent } from "../near/guard";
-import { SWAP_TOKENS, TOKENS, fromBase } from "./tokens";
+import { getSwapTokens, TOKENS, fromBase } from "./tokens";
 export type Proposal = {
+  network?: "testnet" | "mainnet";
   action: Action;
   guardAction?: GuardAction;
   raw?: unknown;
@@ -49,7 +50,7 @@ export function assetInfo(asset: string) {
   if (asset === "perp_usd") return { symbol: "USD notional", decimals: 0 };
   return (
     Object.values(TOKENS).find((t) => t.id === asset) ||
-    SWAP_TOKENS.find((t) => t.id === asset) || {
+    getSwapTokens().find((t) => t.id === asset) || {
       symbol: asset,
       decimals: asset.includes("usd") ? 6 : 24,
     }

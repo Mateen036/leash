@@ -1,9 +1,6 @@
 import { z } from "zod";
-import deployment from "./deployment.testnet.json";
 import { near } from "./config";
 import { view } from "./views";
-export const REF = "ref-finance-101.testnet";
-export const WNEAR = "wrap.testnet";
 export const swapInput = z.object({
   direction: z.enum(["USDC_TO_NEAR", "NEAR_TO_USDC"]),
   amount: z.string().regex(/^\d{1,7}(\.\d{1,24})?$/),
@@ -99,24 +96,24 @@ export function swapMessage(
 }
 export async function swapQuote(input: SwapInput): Promise<SwapQuote> {
   const i = swapInput.parse(input);
-  const poolId = (deployment as { refPoolId?: number }).refPoolId;
+  const poolId = near.pool;
   if (!Number.isInteger(poolId))
     throw new Error("Ref pool has not been configured");
-  const tokenIn = i.direction === "USDC_TO_NEAR" ? near.token : WNEAR,
-    tokenOut = i.direction === "USDC_TO_NEAR" ? WNEAR : near.token;
+  const tokenIn = i.direction === "USDC_TO_NEAR" ? near.token : near.wrap,
+    tokenOut = i.direction === "USDC_TO_NEAR" ? near.wrap : near.token;
   const inDecimals = i.direction === "USDC_TO_NEAR" ? 6 : 24,
     outDecimals = i.direction === "USDC_TO_NEAR" ? 24 : 6;
   const amountIn = units(i.amount, inDecimals);
   // Read pool for identity/liquidity checks. get_return is always the quote authority.
-  const pool = await view<Pool>(REF, "get_pool", { pool_id: poolId });
+  const pool = await view<Pool>(near.ref, "get_pool", { pool_id: poolId });
   if (
     pool.pool_kind !== "SIMPLE_POOL" ||
     pool.token_account_ids.length !== 2 ||
     !pool.token_account_ids.includes(near.token) ||
-    !pool.token_account_ids.includes(WNEAR)
+    !pool.token_account_ids.includes(near.wrap)
   )
     throw new Error("Unexpected Ref pool");
-  const amountOut = await view<string>(REF, "get_return", {
+  const amountOut = await view<string>(near.ref, "get_return", {
     pool_id: poolId,
     token_in: tokenIn,
     amount_in: amountIn,
@@ -137,12 +134,12 @@ export async function swapQuote(input: SwapInput): Promise<SwapQuote> {
     minAmountOut,
     output: formatted(amountOut, outDecimals),
     minimum: formatted(minAmountOut, outDecimals),
-    inputSymbol: inDecimals === 6 ? "tUSDC" : "NEAR (wrapped)",
-    outputSymbol: outDecimals === 6 ? "tUSDC" : "wNEAR",
+    inputSymbol: inDecimals === 6 ? near.tokenSymbol : "NEAR (wrapped)",
+    outputSymbol: outDecimals === 6 ? near.tokenSymbol : "wNEAR",
     tokenIn,
     tokenOut,
     poolId: poolId!,
-    venue: REF,
+    venue: near.ref,
     feeBps: pool.total_fee,
     priceImpactPercent: Math.max(
       0,

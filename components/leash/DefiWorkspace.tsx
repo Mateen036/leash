@@ -1,4 +1,7 @@
 "use client";
+import { near } from "@/lib/near/config";
+import { networkFetch } from "@/lib/near/network";
+
 import { formatAmount, shortAccount } from "./display";
 import { ErrorNotice } from "@/components/leash/ErrorNotice";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -12,7 +15,7 @@ import { suppliedBalance } from "@/lib/defi/preview";
 import {
   fromBase,
   TOKENS,
-  SWAP_TOKENS,
+  getSwapTokens,
   swapToken,
   toBase,
 } from "@/lib/defi/tokens";
@@ -59,7 +62,7 @@ export function useMarkets() {
     let active = true;
     async function refresh() {
       try {
-        const r = await fetch("/api/defi/markets");
+        const r = await networkFetch("/api/defi/markets");
         const j = await r.json();
         if (!r.ok) throw new Error(j.error);
         if (active) {
@@ -85,7 +88,10 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
     markets = useMarkets();
   const [amount, setAmount] = useState(kind === "swap" ? "0.05" : "0.2");
   const [operation, setOperation] = useState(kind === "lend" ? "supply" : kind);
-  const [pair, setPair] = useState({ source: "NEAR", target: "tUSDC" });
+  const [pair, setPair] = useState({
+    source: "NEAR",
+    target: near.tokenSymbol,
+  });
   const { source, target } = pair;
   const inputToken = swapToken(source)!;
   const outputToken = swapToken(target)!;
@@ -147,10 +153,10 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
         : "wNEAR";
   const token = (symbol: string): WidgetToken => ({
     ...tokenDisplay(symbol),
-    chain: "NEAR testnet",
+    chain: `NEAR ${near.network}`,
   });
   const tokens = (
-    kind === "swap" ? SWAP_TOKENS : [tokenDisplay(inputSymbol)]
+    kind === "swap" ? getSwapTokens() : [tokenDisplay(inputSymbol)]
   ).map((t) => ({
     ...token(t.symbol),
     balance: !d.exists
@@ -204,7 +210,7 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
           tokenOut: outputToken.id,
           amountIn,
         });
-        const response = await fetch(`/api/defi/quote?${query}`);
+        const response = await networkFetch(`/api/defi/quote?${query}`);
         const quote = await response.json();
         if (!response.ok)
           throw new Error("The quote is unavailable. Try again in a moment.");
@@ -344,7 +350,7 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
                 )
               }
               badges={<Badge variant="read-only" />}
-              subtitle="Live testnet rate · changes over time."
+              subtitle="Live exchange rate · changes over time."
               metrics={[
                 { label: "Asset", value: "wNEAR" },
                 { label: "Collateral", value: "Not enabled" },
@@ -405,7 +411,9 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
                 ? "Enter the NEAR value you want to unstake"
                 : inputSymbol === "NEAR"
                   ? "A little NEAR is kept for fees"
-                  : "Test tokens · no cash value"
+                  : near.network === "mainnet"
+                    ? "Mainnet tokens · real funds"
+                    : "Test tokens · no cash value"
             }
           />
           <FlipButton
@@ -467,7 +475,7 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
         </form>
         <p className="widget-inline-note">
           <ShieldCheck size={13} />
-          {a.walletSession
+          {a.walletSession || near.network === "mainnet"
             ? "Your wallet signs · off-chain limit"
             : "Your limits apply on-chain"}
         </p>
@@ -478,7 +486,7 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
               ? "Swaps use Ref Finance. NEAR is wrapped for trading; reverse swaps return wNEAR. Small test pools can move the price a lot, so check the price impact before confirming."
               : kind === "stake"
                 ? "Unstaking starts an unlock period. Withdraw your NEAR from LiNEAR when it is ready."
-                : "Your supplied tokens are not used as collateral. Borrowing is unavailable on this testnet market."}
+                : "Your supplied tokens are not used as collateral. Borrowing is unavailable in this app."}
           </p>
         </details>
         {error && <ErrorNotice error={error} />}
@@ -499,14 +507,18 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
           {!a.accountId ? (
             <EmptyState
               title="See your balances"
-              description="Start free or connect a wallet below."
+              description={
+                near.network === "mainnet"
+                  ? "Connect a funded mainnet wallet below."
+                  : "Start free or connect a wallet below."
+              }
             />
           ) : !d.state ? (
             <QuoteSkeleton />
           ) : !d.exists ? (
             <EmptyState
               title="Account unavailable"
-              description="This account could not be loaded on NEAR testnet."
+              description="This account could not be loaded on the selected NEAR network."
             />
           ) : kind === "stake" ? (
             <>
@@ -550,36 +562,39 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
               <p>
                 Health factor:{" "}
                 {d.burrow?.borrowed?.length
-                  ? "Unavailable · wNEAR testnet oracle missing"
+                  ? "Unavailable · account risk cannot be safely projected"
                   : "N/A · no borrows"}
               </p>
               <p>Withdraw to your account at any time.</p>
             </>
           ) : (
             <div className="balance-grid">
-              {[...SWAP_TOKENS.map((t) => t.symbol), "wNEAR"].map((symbol) => (
-                <div key={symbol}>
-                  <TokenGlyph token={token(symbol)} size={26} />
-                  <span>
-                    {symbol}
-                    <strong>
-                      <NumberTicker
-                        value={
-                          symbol === "NEAR"
-                            ? Number(d.near?.available || 0) / 1e24
-                            : Number(
-                                (
-                                  d.tokens as Record<string, string> | undefined
-                                )?.[symbol] || 0,
-                              ) /
-                              10 ** tokenDisplay(symbol).decimals
-                        }
-                        decimalPlaces={4}
-                      />
-                    </strong>
-                  </span>
-                </div>
-              ))}
+              {[...getSwapTokens().map((t) => t.symbol), "wNEAR"].map(
+                (symbol) => (
+                  <div key={symbol}>
+                    <TokenGlyph token={token(symbol)} size={26} />
+                    <span>
+                      {symbol}
+                      <strong>
+                        <NumberTicker
+                          value={
+                            symbol === "NEAR"
+                              ? Number(d.near?.available || 0) / 1e24
+                              : Number(
+                                  (
+                                    d.tokens as
+                                      Record<string, string> | undefined
+                                  )?.[symbol] || 0,
+                                ) /
+                                10 ** tokenDisplay(symbol).decimals
+                          }
+                          decimalPlaces={4}
+                        />
+                      </strong>
+                    </span>
+                  </div>
+                ),
+              )}
             </div>
           )}
           {d.error && <ErrorNotice error={d.error} />}
@@ -588,7 +603,7 @@ export function DefiWorkspace({ kind }: { kind: "stake" | "lend" | "swap" }) {
         {kind === "lend" && (
           <details className="widget-market-details">
             <summary>
-              Explore other testnet markets <span>Read only</span>
+              Explore other lending markets <span>Read only</span>
             </summary>
             <p>Other rates are for reference.</p>
             {!markets.data && !markets.error ? (

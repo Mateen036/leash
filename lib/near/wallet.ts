@@ -1,6 +1,10 @@
 "use client";
+import { networkFetch } from "@/lib/near/network";
+
 import type { NearConnector, NearWalletBase } from "@hot-labs/near-connect";
 import { base64Encode } from "near-api-js";
+import { networkKey } from "./network";
+import { isMainnetAccount } from "../bridge/validation";
 import { near } from "./config";
 import type { Call, RelayResult } from "./client";
 
@@ -10,21 +14,37 @@ export const TESTNET_FAUCET = "https://docs.near.org/getting-started/faucet";
 /** Below this many yoctoNEAR a wallet probably cannot pay gas for the setup transactions. */
 export const LOW_NEAR = 300_000_000_000_000_000_000_000n; // 0.3 NEAR (gas is prepaid at the max, then refunded)
 
+function validAccount(id: string) {
+  return near.network === "mainnet"
+    ? isMainnetAccount(id)
+    : id.endsWith(".testnet") || /^[0-9a-f]{64}$/.test(id);
+}
 let connector: NearConnector | null = null;
-/** One NEAR Connect instance (testnet), created lazily in the browser. */
+/** One NEAR Connect instance for the selected network, created lazily after network hydration. */
 export async function getConnector(): Promise<NearConnector> {
   if (connector) return connector;
   const { NearConnector } = await import("@hot-labs/near-connect");
   connector = new NearConnector({
-    network: "testnet",
+    network: near.network,
     features: {
-      testnet: true,
+      ...(near.network === "testnet" ? { testnet: true } : {}),
       signMessage: true,
       signAndSendTransaction: true,
     },
-    providers: { testnet: [near.rpcUrl, "https://rpc.testnet.near.org"] },
+    providers: { [near.network]: [near.rpcUrl] },
+    storage: {
+      async get(k) {
+        return localStorage.getItem(networkKey(`leash:wallet:${k}`));
+      },
+      async set(k, v) {
+        localStorage.setItem(networkKey(`leash:wallet:${k}`), v);
+      },
+      async remove(k) {
+        localStorage.removeItem(networkKey(`leash:wallet:${k}`));
+      },
+    },
     footerBranding: {
-      heading: "Leash · NEAR testnet",
+      heading: `Leash · NEAR ${near.network}`,
       link: "https://github.com/Mateen036/leash",
       linkText: "Source",
     },
@@ -34,6 +54,7 @@ export async function getConnector(): Promise<NearConnector> {
 
 export type WalletSession = {
   accountId: string;
+  network: "testnet" | "mainnet";
   wallet: NearWalletBase;
   walletName: string;
 };
@@ -42,9 +63,10 @@ export async function restoreWallet(): Promise<WalletSession | null> {
   try {
     const c = await getConnector();
     const { wallet, accounts } = await c.getConnectedWallet();
-    if (!accounts[0]) return null;
+    if (!accounts[0] || !validAccount(accounts[0].accountId)) return null;
     return {
       accountId: accounts[0].accountId,
+      network: near.network,
       wallet,
       walletName: wallet.manifest.name,
     };
@@ -56,17 +78,13 @@ export async function restoreWallet(): Promise<WalletSession | null> {
 export async function connectWallet(): Promise<WalletSession> {
   const c = await getConnector();
   const wallet = await c.connect();
-  const accounts = await wallet.getAccounts({ network: "testnet" });
+  const accounts = await wallet.getAccounts({ network: near.network });
   if (!accounts[0]) throw new Error("The wallet did not return an account");
-  if (
-    !accounts[0].accountId.endsWith(".testnet") &&
-    !/^[0-9a-f]{64}$/.test(accounts[0].accountId)
-  )
-    throw new Error(
-      `${accounts[0].accountId} is not a testnet account. Switch your wallet to NEAR testnet.`,
-    );
+  if (!validAccount(accounts[0].accountId))
+    throw new Error(`Select an account on NEAR ${near.network}.`);
   return {
     accountId: accounts[0].accountId,
+    network: near.network,
     wallet,
     walletName: wallet.manifest.name,
   };
@@ -97,8 +115,10 @@ export async function walletSend(
   receiverId: string,
   calls: Call[],
 ): Promise<RelayResult> {
+  if (session.network !== near.network || !validAccount(session.accountId))
+    throw new Error("Wallet network changed. Reconnect your wallet.");
   const outcome: any = await session.wallet.signAndSendTransaction({
-    network: "testnet",
+    network: near.network,
     signerId: session.accountId,
     receiverId,
     actions: calls.map((c) => ({
@@ -125,13 +145,15 @@ export async function walletSignRequest(
   session: WalletSession,
   parts: string[],
 ) {
-  const message = [...parts, String(Date.now())].join("|");
+  if (session.network !== near.network)
+    throw new Error("Reconnect your wallet on this network.");
+  const message = [near.network, ...parts, String(Date.now())].join("|");
   const nonce = crypto.getRandomValues(new Uint8Array(32));
   const signed = await session.wallet.signMessage({
     message,
     recipient: NEP413_RECIPIENT,
     nonce,
-    network: "testnet",
+    network: near.network,
     signerId: session.accountId,
   });
   return {
@@ -146,7 +168,7 @@ export async function walletSignRequest(
 
 /** Native NEAR balance (yoctoNEAR) of any account, via RPC. */
 export async function nearBalance(accountId: string): Promise<bigint> {
-  const r = await fetch(near.rpcUrl, {
+  const r = await networkFetch(near.rpcUrl, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({

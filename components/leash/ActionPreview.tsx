@@ -1,4 +1,5 @@
 "use client";
+import { near } from "@/lib/near/config";
 import { ErrorNotice } from "@/components/leash/ErrorNotice";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const inFlight = new Set<string>();
 export function ActionPreview({
   proposal: p,
   children,
-  network = "testnet",
+  network = p.network ?? near.network,
 }: {
   proposal: Proposal;
   children?: ReactNode;
@@ -357,7 +358,7 @@ export function ActionPreview({
           <ErrorNotice error={p.blocked} />
           {p.tryAnyway && (
             <p className="la-fineprint">
-              Test the limit to see an on-chain rejection. A small testnet fee
+              Test the limit to see an on-chain rejection. A network fee
               applies.
             </p>
           )}
@@ -370,7 +371,7 @@ export function ActionPreview({
               <p className="la-fineprint">
                 {account.accountId
                   ? "Set up your agent or connect a wallet to continue."
-                  : "Start free on testnet or connect a wallet to confirm."}
+                  : "Connect a wallet to confirm, or switch to testnet to practice."}
               </p>
             )}
             {stage === "countdown" ? (

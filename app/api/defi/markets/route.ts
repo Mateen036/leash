@@ -1,18 +1,20 @@
+import { near } from "@/lib/near/config";
+import { networkRoute } from "@/lib/near/network-server";
 import { view } from "@/lib/defi/server";
-import { BURROW, REF, SWAP_POOL } from "@/lib/defi/tokens";
+import {} from "@/lib/defi/tokens";
 import { fail } from "@/lib/near/api";
-export async function GET() {
+async function handleGET() {
   try {
     const [assets, pool] = await Promise.all([
-      view<[string, any][]>(BURROW, "get_assets_paged", {
+      view<[string, any][]>(near.burrow, "get_assets_paged", {
         from_index: 0,
         limit: 30,
       }),
-      view<any>(REF, "get_pool", { pool_id: SWAP_POOL }),
+      view<any>(near.ref, "get_pool", { pool_id: near.pool }),
     ]);
     const markets = await Promise.all(
       assets.map(async ([token, asset]) => {
-        const details = await view<any>(BURROW, "get_asset", {
+        const details = await view<any>(near.burrow, "get_asset", {
           token_id: token,
         }).catch(() => null);
         return {
@@ -29,3 +31,5 @@ export async function GET() {
     return fail(e);
   }
 }
+
+export const GET = networkRoute(handleGET);

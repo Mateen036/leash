@@ -1,3 +1,4 @@
+import { networkKey } from "@/lib/near/network";
 export type Receipt = {
   id: string;
   at: number;
@@ -8,7 +9,7 @@ export type Receipt = {
   orderId?: string;
   rejected?: boolean;
 };
-const key = (id: string) => `leash:activity:${id}`;
+const key = (id: string) => networkKey(`leash:activity:${id}`);
 export function loadReceipts(id: string): Receipt[] {
   try {
     return JSON.parse(localStorage.getItem(key(id)) || "[]");

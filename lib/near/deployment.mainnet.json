@@ -1,0 +1,18 @@
+{
+  "network": "mainnet",
+  "rpcUrl": "https://rpc.mainnet.near.org",
+  "explorer": "https://nearblocks.io",
+  "root": "jjhkhkl.near",
+  "relayerAccount": "jjhkhkl.near",
+  "tokenContract": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
+  "tokenSymbol": "USDC",
+  "tokenDecimals": 6,
+  "refContract": "v2.ref-finance.near",
+  "wrapContract": "wrap.near",
+  "refPoolId": 4512,
+  "leash": {
+    "guardCodeHash": "",
+    "guardGlobalTx": "",
+    "agentGuardPublicKey": ""
+  }
+}

@@ -1,3 +1,4 @@
+import { NetworkProvider } from "@/components/account/NetworkProvider";
 import type { Metadata } from "next";
 import { AccountProvider } from "@/components/account/AccountProvider";
 import "./globals.css";
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <AccountProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </AccountProvider>
+        <NetworkProvider>
+          <AccountProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </AccountProvider>
+        </NetworkProvider>
       </body>
     </html>
   );

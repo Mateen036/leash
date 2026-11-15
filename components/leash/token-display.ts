@@ -1,6 +1,6 @@
 import {
   LINEAR_TOKEN,
-  SWAP_TOKENS,
+  getSwapTokens,
   TOKENS,
   swapToken,
 } from "@/lib/defi/tokens";
@@ -41,10 +41,10 @@ export function chainCode(chain: string) {
       );
 }
 export function tokenDisplay(symbolOrId: string) {
-  if (symbolOrId === "near") return SWAP_TOKENS[0];
+  if (symbolOrId === "near") return getSwapTokens()[0];
   if (symbolOrId === "wNEAR")
     return {
-      ...SWAP_TOKENS[0],
+      ...getSwapTokens()[0],
       id: TOKENS.wNEAR.id,
       symbol: "wNEAR",
       name: "Wrapped NEAR",
@@ -66,7 +66,7 @@ export function tokenDisplay(symbolOrId: string) {
 /** Match whole symbols, never substrings such as NEAR inside LiNEAR. */
 export function tokensInText(text: string) {
   const symbols = [
-    ...SWAP_TOKENS.map((t) => t.symbol),
+    ...getSwapTokens().map((t) => t.symbol),
     "wNEAR",
     "LiNEAR",
     "ETH",
